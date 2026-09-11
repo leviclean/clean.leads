@@ -46,6 +46,22 @@
 /* ---------- FINAL CLEAN HERO BALANCE ---------- */
 .clean-leads-hero .clean-wave-lines{display:block!important;opacity:.52!important;}
 .clean-leads-hero{min-height:410px!important}.clean-wave-lines{display:block!important;opacity:.48!important}.clean-hero-content h1{font-size:clamp(3.25rem,7vw,6.2rem)!important;letter-spacing:-.075em!important}.clean-hero-content{padding:24px 15px!important}.clean-leads-hero .clean-wave-lines{z-index:1}.clean-leads-hero .clean-hero-content{z-index:3}@media(max-width:650px){.clean-leads-hero{min-height:350px!important}.clean-hero-content h1{font-size:clamp(2.8rem,14vw,4.6rem)!important}}
+
+/* ---------- MINIMAL CLEAN DOT CURSOR ---------- */
+#cleanCursor{width:6px!important;height:6px!important;background:#8cc8ff!important;box-shadow:0 0 10px rgba(77,163,255,.82)!important;transition:none!important}
+body:has(a:hover) #cleanCursor{width:6px!important;height:6px!important;box-shadow:0 0 10px rgba(77,163,255,.82)!important}
+@media(pointer:coarse){#cleanCursor{display:none!important}}
+
+/* ---------- ONLY THE DOT ---------- */
+#cleanCursor{width:5px!important;height:5px!important;border-radius:50%!important;background:#8cc8ff!important;box-shadow:none!important;transition:none!important}
+body:has(a:hover) #cleanCursor{width:5px!important;height:5px!important;box-shadow:none!important}
+.cur,#pointerGlow{display:none!important}
+@media(pointer:coarse){#cleanCursor{display:none!important}}
+
+/* ---------- NATIVE CURSOR HIDDEN: DOT ONLY ---------- */
+html,html *,body,body *{cursor:none!important}
+#cleanCursor{display:block!important;width:5px!important;height:5px!important;border-radius:50%!important;background:#8cc8ff!important;box-shadow:none!important;pointer-events:none!important}
+@media(pointer:coarse){html,html *,body,body *{cursor:auto!important}#cleanCursor{display:none!important}}
 </style>
 </head>
 <body><div id="cleanCursor" aria-hidden="true"></div>
