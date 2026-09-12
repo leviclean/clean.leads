@@ -839,6 +839,25 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
   .k-main:after{content:"";display:block;height:120px;width:100%;pointer-events:none}
   .k-sidebar{bottom:0!important;top:auto!important;position:fixed!important}
 }
+</style><style id="clean-official-mobile-nav-overlay">
+@media(max-width:768px){
+  /* Official Captar/CLEAN Leads mobile model: the bar is a fixed overlay,
+     never a document-flow element. Empty space passes gestures to the page. */
+  .k-sidebar{position:fixed!important;left:10px!important;right:10px!important;bottom:10px!important;top:auto!important;width:auto!important;height:auto!important;z-index:10000!important;pointer-events:none!important;overflow:visible!important}
+  .k-sidebar__brand,.k-sidebar__nav,.k-sidebar__brand *,.k-sidebar__nav *{pointer-events:auto!important}
+  .k-main{padding-bottom:120px!important}
+}
+</style><style id="clean-captar-scroll-root-final">
+@media(max-width:768px){
+  /* One and only one scroll surface, matching the Captar layout. */
+  html,body{width:100%!important;height:100%!important;min-height:100%!important;overflow:hidden!important;position:fixed!important;inset:0!important}
+  .k-layout{display:flex!important;flex-direction:column!important;width:100%!important;height:100dvh!important;min-height:0!important;max-height:none!important;overflow:hidden!important}
+  .k-main{display:block!important;flex:1 1 auto!important;width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch!important;overscroll-behavior-y:auto!important;touch-action:pan-y!important;padding:0 0 calc(150px + env(safe-area-inset-bottom))!important;scroll-behavior:auto!important}
+  .k-sidebar{position:fixed!important;left:10px!important;right:10px!important;bottom:10px!important;top:auto!important;width:auto!important;height:auto!important;z-index:10000!important;pointer-events:none!important;overflow:visible!important}
+  .k-sidebar__brand,.k-sidebar__nav,.k-sidebar__brand *,.k-sidebar__nav *{pointer-events:auto!important}
+  .k-main>div{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
+  .k-main:after{content:"";display:block;width:100%;height:40px;pointer-events:none}
+}
 </style></head>
 <body x-data="app()" x-init="init()" x-cloak>
 
