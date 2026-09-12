@@ -704,6 +704,12 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
 .clean-wordmark{height:64px!important;flex:0 0 64px!important}.clean-wordmark em{top:31px!important}
 @media(max-width:700px){.clean-wordmark{height:52px!important;flex:0 0 52px!important}.clean-wordmark em{top:24px!important}}
 .k-sidebar__brand{margin-bottom:0!important;padding-top:10px!important;padding-bottom:2px!important}.k-sidebar__nav{margin-top:0!important}
+</style><style id="clean-compact-wordmark-fix">
+.clean-wordmark{height:74px!important;flex:0 0 74px!important}.clean-wordmark em{top:35px!important}
+@media(max-width:700px){.clean-wordmark{height:60px!important;flex:0 0 60px!important}.clean-wordmark em{top:27px!important}}
+</style><style id="clean-logo-balanced-spacing">
+.clean-wordmark{height:74px!important;flex:0 0 74px!important}.clean-wordmark em{top:35px!important}
+@media(max-width:700px){.clean-wordmark{height:60px!important;flex:0 0 60px!important}.clean-wordmark em{top:27px!important}}
 </style></head>
 <body x-data="app()" x-init="init()" x-cloak>
 
@@ -1088,13 +1094,13 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
           </div>
           <div>
             <h2 class="text-xl font-bold mb-2" style="color:var(--text)">Foursquare — 100% grátis 🎉</h2>
-            <p class="text-sm leading-relaxed" style="color:var(--text-2)">É a fonte <strong style="color:var(--text)">recomendada pra começar</strong>: gratuita, sem cartão de crédito e sem complicação.</p>
+            <p class="text-sm leading-relaxed" style="color:var(--text-2)">É a fonte <strong style="color:var(--text)">recomendada pra começar</strong>: gratuita e simples de configurar.</p>
           </div>
           <div class="grid grid-cols-2 gap-3 w-full mt-1">
             <div class="p-3 rounded-xl text-left" style="background:var(--surface-2);border:1px solid var(--border)">
               <i class="fa-solid fa-gift mb-2 text-sm" style="color:#a0d0a0"></i>
               <p class="text-xs font-semibold" style="color:var(--text)">1.000 buscas por dia</p>
-              <p class="text-xs mt-0.5" style="color:var(--text-muted)">Sem pagar nada, todos os dias</p>
+              <p class="text-xs mt-0.5" style="color:var(--text-muted)">Disponível todos os dias</p>
             </div>
             <div class="p-3 rounded-xl text-left" style="background:var(--surface-2);border:1px solid var(--border)">
               <i class="fa-solid fa-credit-card mb-2 text-sm" style="color:#64a0ff"></i>
@@ -1156,40 +1162,16 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
 
       <!-- STEP 3 -->
       <div x-show="apiTutStep===3" class="sz-tut-step">
-        <h2 class="text-lg font-bold mb-1" style="color:var(--text)">3. Cole no CLEAN Leads e pronto ✅</h2>
-        <p class="text-sm mb-4" style="color:var(--text-muted)">Última etapa, bem rápida.</p>
-        <div class="space-y-3">
-          <div class="flex gap-3 p-4 rounded-xl" style="background:var(--surface-2);border:1px solid var(--border)">
-            <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center font-bold text-sm" style="background:#c0c0c0;color:#0d0d0d">1</div>
-            <p class="text-sm" style="color:var(--text-2)"><strong style="color:var(--text)">Copie</strong> a sua Service Key (o código que começa tipo <code style="color:var(--text-2)">KZEG...</code>).</p>
-          </div>
-          <div class="flex gap-3 p-4 rounded-xl" style="background:var(--surface-2);border:1px solid var(--border)">
-            <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center font-bold text-sm" style="background:#c0c0c0;color:#0d0d0d">2</div>
-            <p class="text-sm" style="color:var(--text-2)"><strong style="color:var(--text)">Cole</strong> no campo <strong style="color:var(--text)">"Foursquare API Key (Service Key)"</strong> aqui nas Configurações.</p>
-          </div>
-          <div class="flex gap-3 p-4 rounded-xl" style="background:rgba(160,208,160,.06);border:1px solid rgba(160,208,160,.25)">
-            <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center font-bold text-sm" style="background:#a0d0a0;color:#0d0d0d">3</div>
-            <p class="text-sm" style="color:var(--text-2)">Clique em <strong style="color:var(--text)">Salvar Configurações</strong>. Pronto! Já pode buscar leads pela fonte Foursquare.</p>
-          </div>
-          <div class="p-3 rounded-xl flex gap-3" style="background:rgba(208,128,128,.06);border:1px solid rgba(208,128,128,.2)">
-            <i class="fa-solid fa-lightbulb flex-shrink-0 mt-0.5 text-sm" style="color:#d0a060"></i>
-            <p class="text-xs" style="color:var(--text-2)"><strong style="color:var(--text)">Deu erro HTTP 401?</strong> É sinal de que você colou a chave Legacy (fsq3). Volte ao passo 3 e gere a <strong>Service Key</strong>.</p>
-          </div>
+        <h2 class="text-lg font-bold mb-1" style="color:var(--text)">3. Finalize a configuração da API</h2>
+        <p class="text-sm mb-4" style="color:var(--text-muted)">Depois de ativar o serviço escolhido, copie a chave e cole-a nas Configurações do CLEAN Leads.</p>
+        <div class="flex gap-3 p-4 rounded-xl" style="background:var(--surface-2);border:1px solid var(--border)">
+          <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center font-bold text-sm" style="background:#64a0ff;color:#0d0d0d">1</div>
+          <p class="text-sm" style="color:var(--text-2)">Abra a área de credenciais da API, copie a chave e use o campo correspondente em <strong style="color:var(--text)">Configurações</strong>.</p>
         </div>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="flex items-center justify-between px-6 py-4" style="border-top:1px solid var(--border)">
-      <div class="flex items-center gap-2">
-        <template x-for="i in [0,1,2,3]" :key="i">
-          <div class="sz-tut-dot" :class="apiTutStep===i?'active':''" style="background:var(--border)" :style="apiTutStep===i&&'background:#c0c0c0;width:24px;border-radius:4px'"></div>
-        </template>
-      </div>
-      <div class="flex items-center gap-2">
-        <button x-show="apiTutStep>0" @click="apiTutStep--" class="k-btn k-btn-secondary text-sm"><i class="fa-solid fa-arrow-left"></i>Voltar</button>
-        <button x-show="apiTutStep<3" @click="apiTutStep++" class="k-btn k-btn-primary text-sm">Próximo<i class="fa-solid fa-arrow-right"></i></button>
-        <button x-show="apiTutStep===3" @click="apiTut=''" class="k-btn k-btn-primary text-sm"><i class="fa-solid fa-check"></i>Entendi</button>
+        <div class="p-4 rounded-xl mt-3" style="background:var(--brand-soft);border:1px solid var(--border-strong)">
+          <p class="text-sm font-semibold" style="color:var(--text)"><i class="fa-solid fa-key mr-1.5" style="color:var(--brand)"></i>Pronto para conectar</p>
+          <p class="text-xs mt-1" style="color:var(--text-muted)">O CLEAN Leads não cobra pelo uso. Os limites são definidos pela fonte pública ou pela API que você configurar.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1223,11 +1205,11 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
           </div>
           <div>
             <h2 class="text-xl font-bold mb-2" style="color:var(--text)">Google Maps — a fonte mais completa</h2>
-            <p class="text-sm leading-relaxed" style="color:var(--text-2)">É a busca <strong style="color:var(--text)">mais rica</strong> (mais empresas, telefones e sites). É "paga", mas o Google dá <strong style="color:var(--text)">muito crédito grátis</strong> — na prática, a maioria não chega a pagar nada.</p>
+            <p class="text-sm leading-relaxed" style="color:var(--text-2)">É a busca <strong style="color:var(--text)">mais rica</strong> para encontrar empresas, telefones e sites. Configure a chave da API para ativá-la.</p>
           </div>
           <div class="p-3 rounded-xl flex gap-3 w-full text-left" style="background:rgba(100,160,255,.06);border:1px solid rgba(100,160,255,.2)">
             <i class="fa-solid fa-circle-info flex-shrink-0 mt-0.5 text-sm" style="color:#64a0ff"></i>
-            <p class="text-xs" style="color:var(--text-2)">Calma com a parte do dinheiro: nos próximos passos eu explico <strong style="color:var(--text)">exatamente</strong> como funciona a ativação, o reembolso e os créditos grátis. Você não vai ser pego de surpresa.</p>
+            <p class="text-xs" style="color:var(--text-2)">Calma com a parte do dinheiro: nos próximos passos eu explico como ativar a API e conectar a chave ao CLEAN Leads.</p>
           </div>
         </div>
       </div>
@@ -1274,35 +1256,15 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
 
       <!-- STEP 3 -->
       <div x-show="apiTutStep===3" class="sz-tut-step">
-        <h2 class="text-lg font-bold mb-1" style="color:var(--text)">3. Ative a forma de pagamento 💳</h2>
-        <p class="text-sm mb-4" style="color:var(--text-muted)">O Google exige uma forma de pagamento cadastrada para liberar a API. É só seguir o cadastro <strong style="color:var(--text-2)">até o final</strong>.</p>
-        <div class="space-y-3">
-          <div class="flex gap-3 p-4 rounded-xl" style="background:var(--surface-2);border:1px solid var(--border)">
-            <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center font-bold text-sm" style="background:#64a0ff;color:#0d0d0d">1</div>
-            <div>
-              <p class="text-sm font-semibold" style="color:var(--text)">Cadastre seu cartão de crédito</p>
-              <p class="text-xs mt-0.5" style="color:var(--text-muted)">No <strong style="color:var(--text-2)">Faturamento</strong> do Google Cloud, escolha adicionar uma forma de pagamento e preencha os dados do cartão.</p>
-              <a href="https://console.cloud.google.com/billing" target="_blank" rel="noopener" class="text-xs font-semibold inline-flex items-center gap-1.5 mt-2" style="color:var(--brand)">
-                <i class="fa-solid fa-up-right-from-square" style="font-size:11px"></i>Abrir Faturamento
-              </a>
-            </div>
-          </div>
-          <div class="flex gap-3 p-4 rounded-xl" style="background:var(--surface-2);border:1px solid var(--border)">
-            <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center font-bold text-sm" style="background:#64a0ff;color:#0d0d0d">2</div>
-            <div>
-              <p class="text-sm font-semibold" style="color:var(--text)">Conclua a ativação da conta</p>
-              <p class="text-xs mt-0.5" style="color:var(--text-muted)">Se durante o processo aparecer uma mensagem de <strong style="color:var(--text-2)">confirmação ou ativação da conta</strong>, é só clicar em <strong style="color:var(--text-2)">OK / Continuar</strong> e seguir até o fim. Faz parte da ativação — <strong style="color:var(--text-2)">não é uma taxa perdida</strong>, vira <strong style="color:var(--text-2)">crédito de uso</strong> na sua conta.</p>
-            </div>
-          </div>
-          <div class="p-4 rounded-xl" style="background:rgba(208,160,96,.07);border:1px solid rgba(208,160,96,.28)">
-            <p class="text-sm font-bold mb-2" style="color:var(--text)"><i class="fa-solid fa-circle-exclamation mr-1.5" style="color:#d0a060"></i>Sobre o reembolso — leia com atenção</p>
-            <ul class="text-xs space-y-1.5 list-disc list-inside leading-relaxed" style="color:var(--text-muted)">
-              <li>O valor da ativação fica como <strong style="color:var(--text-2)">crédito</strong> e vai sendo usado conforme você consulta a API.</li>
-              <li>O reembolso do que não foi usado <strong style="color:var(--text-2)">só acontece se você encerrar a conta de faturamento</strong>.</li>
-              <li>Ao encerrar a conta, <strong style="color:var(--text-2)">todos os serviços ligados a ela são desativados</strong> — a Places API para de funcionar.</li>
-              <li>Ou seja: <strong style="color:var(--text-2)">não dá para resgatar o valor mantendo a conta ativa</strong>.</li>
-            </ul>
-          </div>
+        <h2 class="text-lg font-bold mb-1" style="color:var(--text)">3. Finalize a configuração da API</h2>
+        <p class="text-sm mb-4" style="color:var(--text-muted)">Depois de ativar a Places API, copie a chave e cole-a nas Configurações do CLEAN Leads.</p>
+        <div class="flex gap-3 p-4 rounded-xl" style="background:var(--surface-2);border:1px solid var(--border)">
+          <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center font-bold text-sm" style="background:#64a0ff;color:#0d0d0d">1</div>
+          <p class="text-sm" style="color:var(--text-2)">Abra a área de credenciais, copie sua API Key e use o campo correspondente em <strong style="color:var(--text)">Configurações</strong>.</p>
+        </div>
+        <div class="p-4 rounded-xl mt-3" style="background:var(--brand-soft);border:1px solid var(--border-strong)">
+          <p class="text-sm font-semibold" style="color:var(--text)"><i class="fa-solid fa-key mr-1.5" style="color:var(--brand)"></i>Chave pronta para conectar</p>
+          <p class="text-xs mt-1" style="color:var(--text-muted)">Os limites dependem da fonte ou da API configurada.</p>
         </div>
       </div>
 
@@ -1327,7 +1289,7 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
           </div>
           <div class="p-4 rounded-xl" style="background:var(--surface-2);border:1px solid var(--border)">
             <p class="text-sm font-bold mb-1" style="color:var(--text)"><i class="fa-solid fa-gift mr-1.5" style="color:#a0d0a0"></i>Bônus para conta nova: US$300 em 90 dias</p>
-            <p class="text-xs leading-relaxed" style="color:var(--text-muted)">Quem cria a conta agora ganha <strong style="color:var(--text-2)">US$300 de crédito grátis</strong> válidos por 90 dias — eles cobrem automaticamente qualquer uso além da cota nesse período.</p>
+            <p class="text-xs leading-relaxed" style="color:var(--text-muted)">A disponibilidade e os limites de uso dependem da configuração da sua conta e da API escolhida.</p>
           </div>
           <div class="p-3 rounded-xl flex gap-3" style="background:rgba(100,160,255,.06);border:1px solid rgba(100,160,255,.2)">
             <i class="fa-solid fa-shield-halved flex-shrink-0 mt-0.5 text-sm" style="color:#64a0ff"></i>
@@ -1370,7 +1332,7 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
               <ul class="text-xs space-y-1 list-disc list-inside leading-relaxed" style="color:var(--text-2)">
                 <li>Ativou a <strong style="color:var(--text)">"Places API (New)"</strong> — e não a "Places API" antiga (passo 2).</li>
                 <li>A chave e a API ativada estão no <strong style="color:var(--text)">mesmo projeto</strong> (confira o nome do projeto no topo do console).</li>
-                <li>O <strong style="color:var(--text)">Faturamento</strong> está <strong style="color:var(--text)">ativo</strong> — não "pendente" (cartão recusado ou ativação incompleta bloqueia).</li>
+                <li>A <strong style="color:var(--text)">API</strong> está <strong style="color:var(--text)">ativa</strong> e pronta para uso.</li>
                 <li>Em <strong style="color:var(--text)">Restrições de API</strong> da chave: deixe em <em>"Não restringir"</em> ou inclua a <strong style="color:var(--text)">"Places API (New)"</strong>.</li>
                 <li>Acabou de ativar a API? Espere <strong style="color:var(--text)">1–2 minutos</strong> e teste de novo.</li>
               </ul>
@@ -1624,27 +1586,6 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
         <i class="fa-solid fa-gear" style="width:16px;text-align:center"></i>
         <span>Configurações</span>
       </button>
-      <!-- ══ O que mora no CLEAN Leads ══
-           Automação e S-zap deixaram de rodar aqui: as duas viraram um convite
-           para baixar o app. Ficam juntas embaixo do divisor para a barra dizer,
-           sozinha, o que funciona no navegador e o que pede o aplicativo. -->
-      <div class="k-nav-divider" style="height:1px;background:var(--border);margin:6px 10px 2px"></div>
-      <span class="k-nav-grupo">No CLEAN Leads</span>
-      <button @click="aba='automacao'" :class="(aba==='automacao'?'active ':'')+(!_SZAP_ATIVO?'k-nav-avisando':'')" class="k-nav-btn k-nav-automacao" style="position:relative" title="A automação roda no CLEAN Leads — clique para baixar">
-        <i class="fa-solid fa-robot" style="width:16px;text-align:center;color:#62b6ff"></i>
-        <span>Automação</span>
-        <span class="k-nav-aviso-dot" title="Agora no CLEAN Leads"></span>
-      </button>
-      <button @click="aba='szap'" :class="(aba==='szap'?'active ':'')+(!_SZAP_ATIVO?'k-nav-avisando':'')" class="k-nav-btn k-nav-szap" style="position:relative" :title="!_SZAP_ATIVO?'O WhatsApp roda no CLEAN Leads — clique para baixar':''">
-        <i x-show="_SZAP_ATIVO" class="fa-brands fa-whatsapp" style="width:16px;text-align:center;color:var(--wpp)"></i>
-        <i x-show="!_SZAP_ATIVO" class="fa-brands fa-whatsapp" style="width:16px;text-align:center;color:#62b6ff"></i>
-        <span>S-zap</span>
-        <span x-show="_SZAP_ATIVO&&szap.connected&&!szap.temAtualizacao" class="k-badge" style="background:var(--wpp-bg);color:var(--wpp);margin-left:auto">● On</span>
-        <!-- Ponto de atualização animado -->
-        <span x-show="_SZAP_ATIVO&&szap.temAtualizacao" class="sz-nav-update-dot" title="Atualização disponível para o S-zap"></span>
-        <!-- Selo de aviso: S-zap desativado temporariamente -->
-        <span x-show="!_SZAP_ATIVO" class="k-nav-aviso-dot" title="Agora no CLEAN Leads"></span>
-      </button>
     </nav>
 
     <!-- ══════════ BAIXE O KAPTAR APP ══════════
@@ -1691,6 +1632,10 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
     </section>
 
     <div class="k-sidebar__support" style="margin-top:auto;padding:10px 12px 12px">
+      <a href="https://leviclean.github.io/clean.ltda/" target="_blank" rel="noopener" class="k-support-btn" title="Abrir o site oficial da Clean" style="margin-bottom:8px">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        <span>Site oficial da Clean</span>
+      </a>
       <a x-show="suporteAberto()" :href="'https://wa.me/'+_SUPORTE_WHATSAPP+'?text='+encodeURIComponent('Olá! Preciso de ajuda com o CLEAN Leads.')" target="_blank" rel="noopener"
          class="k-support-btn" title="Falar com o suporte no WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
@@ -1892,7 +1837,7 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
               <option value="google_maps">Google Maps (Recomendado)</option>
               <option value="openstreetmap">OpenStreetMap (Gratuito)</option>
               <template x-if="cfg.foursquare_ativo">
-                <option value="foursquare">Foursquare (créditos limitados)</option>
+                <option value="foursquare">Foursquare (limite de uso)</option>
               </template>
               <option value="todos">Todas as fontes</option>
             </select>
@@ -1965,7 +1910,7 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
             <div class="k-card p-3 flex items-start gap-2.5" :style="custoEstimado.estoura?'border-color:rgba(239,68,68,.45);background:rgba(239,68,68,.05)':'background:var(--surface-2)'">
               <i class="fa-solid fa-gauge-high mt-0.5 flex-shrink-0" :style="custoEstimado.estoura?'color:#ef4444':'color:var(--scan)'"></i>
               <div class="text-xs leading-snug" style="color:var(--text-2)">
-                <span>Esta busca deve gastar <strong x-text="custoEstimado.min===custoEstimado.max?custoEstimado.min:(custoEstimado.min+'–'+custoEstimado.max)"></strong> requisiç<span x-text="custoEstimado.max===1?'ão':'ões'"></span> da cota Google</span><span style="color:var(--text-muted)"> · restam <strong x-text="custoEstimado.restante.toLocaleString('pt-BR')"></strong> este mês</span>
+                <span>Esta busca deve usar <strong x-text="custoEstimado.min===custoEstimado.max?custoEstimado.min:(custoEstimado.min+'–'+custoEstimado.max)"></strong> requisiç<span x-text="custoEstimado.max===1?'ão':'ões'"></span> da cota Google</span><span style="color:var(--text-muted)"> · restam <strong x-text="custoEstimado.restante.toLocaleString('pt-BR')"></strong> este mês</span>
                 <span x-show="custoEstimado.detalhe" class="block mt-0.5" style="color:var(--text-muted)" x-text="custoEstimado.detalhe"></span>
                 <span x-show="custoEstimado.estoura" class="block mt-1 font-medium" style="color:#ef4444"><i class="fa-solid fa-triangle-exclamation mr-1"></i>Esta busca deve atingir sua cota gratuita e vai parar no meio — reduza o alvo, a área (raio) ou o nº de categorias.</span>
               </div>
