@@ -17,6 +17,8 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 <style>
+.credit-mobile{display:none}
+@media(max-width:768px){.credit-browser{display:none}.credit-mobile{display:inline}}
 :root{--dur-fast:100ms;--dur:180ms;--ease-out:cubic-bezier(0,0,.2,1);--r-sm:6px;--r-md:8px;--r-lg:12px;--r-card:14px;--r-pill:9999px;--white:#fff}
 :root,[data-theme="dark"]{--bg:#07111f;--bg-2:#0b1b2d;--surface:#0f2238;--surface-2:#16304d;--border:#244768;--border-strong:#3974a8;--text:#fff;--text-2:#c8e3ff;--text-muted:#81a4c3;--brand:#62b6ff;--brand-600:#2f8ee8;--brand-soft:rgba(98,182,255,.14);--brand-rgb:98,182,255;--nav-ativo:rgba(255,255,255,.05);--scan:#62b6ff;--pipe-novo:#70b9f5;--pipe-contato:#5ba4df;--pipe-proposta:#468dc8;--pipe-negociacao:#3974a8;--pipe-fechado:#9bd2ff;--pipe-perdido:#244768;--q-sem-presenca:#81a4c3;--q-sem-presenca-bg:rgba(136,136,136,.12);--q-sem-site:#62b6ff;--q-sem-site-bg:rgba(160,160,160,.12);--q-site-ruim:#4b9bdc;--q-site-ruim-bg:rgba(120,120,120,.12);--q-site-medio:#9bd2ff;--q-site-medio-bg:rgba(192,192,192,.12);--q-ativo:#3974a8;--q-ativo-bg:rgba(96,96,96,.12);--shadow-sm:0 1px 3px rgba(0,0,0,.5);--shadow-md:0 4px 16px rgba(0,0,0,.6);--ring:0 0 0 3px rgba(192,192,192,.22)}
 [data-theme="light"]{--bg:#eff8ff;--bg-2:#e1f1ff;--surface:#ffffff;--surface-2:#eaf5ff;--border:#c9e3f7;--border-strong:#8fc5e8;--text:#10263c;--text-2:#2d5575;--text-muted:#5f87a6;--brand:#1674bd;--brand-600:#0d5b98;--brand-soft:rgba(22,116,189,.11);--brand-rgb:22,116,189;--nav-ativo:rgba(0,0,0,.05);--scan:#1674bd;--shadow-sm:0 1px 3px rgba(0,0,0,.07);--shadow-md:0 4px 16px rgba(0,0,0,.09);--ring:0 0 0 3px rgba(58,58,58,.18)}
@@ -51,8 +53,9 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
 
    Hover NAO pinta fundo, so clareia o texto. Fundo no hover competia com o
    fundo da aba ativa, e por um instante duas abas pareciam selecionadas. */
-.k-sidebar__nav{flex:0 0 auto;margin:10px;padding:3px;display:flex;flex-direction:column;gap:4px;border:1px solid var(--border);border-radius:var(--r-card);background:var(--surface)}
-.k-nav-btn{width:100%;display:flex;align-items:center;gap:9px;padding:8px 16px;border-radius:var(--r-pill);background:transparent;border:none;cursor:pointer;font-size:13px;font-weight:500;color:var(--text-muted);text-align:left;transition:color var(--dur),background var(--dur);font-family:inherit}
+.k-sidebar__nav{flex:0 0 auto;margin:10px 0;padding:0;display:flex;flex-direction:column;gap:0;border:0;border-radius:0;background:transparent}
+.k-nav-btn{width:100%;display:flex;align-items:center;gap:9px;padding:12px 20px;border-radius:0;background:transparent;border:0;border-bottom:1px solid var(--border);cursor:pointer;font-size:13px;font-weight:500;color:var(--text-muted);text-align:left;transition:color var(--dur),background var(--dur);font-family:inherit}
+.k-nav-btn:last-child{border-bottom:0}
 .k-nav-btn:hover{background:transparent;color:var(--text)}
 .k-nav-btn.active{background:var(--nav-ativo);color:var(--text);font-weight:500}
 /* O rotulo do grupo de baixo. Minusculo e apagado: ele separa, nao compete. */
@@ -749,8 +752,8 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
   [data-clean-palette="white"] .k-sidebar{background:rgba(13,18,23,.97)!important}
   .k-sidebar__brand,.k-sidebar__support,.k-sidebar__footer,.k-app-card{display:none!important}
   .k-sidebar__nav{display:flex!important;flex-direction:row!important;align-items:stretch!important;justify-content:space-around!important;gap:2px!important;width:100%!important;margin:0!important;padding:7px 8px calc(7px + env(safe-area-inset-bottom))!important;border:0!important;border-radius:0!important;background:transparent!important}
-  .k-sidebar__nav .k-nav-btn{display:flex!important;flex:1 1 0!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:4px!important;min-width:0!important;min-height:52px!important;padding:7px 3px!important;border-radius:12px!important;font-size:10px!important;font-weight:600!important;line-height:1.1!important;text-align:center!important;white-space:normal!important;color:var(--text-muted)!important}
-  .k-sidebar__nav .k-nav-btn:nth-child(n+4){display:none!important}
+  .k-sidebar__nav .k-nav-btn{display:flex!important;flex:1 1 0!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:4px!important;min-width:0!important;min-height:52px!important;padding:7px 3px!important;border:0!important;border-radius:12px!important;font-size:10px!important;font-weight:600!important;line-height:1.1!important;text-align:center!important;white-space:normal!important;color:var(--text-muted)!important}
+  .k-sidebar__nav .k-nav-btn:nth-child(n+5){display:none!important}
   .k-sidebar__nav .k-nav-btn i{display:block!important;width:auto!important;height:16px!important;font-size:15px!important;line-height:16px!important;color:currentColor!important}
   .k-sidebar__nav .k-nav-btn.active{background:var(--brand-soft)!important;color:var(--brand)!important}
   .k-sidebar__nav .k-nav-btn:active{transform:scale(.96)}
@@ -858,7 +861,62 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
   .k-main>div{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
   .k-main:after{content:"";display:block;width:100%;height:40px;pointer-events:none}
 }
-</style></head>
+</style><link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#07111f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="CLEAN Leads">
+<link rel="apple-touch-icon" sizes="192x192" href="./icon-192.png">
+<style id="clean-sidebar-lines-final">
+.k-sidebar__nav{gap:0!important;padding:0!important;margin:14px 0!important;border:0!important;border-radius:0!important;background:transparent!important}
+.k-sidebar__nav .k-nav-btn{margin:2px 0!important;padding:13px 20px!important;min-height:46px!important;border:0!important;border-radius:var(--r-pill)!important;background:transparent!important}
+@media(max-width:760px){.k-sidebar__nav{display:flex!important;grid-template-columns:none!important;flex-direction:row!important;gap:4px!important;margin:8px 0!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;overflow-x:auto!important;scrollbar-width:none!important}.k-sidebar__nav::-webkit-scrollbar{display:none}.k-sidebar__nav .k-nav-btn{display:flex!important;flex:0 0 92px!important;margin:0!important;padding:9px 4px!important;min-height:48px!important;border:0!important;border-radius:12px!important}}
+</style>
+<style id="clean-mobile-bottom-tabs-final">
+@media(max-width:768px){
+  .k-sidebar{position:fixed!important;left:10px!important;right:10px!important;bottom:10px!important;top:auto!important;width:auto!important;height:auto!important;z-index:10000!important;background:rgba(13,18,23,.96)!important;border:1px solid var(--border)!important;border-radius:18px!important;box-shadow:0 10px 32px rgba(0,0,0,.38)!important;backdrop-filter:blur(18px)!important;pointer-events:none!important;overflow:visible!important}
+  .k-sidebar__brand,.k-sidebar__support,.k-sidebar__footer,.k-app-card{display:none!important}
+  .k-sidebar__nav{display:flex!important;flex-direction:row!important;align-items:stretch!important;width:100%!important;margin:0!important;padding:5px 3px!important;gap:1px!important;border:0!important;background:transparent!important;overflow:hidden!important;pointer-events:auto!important}
+  .k-sidebar__nav::-webkit-scrollbar{display:none}
+  .k-sidebar__nav .k-nav-btn{display:flex!important;flex:1 1 0!important;min-width:0!important;min-height:48px!important;margin:0!important;padding:6px 1px!important;gap:3px!important;border:0!important;border-radius:10px!important;align-items:center!important;justify-content:center!important;text-align:center!important;font-size:8.5px!important;line-height:1.05!important;white-space:normal!important;color:var(--text-muted)!important}
+  .k-sidebar__nav .k-nav-btn:nth-child(n+5){display:flex!important}
+  .k-sidebar__nav .k-nav-btn.active{background:var(--brand-soft)!important;color:var(--brand)!important}
+  .k-sidebar__nav .k-nav-btn i{display:block!important;width:auto!important;font-size:13px!important;line-height:14px!important}
+  .k-main{padding-bottom:calc(92px + env(safe-area-inset-bottom))!important}
+}
+</style>
+<style id="clean-fluid-motion-final">
+.tab-enter{transition:opacity .38s ease,transform .42s ease}
+.tab-enter-start{opacity:0;transform:translateY(5px) scale(.999)}
+.tab-enter-end{opacity:1;transform:translateY(0) scale(1)}
+.tab-leave{transition:opacity .24s ease,transform .26s ease}
+.tab-leave-start{opacity:1;transform:translateY(0)}
+.tab-leave-end{opacity:0;transform:translateY(-5px)}
+.scroll-reveal{opacity:0;transform:translateY(5px);transition:opacity .62s ease,transform .68s ease}
+.scroll-reveal.is-visible{opacity:1;transform:translateY(0)}
+.k-nav-btn,.k-card,.k-btn,.k-btn-ghost,.k-icon-btn{transition:transform .48s ease,background-color .42s ease,border-color .42s ease,box-shadow .48s ease,color .42s ease}
+.k-card:hover{transform:translateY(-1px) scale(1.002);box-shadow:0 7px 20px rgba(0,0,0,.09)}
+.k-nav-btn:active,.k-btn:active,.k-btn-ghost:active{transform:scale(.97)}
+@media(prefers-reduced-motion:reduce){.tab-enter,.tab-leave,.scroll-reveal{transition:none!important}.scroll-reveal{opacity:1!important;transform:none!important}.k-card:hover{transform:none}}
+</style>
+<style id="clean-mobile-crm-group-final">
+.mobile-crm-trigger,.mobile-crm-menu{display:none}
+@media(max-width:768px){.k-sidebar__nav .mobile-crm-child{display:none!important}.k-sidebar__nav .mobile-crm-trigger{display:flex!important}.mobile-crm-menu{position:absolute;right:8px;bottom:calc(100% + 8px);display:flex;flex-direction:column;gap:3px;padding:6px;min-width:150px;background:rgba(13,18,23,.98);border:1px solid var(--border);border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.35);pointer-events:auto}.mobile-crm-menu button{display:flex;align-items:center;gap:9px;padding:10px 12px;border:0;border-radius:9px;background:transparent;color:var(--text-muted);font:600 11px 'Plus Jakarta Sans',sans-serif;text-align:left;cursor:pointer}.mobile-crm-menu button:hover,.mobile-crm-menu button:active{background:var(--brand-soft);color:var(--brand)}}
+@media(min-width:769px){.k-card:hover{transform:none!important;box-shadow:none!important}.k-nav-btn:hover,.k-btn:hover,.k-btn-ghost:hover,.k-icon-btn:hover{filter:none!important;backdrop-filter:none!important}}
+@media(max-width:768px){.k-sidebar__nav .k-nav-btn.mobile-crm-child{display:none!important}.k-sidebar__nav .k-nav-btn.mobile-crm-trigger{display:flex!important}}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const root=document.querySelector('.k-main');
+  if(!root||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const cards=[...root.querySelectorAll('.k-card')];
+  cards.forEach((el,i)=>{el.classList.add('scroll-reveal');el.style.transitionDelay=`${Math.min(i%6,5)*45}ms`;});
+  const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('is-visible');}),{root,threshold:.08});
+  cards.forEach(el=>io.observe(el));
+});
+</script>
+</head>
 <body x-data="app()" x-init="init()" x-cloak>
 
 <!-- WELCOME POPUP -->
@@ -1725,16 +1783,42 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
         <i class="fa-solid fa-crosshairs" style="width:16px;text-align:center"></i>
         <span>Buscar Leads</span>
       </button>
+      <button @click="aba='painel';carregarLeads()" :class="aba==='painel'?'active':''" class="k-nav-btn">
+        <i class="fa-solid fa-chart-line" style="width:16px;text-align:center"></i>
+        <span>Painel</span>
+      </button>
       <button @click="aba='leads'; carregarLeads()" :class="aba==='leads'?'active':''" class="k-nav-btn">
         <i class="fa-solid fa-users" style="width:16px;text-align:center"></i>
         <span>Leads</span>
         <span x-show="statsTotais.total>0" x-text="statsTotais.total" class="k-badge"></span>
+      </button>
+      <button @click="aba='pipeline';carregarLeads()" :class="aba==='pipeline'?'active':''" class="k-nav-btn mobile-crm-child">
+        <i class="fa-solid fa-filter-circle-dollar" style="width:16px;text-align:center"></i>
+        <span>Pipeline</span>
+        <span x-show="pipelineContagem()>0" x-text="pipelineContagem()" class="k-badge"></span>
+      </button>
+      <button @click="aba='followups';carregarLeads()" :class="aba==='followups'?'active':''" class="k-nav-btn mobile-crm-child">
+        <i class="fa-regular fa-calendar-check" style="width:16px;text-align:center"></i>
+        <span>Follow-ups</span>
+      </button>
+      <button @click="aba='mensagens'" :class="aba==='mensagens'?'active':''" class="k-nav-btn mobile-crm-child">
+        <i class="fa-regular fa-message" style="width:16px;text-align:center"></i>
+        <span>Mensagens</span>
+      </button>
+      <button @click="mobileCRMOpen=!mobileCRMOpen" :class="['k-nav-btn','mobile-crm-trigger',mobileCRMOpen||['pipeline','followups','mensagens'].includes(aba)?'active':'']">
+        <i class="fa-solid fa-layer-group" style="width:16px;text-align:center"></i>
+        <span>Relacionamento</span>
       </button>
       <button @click="aba='config'" :class="aba==='config'?'active':''" class="k-nav-btn">
         <i class="fa-solid fa-gear" style="width:16px;text-align:center"></i>
         <span>Configurações</span>
       </button>
     </nav>
+    <div x-show="mobileCRMOpen" x-transition.opacity class="mobile-crm-menu" x-cloak>
+      <button @click="aba='pipeline';mobileCRMOpen=false;carregarLeads()"><i class="fa-solid fa-filter-circle-dollar"></i><span>Pipeline</span></button>
+      <button @click="aba='followups';mobileCRMOpen=false;carregarLeads()"><i class="fa-regular fa-calendar-check"></i><span>Follow-ups</span></button>
+      <button @click="aba='mensagens';mobileCRMOpen=false"><i class="fa-regular fa-message"></i><span>Mensagens</span></button>
+    </div>
 
     <!-- ══════════ BAIXE O KAPTAR APP ══════════
          Entre o S-zap e o suporte, no vao da barra. A versao e o link saem do
@@ -1742,7 +1826,7 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
          instalado consulta —, entao publicar uma versao nova nao pede editar
          HTML nenhum, e o site nunca oferece um arquivo que saiu do ar.
          Se aquele endereco nao responder, o card NAO aparece. Ver `cardDoApp`. -->
-    <section class="k-app-card" x-data="cardDoApp()" x-init="carregar()" x-cloak
+    <section class="k-app-card" x-data="cardDoApp()" x-init="carregar()" x-cloak style="display:none!important"
              :class="{'is-mzs':face==='mazyos'}"
              @mouseenter="girando=false" @mouseleave="girando=escolheu?false:true"
              @focusin="girando=false" @focusout="girando=escolheu?false:true">
@@ -1813,7 +1897,32 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
 
   <!-- MAIN -->
   <main class="k-main">
+    <section x-show="aba==='painel'" x-transition:enter="tab-enter" x-transition:enter-start="tab-enter-start" x-transition:enter-end="tab-enter-end" x-transition:leave="tab-leave" x-transition:leave-start="tab-leave-start" x-transition:leave-end="tab-leave-end" class="p-6 space-y-5" x-cloak>
+      <div class="flex items-center justify-between gap-3"><div><h1 class="k-page-title">Painel</h1><p class="text-sm mt-1" style="color:var(--text-muted)">Acompanhe o desempenho da sua prospecção em um só lugar.</p></div><button @click="carregarLeads();showToast('Painel atualizado')" class="k-btn-ghost text-sm flex items-center gap-2"><i class="fa-solid fa-rotate"></i><span class="hidden sm:inline">Atualizar</span></button></div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <div class="k-card p-4"><p class="text-xs" style="color:var(--text-muted)">Leads captados</p><p class="text-2xl font-bold mt-2" style="color:var(--text)" x-text="painelDados.captados"></p><p class="text-xs mt-1" style="color:var(--brand)"><i class="fa-solid fa-database mr-1"></i>na sua base</p></div>
+        <div class="k-card p-4"><p class="text-xs" style="color:var(--text-muted)">Abordados</p><p class="text-2xl font-bold mt-2" style="color:var(--text)" x-text="statsTotais.em_contato"></p><p class="text-xs mt-1" style="color:var(--text-muted)" x-text="statsTotais.total ? Math.round(statsTotais.em_contato/statsTotais.total*100)+'% da base' : '0% da base'"></p></div>
+        <div class="k-card p-4"><p class="text-xs" style="color:var(--text-muted)">Qualificados</p><p class="text-2xl font-bold mt-2" style="color:var(--text)" x-text="statsTotais.qualificados"></p><p class="text-xs mt-1" style="color:var(--text-muted)" x-text="statsTotais.total ? Math.round(statsTotais.qualificados/statsTotais.total*100)+'% da base' : '0% da base'"></p></div>
+        <div class="k-card p-4"><p class="text-xs" style="color:var(--text-muted)">Sem site</p><p class="text-2xl font-bold mt-2" style="color:var(--text)" x-text="painelDados.semSite"></p><p class="text-xs mt-1" style="color:var(--text-muted)">oportunidades</p></div>
+      </div>
+      <div class="k-card p-5 overflow-hidden"><div class="flex items-start justify-between gap-3 mb-4"><div><h2 class="font-bold" style="color:var(--text)">Evolução da base</h2><p class="text-xs mt-1" style="color:var(--text-muted)">Leads adicionados nos últimos 7 dias</p></div><span class="text-xs px-2 py-1 rounded-full" style="background:var(--brand-soft);color:var(--brand)"><i class="fa-solid fa-wave-square mr-1"></i>tempo real</span></div><div class="w-full" style="height:220px;min-width:0"><svg viewBox="0 0 700 220" preserveAspectRatio="none" class="w-full h-full" role="img" aria-label="Gráfico de ondas da evolução dos leads"><defs><linearGradient id="painelWaveFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="var(--brand)" stop-opacity=".28"/><stop offset="100%" stop-color="var(--brand)" stop-opacity="0"/></linearGradient></defs><path d="M0,196 L700,196" stroke="var(--border)" stroke-width="1" fill="none"/><path :d="painelWaveArea()" fill="url(#painelWaveFill)"></path><path :d="painelWavePath()" fill="none" stroke="var(--brand)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path><template x-for="(p,i) in painelSerie" :key="i"><g><circle :cx="p.x" :cy="p.y" r="5" fill="var(--surface)" stroke="var(--brand)" stroke-width="3"></circle><text :x="p.x" y="214" text-anchor="middle" font-size="11" fill="var(--text-muted)" x-text="p.label"></text></g></template></svg></div></div>
+      <div class="grid md:grid-cols-3 gap-3"><div class="k-card p-4"><div class="flex justify-between"><span class="text-sm" style="color:var(--text-muted)">Ativos</span><i class="fa-solid fa-bolt" style="color:var(--brand)"></i></div><p class="text-xl font-bold mt-3" style="color:var(--text)" x-text="statsTotais.ativos"></p><p class="text-xs mt-1" style="color:var(--text-muted)">aguardando abordagem</p></div><div class="k-card p-4"><div class="flex justify-between"><span class="text-sm" style="color:var(--text-muted)">Arquivados</span><i class="fa-solid fa-box-archive" style="color:var(--text-muted)"></i></div><p class="text-xl font-bold mt-3" style="color:var(--text)" x-text="statsTotais.arquivados"></p><p class="text-xs mt-1" style="color:var(--text-muted)">fora da operação ativa</p></div><div class="k-card p-4"><div class="flex justify-between"><span class="text-sm" style="color:var(--text-muted)">Com telefone</span><i class="fa-solid fa-phone" style="color:var(--brand)"></i></div><p class="text-xl font-bold mt-3" style="color:var(--text)" x-text="painelDados.comTelefone"></p><p class="text-xs mt-1" style="color:var(--text-muted)">prontos para contato</p></div></div>
+    </section>
 
+    <section x-show="aba==='pipeline'" x-transition:enter="tab-enter" x-transition:enter-start="tab-enter-start" x-transition:enter-end="tab-enter-end" x-transition:leave="tab-leave" x-transition:leave-start="tab-leave-start" x-transition:leave-end="tab-leave-end" class="p-6 space-y-5" x-cloak>
+      <div><h1 class="k-page-title">Pipeline</h1><p class="text-sm mt-1" style="color:var(--text-muted)">Organize cada oportunidade até ela virar negócio.</p></div>
+      <div class="grid md:grid-cols-4 gap-3">
+        <template x-for="col in pipelineColunas" :key="col.id"><div class="k-card p-3 min-h-[210px]"><div class="flex items-center justify-between mb-3"><span class="text-xs font-bold" style="color:var(--text)" x-text="col.nome"></span><span class="text-xs rounded-full px-2 py-0.5" style="background:var(--brand-soft);color:var(--brand)" x-text="pipelineLeads(col.id).length"></span></div><div class="space-y-2"><template x-for="lead in pipelineLeads(col.id).slice(0,8)" :key="lead.id"><button @click="abrirLead(lead)" class="w-full text-left p-2 rounded-lg" style="background:var(--surface-2);border:1px solid var(--border)"><span class="block text-xs font-semibold truncate" style="color:var(--text)" x-text="lead.nome"></span><span class="block text-[10px] mt-1 truncate" style="color:var(--text-muted)" x-text="lead.cidade||lead.categoria||'Lead' "></span></button></template><p x-show="pipelineLeads(col.id).length===0" class="text-xs py-6 text-center" style="color:var(--text-muted)">Nenhum lead</p></div></div></template>
+      </div>
+    </section>
+    <section x-show="aba==='followups'" x-transition:enter="tab-enter" x-transition:enter-start="tab-enter-start" x-transition:enter-end="tab-enter-end" x-transition:leave="tab-leave" x-transition:leave-start="tab-leave-start" x-transition:leave-end="tab-leave-end" class="p-6 space-y-5" x-cloak>
+      <div><h1 class="k-page-title">Follow-ups</h1><p class="text-sm mt-1" style="color:var(--text-muted)">Não deixe nenhuma oportunidade esfriar.</p></div>
+      <div class="k-card overflow-hidden"><div class="px-4 py-3" style="border-bottom:1px solid var(--border)"><span class="text-sm font-bold" style="color:var(--text)">Próximos contatos</span></div><div class="divide-y" style="border-color:var(--border)"><template x-for="lead in leadsFollowups()" :key="lead.id"><div class="flex items-center gap-3 p-4"><div class="w-9 h-9 rounded-full flex items-center justify-center" style="background:var(--brand-soft);color:var(--brand)"><i class="fa-regular fa-clock"></i></div><div class="min-w-0 flex-1"><p class="text-sm font-semibold truncate" style="color:var(--text)" x-text="lead.nome"></p><p class="text-xs mt-1" style="color:var(--text-muted)" x-text="lead.proximo_contato?'Contato em '+formatarData(lead.proximo_contato):'Sem data definida'"></p></div><button @click="marcarAbordado(lead)" class="k-btn-ghost text-xs">Marcar abordado</button></div></template><div x-show="leadsFollowups().length===0" class="p-10 text-center text-sm" style="color:var(--text-muted)">Nenhum follow-up cadastrado. Use o Pipeline para organizar os próximos contatos.</div></div></div>
+    </section>
+    <section x-show="aba==='mensagens'" x-transition:enter="tab-enter" x-transition:enter-start="tab-enter-start" x-transition:enter-end="tab-enter-end" x-transition:leave="tab-leave" x-transition:leave-start="tab-leave-start" x-transition:leave-end="tab-leave-end" class="p-6 space-y-5" x-cloak>
+      <div><h1 class="k-page-title">Mensagens</h1><p class="text-sm mt-1" style="color:var(--text-muted)">Modelos rápidos para iniciar uma conversa.</p></div>
+      <div class="grid md:grid-cols-2 gap-3"><template x-for="modelo in modelosMensagem" :key="modelo.id"><div class="k-card p-4"><div class="flex items-center justify-between gap-3"><div><h2 class="font-bold text-sm" style="color:var(--text)" x-text="modelo.titulo"></h2><p class="text-xs mt-1" style="color:var(--text-muted)" x-text="modelo.descricao"></p></div><button @click="copiarMensagem(modelo.texto)" class="k-btn-ghost text-xs whitespace-nowrap"><i class="fa-regular fa-copy mr-1"></i>Copiar</button></div><p class="text-sm mt-4 p-3 rounded-lg whitespace-pre-line" style="background:var(--surface-2);color:var(--text-2)" x-text="modelo.texto"></p></div></template></div>
+    </section>
     <!-- ══ Faixa de download — SÓ no celular ══
          Ver o bloco `.k-app-faixa` no CSS. Escondida nas abas que já são o
          convite, para não dizer a mesma coisa duas vezes na mesma tela. -->
@@ -1836,7 +1945,7 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
     </section>
 
     <!-- ══════════════ BUSCAR LEADS (SCRAPER) ══════════════ -->
-    <div x-show="aba==='scraper'" class="p-6 space-y-5">
+    <div x-show="aba==='scraper'" x-transition:enter="tab-enter" x-transition:enter-start="tab-enter-start" x-transition:enter-end="tab-enter-end" x-transition:leave="tab-leave" x-transition:leave-start="tab-leave-start" x-transition:leave-end="tab-leave-end" class="p-6 space-y-5">
       <div class="flex items-center justify-between">
         <h1 class="k-page-title"><span class="mobile-page-clean-logo" aria-label="CLEAN Leads"><b>CLEAN</b><em>leads</em></span><span class="mobile-page-title-text">Buscar Leads</span></h1>
         <div class="flex items-center gap-3">
@@ -1852,7 +1961,7 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
           <button @click="showWelcome=true" class="text-xs flex items-center gap-1.5" style="background:none;border:none;cursor:pointer;color:var(--text-muted)" title="Ver tutorial do CLEAN Leads">
             <i class="fa-solid fa-circle-question"></i>Tutorial
           </button>
-          <span class="text-xs" style="color:var(--text-muted)"><i class="fa-solid fa-database mr-1"></i>Salvo no navegador</span>
+            <span class="text-xs credit-browser" style="color:var(--text-muted)"><i class="fa-solid fa-database mr-1"></i>Salvo no navegador</span><span class="text-xs credit-mobile" style="color:var(--text-muted)"><i class="fa-solid fa-database mr-1"></i>by Levi Maciel</span>
         </div>
       </div>
 
@@ -2101,7 +2210,7 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
     </div>
 
     <!-- ══════════════ LEADS ══════════════ -->
-    <div x-show="aba==='leads'" class="p-6 space-y-4 k-leads-page">
+    <div x-show="aba==='leads'" x-transition:enter="tab-enter" x-transition:enter-start="tab-enter-start" x-transition:enter-end="tab-enter-end" x-transition:leave="tab-leave" x-transition:leave-start="tab-leave-start" x-transition:leave-end="tab-leave-end" class="p-6 space-y-4 k-leads-page">
       <div class="flex items-center justify-between gap-4">
         <h1 class="k-page-title">Leads</h1>
         <div class="flex items-center gap-2">
@@ -2438,7 +2547,7 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
     </div>
 
     <!-- ══════════════ CONFIGURAÇÕES ══════════════ -->
-    <div x-show="aba==='config'" class="p-6 space-y-6">
+    <div x-show="aba==='config'" x-transition:enter="tab-enter" x-transition:enter-start="tab-enter-start" x-transition:enter-end="tab-enter-end" x-transition:leave="tab-leave" x-transition:leave-start="tab-leave-start" x-transition:leave-end="tab-leave-end" class="p-6 space-y-6">
       <h1 class="k-page-title">Configurações</h1>
       <div class="k-card p-5 space-y-3 clean-theme-card">
         <div class="flex items-center gap-2"><i class="fa-solid fa-palette" style="color:var(--blue-hi)"></i><h2 class="text-sm font-semibold" style="color:var(--text)">Tema da interface</h2></div>
@@ -4839,6 +4948,7 @@ function cardDoApp(){
 function app(){
   return {
     aba:'scraper',
+    mobileCRMOpen:false,
     showWelcome:false,
     szapTutorial:false,
     szapTutorialStep:0,
@@ -4861,6 +4971,14 @@ function app(){
     editandoTel:{id:null,valor:''},
     escaneandoSites:false,progEscaner:0,totalEscaner:0,
     statsTotais:{total:0,ativos:0,qualificados:0,em_contato:0,arquivados:0},
+    painelDados:{captados:0,semSite:0,comTelefone:0},painelSerie:[],
+    pipelineColunas:[{id:'novo',nome:'Novo'},{id:'contato',nome:'Abordado'},{id:'qualificado',nome:'Qualificado'},{id:'fechado',nome:'Fechado'}],
+    modelosMensagem:[
+      {id:'primeiro',titulo:'Primeiro contato',descricao:'Abordagem inicial pelo WhatsApp',texto:'Olá! Tudo bem? Encontrei a empresa de vocês e gostei do trabalho. Posso apresentar uma ideia rápida para ajudar a melhorar a presença digital do negócio?'},
+      {id:'semsite',titulo:'Empresa sem site',descricao:'Oportunidade de presença digital',texto:'Olá! Vi que a empresa ainda não possui um site oficial. Posso mostrar como uma página profissional pode ajudar a trazer mais clientes e facilitar o contato?'},
+      {id:'follow',titulo:'Follow-up',descricao:'Retomar uma conversa',texto:'Olá! Passando para saber se conseguiu ver minha mensagem anterior. Posso te explicar a ideia em poucos minutos.'},
+      {id:'proposta',titulo:'Apresentar proposta',descricao:'Mensagem para avançar',texto:'Preparei uma proposta simples para a empresa. Se fizer sentido para vocês, posso enviar os detalhes e os próximos passos por aqui.'}
+    ],
     storageUsado:'0 KB',
     filtrosPresencaOpcoes:[
       {id:'telefone',label:'Tem telefone',icon:'fa-solid fa-phone',cor:'#a8a8a8'},
@@ -5155,6 +5273,12 @@ function app(){
       }
       return r;
     },
+    pipelineLeads(col){const all=this._allLeads().filter(l=>!l.arquivado&&!l.limpo);return all.filter(l=>col==='fechado'?l.status==='fechado'||l.convertido:col==='qualificado'?!!l.qualificado&&!l.em_contato:col==='contato'?!!l.em_contato&&!l.qualificado:l.status==='novo'||(!l.em_contato&&!l.qualificado));},
+    pipelineContagem(){return this.pipelineLeads('contato').length+this.pipelineLeads('qualificado').length;},
+    leadsFollowups(){return this._allLeads().filter(l=>!l.arquivado&&!l.limpo&&(l.proximo_contato||l.em_contato)).sort((a,b)=>String(a.proximo_contato||'').localeCompare(String(b.proximo_contato||'')));},
+    formatarData(v){if(!v)return '';const d=new Date(v+'T00:00:00');return Number.isNaN(d.getTime())?v:d.toLocaleDateString('pt-BR');},
+    marcarAbordado(lead){this._updateLead(lead.id,{em_contato:true,status:'em_contato',proximo_contato:null});this.showToast('Lead marcado como abordado');},
+    copiarMensagem(texto){navigator.clipboard?.writeText(texto).then(()=>this.showToast('Mensagem copiada')).catch(()=>this.showToast('Não foi possível copiar','error'));},
     carregarLeads(){
       const all=this._allLeads();
       // Reaplica a fórmula de score atual aos leads ainda NÃO escaneados (atualiza os 35 fixos antigos)
@@ -5178,7 +5302,18 @@ function app(){
         em_contato:baseContato.length,
         arquivados:baseArquiv.length,
       };
+      this.painelDados.captados=all.filter(l=>!l.limpo).length;
+      this.painelDados.semSite=all.filter(l=>!l.arquivado&&!l.limpo&&!l.tem_site&&!l.site).length;
+      this.painelDados.comTelefone=all.filter(l=>!l.arquivado&&!l.limpo&&!!l.telefone).length;
+      const hoje=new Date(); hoje.setHours(23,59,59,999);
+      const dias=Array.from({length:7},(_,i)=>{const d=new Date(hoje);d.setDate(hoje.getDate()-6+i);return d;});
+      let acumulado=0;
+      this.painelSerie=dias.map(d=>{const inicio=new Date(d);inicio.setHours(0,0,0,0);const fim=new Date(d);fim.setHours(23,59,59,999);acumulado+=all.filter(l=>{const t=Date.parse(l.criado_em||l.created_at||'');return Number.isFinite(t)&&t>=inicio.getTime()&&t<=fim.getTime()}).length;return {label:String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0'),value:acumulado};});
+      const max=Math.max(1,...this.painelSerie.map(p=>p.value));
+      this.painelSerie=this.painelSerie.map((p,i)=>({...p,x:24+i*108,y:190-(p.value/max)*150}));
     },
+    painelWavePath(){if(!this.painelSerie.length)return 'M0,190 L700,190';return this.painelSerie.map((p,i)=>`${i?'L':'M'}${p.x},${p.y}`).join(' ');},
+    painelWaveArea(){if(!this.painelSerie.length)return 'M0,190 L700,190 L700,196 L0,196 Z';return `${this.painelWavePath()} L${this.painelSerie[this.painelSerie.length-1].x},196 L${this.painelSerie[0].x},196 Z`;},
 
     _updateLead(id,changes){
       const all=this._allLeads();
@@ -8735,5 +8870,5 @@ function app(){
   </span>
 </div>
 
-<script id="clean-theme-controller">(function(){const key='clean-leads-palette';window.setCleanTheme=function(name){if(!['blue','white','purple','red','green'].includes(name))name='blue';document.documentElement.dataset.cleanPalette=name;localStorage.setItem(key,name);document.querySelectorAll('[data-clean-theme]').forEach(b=>b.classList.toggle('is-active',b.dataset.cleanTheme===name))};const saved=localStorage.getItem(key)||'blue';window.setCleanTheme(saved)})();</script></body>
+<script id="clean-theme-controller">(function(){const key='clean-leads-palette';window.setCleanTheme=function(name){if(!['blue','white','purple','red','green'].includes(name))name='blue';document.documentElement.dataset.cleanPalette=name;localStorage.setItem(key,name);document.querySelectorAll('[data-clean-theme]').forEach(b=>b.classList.toggle('is-active',b.dataset.cleanTheme===name))};const saved=localStorage.getItem(key)||'blue';window.setCleanTheme(saved)})();</script><script id="clean-pwa-register">if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(function(){})})}</script></body>
 </html>
