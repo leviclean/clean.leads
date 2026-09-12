@@ -710,6 +710,36 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
 </style><style id="clean-logo-balanced-spacing">
 .clean-wordmark{height:74px!important;flex:0 0 74px!important}.clean-wordmark em{top:35px!important}
 @media(max-width:700px){.clean-wordmark{height:60px!important;flex:0 0 60px!important}.clean-wordmark em{top:27px!important}}
+</style><style id="clean-mobile-usable-fix">
+@media(max-width:760px){
+  html,body{height:auto;min-height:100%;overflow-x:hidden}
+  .k-layout{display:block!important;height:auto!important;min-height:100vh;overflow:visible!important}
+  .k-sidebar{position:relative!important;top:auto;left:auto;width:100%!important;height:auto!important;max-height:none!important;overflow:visible!important;border-right:0!important;border-bottom:1px solid var(--border);box-shadow:0 8px 24px rgba(0,0,0,.22)!important}
+  .k-sidebar__brand{padding:10px 12px 6px!important;min-height:0!important;border-bottom:1px solid var(--border)}
+  .clean-wordmark{height:60px!important;flex-basis:60px!important;margin-bottom:0!important}
+  .clean-wordmark span{font-size:2rem!important}.clean-wordmark em{top:27px!important;font-size:1.8rem!important}
+  .k-sidebar__nav{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px!important;width:auto!important;margin:8px!important;padding:6px!important;border-radius:12px!important}
+  .k-sidebar__nav .k-nav-btn{min-height:44px!important;padding:9px 6px!important;justify-content:center;gap:5px;font-size:11px!important;text-align:center!important;white-space:normal;line-height:1.15}
+  .k-sidebar__nav .k-nav-btn i{width:auto!important;font-size:12px}.k-sidebar__nav .k-badge{display:none}
+  .k-app-card{display:none!important}
+  .k-sidebar__support{display:grid!important;grid-template-columns:1fr 1fr;gap:7px;padding:7px 10px 9px!important;margin:0!important}
+  .k-sidebar__support .k-support-btn{min-height:38px;padding:8px 5px!important;font-size:10px!important;white-space:normal;line-height:1.15}
+  .k-sidebar__support .k-support-btn[title*="suporte"]{margin:0!important}
+  .k-sidebar__footer{justify-content:center;padding:7px 8px!important}
+  .k-main{width:100%!important;min-width:0!important;overflow:visible!important;padding:0!important}
+  .k-main>div{min-width:0;max-width:100%;overflow:hidden}
+  .k-page-title{font-size:1.35rem!important}.k-card{max-width:100%;min-width:0}
+  .k-main .p-6{padding:14px!important}.k-main .p-5{padding:14px!important}.k-main .p-4{padding:12px!important}
+  .k-main [style*="grid-template-columns:1fr 380px"]{grid-template-columns:minmax(0,1fr)!important}
+  .k-main [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:minmax(0,1fr)!important}
+  .k-main [style*="grid-template-columns:repeat(4"]{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .k-main input,.k-main select,.k-main textarea{max-width:100%;min-width:0;font-size:16px!important}
+  .k-main button,.k-main a{max-width:100%}
+  .k-main .overflow-x-auto{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  #kaptar-map,#auto-map{max-width:100%;height:240px!important}
+  .k-modal,.fixed .k-card{max-width:calc(100vw - 24px)!important}
+}
+@media(max-width:390px){.k-sidebar__nav .k-nav-btn{font-size:10px!important;padding-left:3px!important;padding-right:3px!important}.k-sidebar__support{grid-template-columns:1fr}.clean-wordmark span{font-size:1.85rem!important}.clean-wordmark em{font-size:1.65rem!important}}
 </style></head>
 <body x-data="app()" x-init="init()" x-cloak>
 
