@@ -901,6 +901,8 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
 @media(prefers-reduced-motion:reduce){.tab-enter,.tab-leave,.scroll-reveal{transition:none!important}.scroll-reveal{opacity:1!important;transform:none!important}.k-card:hover{transform:none}}
 </style>
 <style id="clean-desktop-updates-final">.clean-updates-desktop{display:none!important}</style>
+<style id="clean-remove-tutorial-and-browser-credit">.tutorial-control,.credit-browser{display:none!important}</style>
+<style id="clean-credit-responsive-final">@media(max-width:768px){.desktop-credit{display:none!important}}@media(min-width:769px){.desktop-credit{display:inline!important;font-size:11px!important;opacity:.48!important}}</style>
 <style id="clean-mobile-header-final">
 @media(max-width:768px){
   .scraper-header-copy{display:flex!important;flex-direction:column!important;align-items:flex-start!important}
@@ -1898,7 +1900,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     </div>
     <div class="k-sidebar__footer">
       <span class="k-version" style="display:flex;align-items:center;justify-content:center;width:100%;line-height:1.3">
-        <span style="font-size:9px;opacity:.55;font-weight:400">By Levi Maciel</span>
+        <span class="desktop-credit" style="font-size:11px;opacity:.48;font-weight:400">By Levi Maciel</span>
       </span>
     </div>
   </aside>
@@ -1966,10 +1968,10 @@ document.addEventListener('DOMContentLoaded',()=>{
           <button x-show="novidadesApp.itens.length>0" @click="novidadesApp.aberto=true" class="text-xs flex items-center gap-1.5" style="background:none;border:none;cursor:pointer;color:var(--text-muted)" title="O que a versão atual do CLEAN Leads trouxe">
             <i class="fa-solid fa-bullhorn"></i>Novidades
           </button>
-          <button @click="showWelcome=true" class="text-xs flex items-center gap-1.5" style="background:none;border:none;cursor:pointer;color:var(--text-muted)" title="Ver tutorial do CLEAN Leads">
+          <button @click="showWelcome=true" class="tutorial-control text-xs flex items-center gap-1.5" style="background:none;border:none;cursor:pointer;color:var(--text-muted)" title="Ver tutorial do CLEAN Leads">
             <i class="fa-solid fa-circle-question"></i>Tutorial
           </button>
-            <span class="text-xs credit-browser" style="color:var(--text-muted)"><i class="fa-solid fa-database mr-1"></i>Salvo no navegador</span><span class="text-xs credit-mobile" style="color:var(--text-muted)"><i class="fa-solid fa-database mr-1"></i>by Levi Maciel</span>
+            <span class="text-xs credit-mobile" style="color:var(--text-muted)"><i class="fa-solid fa-database mr-1"></i>by Levi Maciel</span>
         </div>
       </div>
 
@@ -2604,7 +2606,7 @@ document.addEventListener('DOMContentLoaded',()=>{
               <span class="text-xs font-bold px-2 py-0.5 rounded-full" style="background:rgba(100,160,255,.18);color:#64a0ff">⭐ RECOMENDADO</span>
               <h2 class="text-sm font-semibold" style="color:var(--text)">Google Maps API</h2>
             </div>
-            <button @click="apiTut='gmaps';apiTutStep=0" class="text-xs flex items-center gap-1.5 px-2.5 py-1 rounded-lg" style="background:var(--surface-2);border:1px solid var(--border);cursor:pointer;color:var(--text-2)">
+            <button @click="apiTut='gmaps';apiTutStep=0" class="tutorial-control text-xs flex items-center gap-1.5 px-2.5 py-1 rounded-lg" style="background:var(--surface-2);border:1px solid var(--border);cursor:pointer;color:var(--text-2)">
               <i class="fa-solid fa-circle-question"></i>Ver tutorial
             </button>
           </div>
@@ -2913,7 +2915,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             </div>
           </div>
           <div class="flex items-center gap-3">
-            <button @click="szapTutorial=true;szapTutorialStep=0" class="text-xs flex items-center gap-1.5" style="background:none;border:none;cursor:pointer;color:var(--text-muted)" title="Ver tutorial do S-zap">
+            <button @click="szapTutorial=true;szapTutorialStep=0" class="tutorial-control text-xs flex items-center gap-1.5" style="background:none;border:none;cursor:pointer;color:var(--text-muted)" title="Ver tutorial do S-zap">
               <i class="fa-solid fa-circle-question"></i>Tutorial
             </button>
             <button @click="szap.notasAberto=true;szap.notaAberta=(_szapNotas&&_szapNotas[0]?_szapNotas[0].versao:'')" class="text-xs flex items-center gap-1.5" style="background:none;border:none;cursor:pointer;color:var(--text-muted)" title="Histórico de atualizações">
@@ -5229,9 +5231,7 @@ function app(){
         if(v==='szap'&&this._SZAP_ATIVO&&this._mqMobile&&this._mqMobile.matches){this.aba='scraper';return;}
         if(v==='leads')this.carregarLeads();
         if(v==='scraper')setTimeout(()=>{this.initMap();if(this.leafletMap)this.leafletMap.invalidateSize();},150);
-        if(v==='szap'&&this._SZAP_ATIVO&&!localStorage.getItem('szap-tutorial-seen')){
-          this.szapTutorial=true;this.szapTutorialStep=0;
-        }
+        // Tutoriais desativados: a navegação permanece direta e sem pop-ups.
       });
       // initMap na carga inicial (watcher não dispara para o estado inicial)
       setTimeout(()=>this.initMap(),400);
