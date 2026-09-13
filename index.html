@@ -964,6 +964,15 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
   .k-sidebar__nav .k-nav-btn:hover:before{opacity:1;visibility:visible;transform:translateY(-50%) translateX(0)}
 }
 </style>
+<style id="clean-sidebar-transparent-final">
+@media(min-width:769px){
+  .k-sidebar,.k-sidebar__nav,.k-sidebar__nav .k-nav-btn{background:transparent!important;background-color:transparent!important;background-image:none!important;border-color:transparent!important;box-shadow:none!important}
+  .k-sidebar{width:58px!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+  .k-sidebar__nav{width:58px!important;padding:0!important;margin:0!important;border:0!important;border-radius:0!important}
+  .k-sidebar__nav .k-nav-btn{border:0!important}
+  .k-sidebar__nav .k-nav-btn:hover,.k-sidebar__nav .k-nav-btn.active{background:transparent!important;background-color:transparent!important}
+}
+</style>
 <style id="clean-mobile-header-final">
 @media(max-width:768px){
   .scraper-header-copy{display:flex!important;flex-direction:column!important;align-items:flex-start!important}
