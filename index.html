@@ -900,11 +900,51 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
 .k-nav-btn:active,.k-btn:active,.k-btn-ghost:active{transform:scale(.97)}
 @media(prefers-reduced-motion:reduce){.tab-enter,.tab-leave,.scroll-reveal{transition:none!important}.scroll-reveal{opacity:1!important;transform:none!important}.k-card:hover{transform:none}}
 </style>
+<style id="clean-desktop-updates-final">.clean-updates-desktop{display:none!important}</style>
+<style id="clean-mobile-header-final">
+@media(max-width:768px){
+  .scraper-header-copy{display:flex!important;flex-direction:column!important;align-items:flex-start!important}
+  .scraper-header-copy .k-page-title{order:1!important;margin-top:0!important}
+  .scraper-header-copy>p{order:2!important;margin-top:7px!important}
+  .scraper-header-copy .mobile-page-clean-logo{display:inline-block!important}
+  .scraper-header-copy .mobile-page-title-text{display:none!important}
+  .scraper-header-copy .k-page-title:after{content:'CLEAN Leads';font-family:'Fraunces',Georgia,serif;font-size:1.35rem;font-weight:400;color:var(--text);display:none}
+  .scraper-header-copy>p{font-size:1rem!important;white-space:nowrap!important}
+  .scraper-header-copy>p strong{font-size:1.15rem!important}
+  .scraper-header-copy~.flex .text-xs[title*="tutorial"],.scraper-header-copy~.flex button[title*="tutorial"]{display:none!important}
+}
+</style>
 <style id="clean-mobile-crm-group-final">
 .mobile-crm-trigger,.mobile-crm-menu{display:none}
 @media(max-width:768px){.k-sidebar__nav .mobile-crm-child{display:none!important}.k-sidebar__nav .mobile-crm-trigger{display:flex!important}.mobile-crm-menu{position:absolute;right:8px;bottom:calc(100% + 8px);display:flex;flex-direction:column;gap:3px;padding:6px;min-width:150px;background:rgba(13,18,23,.98);border:1px solid var(--border);border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.35);pointer-events:auto}.mobile-crm-menu button{display:flex;align-items:center;gap:9px;padding:10px 12px;border:0;border-radius:9px;background:transparent;color:var(--text-muted);font:600 11px 'Plus Jakarta Sans',sans-serif;text-align:left;cursor:pointer}.mobile-crm-menu button:hover,.mobile-crm-menu button:active{background:var(--brand-soft);color:var(--brand)}}
 @media(min-width:769px){.k-card:hover{transform:none!important;box-shadow:none!important}.k-nav-btn:hover,.k-btn:hover,.k-btn-ghost:hover,.k-icon-btn:hover{filter:none!important;backdrop-filter:none!important}}
 @media(max-width:768px){.k-sidebar__nav .k-nav-btn.mobile-crm-child{display:none!important}.k-sidebar__nav .k-nav-btn.mobile-crm-trigger{display:flex!important}}
+<style id="clean-motion-stability-final">
+/* Troca de aba deliberadamente simples: somente opacidade evita saltos,
+   sobreposição e mudanças de altura durante o x-show do Alpine. */
+.tab-enter,.tab-leave{transition:opacity .24s ease!important;transform:none!important}
+.tab-enter-start,.tab-enter-end,.tab-leave-start,.tab-leave-end{transform:none!important}
+.tab-enter-start,.tab-leave-end{opacity:0!important}
+.tab-enter-end,.tab-leave-start{opacity:1!important}
+.scroll-reveal{transform:none!important;transition:opacity .32s ease!important}
+.scroll-reveal.is-visible{transform:none!important}
+@media(prefers-reduced-motion:reduce){.tab-enter,.tab-leave,.scroll-reveal{transition:none!important}}
+</style>
+<style id="clean-desktop-tabs-only-final">
+/* Única animação permitida nas abas principais: entrada lateral no desktop. */
+@media(min-width:769px){
+  .tab-enter{transition:opacity .28s ease,transform .32s ease!important;transform:translateX(0)!important}
+  .tab-enter-start{opacity:0!important;transform:translateX(14px)!important}
+  .tab-enter-end{opacity:1!important;transform:translateX(0)!important}
+  .tab-leave{transition:opacity .18s ease,transform .18s ease!important}
+  .tab-leave-start{opacity:1!important;transform:translateX(0)!important}
+  .tab-leave-end{opacity:0!important;transform:translateX(-8px)!important}
+}
+@media(max-width:768px){.tab-enter,.tab-leave{transition:none!important;transform:none!important}.tab-enter-start,.tab-enter-end,.tab-leave-start,.tab-leave-end{opacity:1!important;transform:none!important}}
+/* As animações de hover e de scroll ficam desligadas para evitar instabilidade. */
+.scroll-reveal,.scroll-reveal.is-visible{opacity:1!important;transform:none!important;transition:none!important}
+.k-card:hover{transform:none!important;box-shadow:none!important}
+</style>
 </style>
 <script>
 document.addEventListener('DOMContentLoaded',()=>{
@@ -919,40 +959,13 @@ document.addEventListener('DOMContentLoaded',()=>{
 </head>
 <body x-data="app()" x-init="init()" x-cloak>
 
-<!-- WELCOME POPUP -->
-<div x-show="showWelcome" x-transition class="fixed inset-0 z-[500] flex items-center justify-center" style="background:rgba(0,0,0,.88);backdrop-filter:blur(10px)">
-  <div class="k-card max-w-md w-full mx-4 p-7 space-y-5">
-    <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:var(--brand-soft)">
-        <i class="fa-solid fa-crosshairs" style="color:var(--brand)"></i>
-      </div>
-      <div>
-        <h1 class="text-base font-bold" style="color:var(--text)">Bem-vindo ao CLEAN Leads</h1>
-        <p class="text-xs" style="color:var(--text-muted)">Como seus dados funcionam</p>
-      </div>
-    </div>
-    <div class="space-y-3 text-sm" style="color:var(--text-2)">
-      <div class="flex gap-3 p-3 rounded-lg" style="background:var(--surface-2);border:1px solid var(--border)">
-        <i class="fa-solid fa-hard-drive mt-0.5 flex-shrink-0" style="color:var(--brand)"></i>
-        <p><strong style="color:var(--text)">Armazenamento local:</strong> Leads, chaves de API e configurações ficam salvos no <strong>localStorage do seu navegador</strong> — não há servidor, não há conta.</p>
-      </div>
-      <div class="flex gap-3 p-3 rounded-lg" style="background:var(--surface-2);border:1px solid var(--border)">
-        <i class="fa-solid fa-rotate mt-0.5 flex-shrink-0" style="color:var(--brand)"></i>
-        <p><strong style="color:var(--text)">Persistente:</strong> F5, fechar o navegador, desligar o computador — tudo volta exatamente como você deixou.</p>
-      </div>
-      <div class="flex gap-3 p-3 rounded-lg" style="background:rgba(136,136,136,.08);border:1px solid rgba(136,136,136,.2)">
-        <i class="fa-solid fa-triangle-exclamation mt-0.5 flex-shrink-0" style="color:#b0b0b0"></i>
-        <p><strong style="color:var(--text)">Atenção:</strong> Se você <strong>limpar o cache / dados de navegação</strong>, tudo é apagado permanentemente — leads, chaves de API, sem recuperação. O site volta do zero.</p>
-      </div>
-      <div class="flex gap-3 p-3 rounded-lg" style="background:var(--surface-2);border:1px solid var(--border)">
-        <i class="fa-solid fa-user-slash mt-0.5 flex-shrink-0" style="color:var(--brand)"></i>
-        <p><strong style="color:var(--text)">Sem login:</strong> Cada dispositivo / navegador tem seus próprios dados. Não compartilha entre dispositivos.</p>
-      </div>
-    </div>
-    <button @click="fecharWelcome()" class="k-btn k-btn-primary w-full justify-center text-sm py-3">
-      <i class="fa-solid fa-check"></i>Entendi, vamos começar!
-    </button>
-  </div>
+<!-- PRIMEIRO ACESSO: somente o nome -->
+<div x-show="showWelcome" x-transition.opacity class="fixed inset-0 z-[500] flex items-center justify-center p-4" style="background:rgba(0,0,0,.88);backdrop-filter:blur(10px)">
+  <form @submit.prevent="salvarNomeUsuario()" class="k-card max-w-sm w-full p-7 space-y-5">
+    <div class="text-center"><div class="clean-wordmark mx-auto mb-4" style="height:58px;width:170px"><span>CLEAN</span><em>leads</em></div><h1 class="text-lg font-bold" style="color:var(--text)">Como podemos chamar você?</h1><p class="text-xs mt-1" style="color:var(--text-muted)">Digite apenas seu nome para personalizar o CLEAN Leads.</p></div>
+    <label class="block"><span class="text-xs" style="color:var(--text-muted)">Seu nome</span><input x-model.trim="nomeUsuarioInput" required maxlength="60" autocomplete="name" autofocus class="k-input w-full mt-1" placeholder="Digite seu nome"/></label><p class="text-xs text-center" style="color:var(--text-muted)">Você poderá trocar esse nome depois caso digite errado.</p>
+    <button type="submit" class="k-btn k-btn-primary w-full justify-center text-sm py-3"><i class="fa-solid fa-arrow-right"></i>Continuar</button>
+  </form>
 </div>
 
 <!-- SZAP TUTORIAL -->
@@ -1884,12 +1897,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       </template>
     </div>
     <div class="k-sidebar__footer">
-      <button onclick="toggleTheme()" class="k-theme-btn" title="Alternar tema">
-        <i class="fa-solid fa-sun k-icon-sun"></i>
-        <i class="fa-solid fa-moon k-icon-moon"></i>
-      </button>
-      <span class="k-version" style="display:flex;flex-direction:column;align-items:center;gap:1px;line-height:1.3">
-        <span x-text="'v'+_KAPTAR_VERSION"></span>
+      <span class="k-version" style="display:flex;align-items:center;justify-content:center;width:100%;line-height:1.3">
         <span style="font-size:9px;opacity:.55;font-weight:400">By Levi Maciel</span>
       </span>
     </div>
@@ -1947,7 +1955,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     <!-- ══════════════ BUSCAR LEADS (SCRAPER) ══════════════ -->
     <div x-show="aba==='scraper'" x-transition:enter="tab-enter" x-transition:enter-start="tab-enter-start" x-transition:enter-end="tab-enter-end" x-transition:leave="tab-leave" x-transition:leave-start="tab-leave-start" x-transition:leave-end="tab-leave-end" class="p-6 space-y-5">
       <div class="flex items-center justify-between">
-        <h1 class="k-page-title"><span class="mobile-page-clean-logo" aria-label="CLEAN Leads"><b>CLEAN</b><em>leads</em></span><span class="mobile-page-title-text">Buscar Leads</span></h1>
+        <div class="scraper-header-copy"><p class="text-lg whitespace-nowrap" style="color:var(--text-muted)">Olá, bem-vindo, <strong class="text-xl" style="color:var(--text)" x-text="nomeUsuario||'visitante'"></strong></p><h1 class="k-page-title mt-2"><span class="mobile-page-clean-logo" aria-label="CLEAN Leads"><b>CLEAN</b><em>leads</em></span><span class="mobile-page-title-text">Buscar Leads</span></h1></div>
         <div class="flex items-center gap-3">
           <!--
             Novidades do APP instalável — lidas do releaseNotes do /app/latest.yml,
@@ -1996,6 +2004,10 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
+      <section class="k-card p-4 clean-updates-desktop" x-show="novidadesFixas.length>0 || novidadesApp.itens.length>0" x-cloak>
+        <div class="flex items-center justify-between gap-3 mb-3"><div class="flex items-center gap-2"><i class="fa-solid fa-sparkles" style="color:var(--brand)"></i><div><h2 class="text-sm font-bold" style="color:var(--text)">Atualizações recentes</h2><p class="text-xs mt-0.5" style="color:var(--text-muted)">Novidades do CLEAN Leads</p></div></div><span class="text-[10px] px-2 py-1 rounded-full" style="color:var(--brand);background:var(--brand-soft)">NOVO</span></div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-2"><template x-for="item in novidadesFixas" :key="item.id"><div class="p-3 rounded-lg" style="background:var(--surface-2);border:1px solid var(--border)"><p class="text-xs font-semibold" style="color:var(--text)" x-text="item.titulo"></p><p class="text-[11px] mt-1 leading-relaxed" style="color:var(--text-muted)" x-text="item.texto"></p></div></template><template x-for="(item,idx) in novidadesApp.itens.slice(0,3)" :key="'app-'+idx"><div class="p-3 rounded-lg" style="background:var(--surface-2);border:1px solid var(--border)"><p class="text-xs font-semibold" style="color:var(--text)" x-text="'Versão '+novidadesApp.versao"></p><p class="text-[11px] mt-1 leading-relaxed" style="color:var(--text-muted)" x-text="item"></p></div></template></div>
+      </section>
       <!-- Localização por cidade brasileira -->
       <div class="k-card p-4">
         <div class="flex items-center justify-between mb-2">
@@ -2003,7 +2015,7 @@ document.addEventListener('DOMContentLoaded',()=>{
           <span x-show="pins.length>0" class="text-xs font-medium" style="color:var(--scan)"><i class="fa-solid fa-location-dot mr-1"></i><span x-text="cidadeSelecionada||'cidade selecionada'"></span></span>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-3 items-end">
-          <label class="block"><span class="text-xs" style="color:var(--text-muted)">Cidade do Brasil</span><select x-model="cidadeSelecionada" @change="selecionarCidade($event.target.value)" class="k-input w-full mt-1" style="height:44px"><option value="">Escolha uma cidade</option><option>São Paulo — SP</option><option>Rio de Janeiro — RJ</option><option>Belo Horizonte — MG</option><option>Brasília — DF</option><option>Salvador — BA</option><option>Fortaleza — CE</option><option>Recife — PE</option><option>Porto Alegre — RS</option><option>Curitiba — PR</option><option>Manaus — AM</option><option>Belém — PA</option><option>Goiânia — GO</option><option>São Luís — MA</option><option>Maceió — AL</option><option>Natal — RN</option><option>João Pessoa — PB</option><option>Teresina — PI</option><option>Aracaju — SE</option><option>Florianópolis — SC</option><option>Campo Grande — MS</option><option>Cuiabá — MT</option><option>Vitória — ES</option><option>Macapá — AP</option><option>Boa Vista — RR</option><option>Rio Branco — AC</option><option>Palmas — TO</option><option>Campinas — SP</option><option>Santos — SP</option><option>São José dos Campos — SP</option><option>Uberlândia — MG</option></select></label>
+          <label class="block"><span class="text-xs" style="color:var(--text-muted)">Cidade do Brasil</span><div class="relative mt-1"><i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-xs" style="color:var(--text-muted)"></i><input x-model="cidadeBusca" @change="selecionarCidade(cidadeBusca)" @keydown.enter.prevent="selecionarCidade(cidadeBusca)" list="cidades-sugestoes" class="k-input w-full" style="height:44px;padding-left:34px" placeholder="Digite uma cidade, ex.: Xique-Xique — BA" autocomplete="off"/><datalist id="cidades-sugestoes"><template x-for="cidade in cidadesDisponiveis" :key="cidade"><option :value="cidade"></option></template></datalist></div></label>
           <div class="text-xs sm:text-right" style="color:var(--text-muted)"><i class="fa-solid fa-circle-info mr-1" style="color:var(--blue-hi)"></i>O raio padrão é de 10 km e pode ser ajustado abaixo.</div>
         </div>
         <div x-show="pins.length>0" class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -2549,6 +2561,11 @@ document.addEventListener('DOMContentLoaded',()=>{
     <!-- ══════════════ CONFIGURAÇÕES ══════════════ -->
     <div x-show="aba==='config'" x-transition:enter="tab-enter" x-transition:enter-start="tab-enter-start" x-transition:enter-end="tab-enter-end" x-transition:leave="tab-leave" x-transition:leave-start="tab-leave-start" x-transition:leave-end="tab-leave-end" class="p-6 space-y-6">
       <h1 class="k-page-title">Configurações</h1>
+      <div class="k-card p-5 space-y-3">
+        <div class="flex items-center gap-2"><i class="fa-solid fa-user-pen" style="color:var(--brand)"></i><h2 class="text-sm font-semibold" style="color:var(--text)">Seu nome</h2></div>
+        <p class="text-xs" style="color:var(--text-muted)">Corrija ou troque o nome que aparece na saudação do CLEAN Leads.</p>
+        <div class="flex flex-col sm:flex-row gap-2"><input x-model.trim="nomeUsuarioEdicao" maxlength="60" class="k-input flex-1" placeholder="Digite seu nome"/><button @click="salvarNomeEdicao()" class="k-btn k-btn-primary justify-center"><i class="fa-solid fa-check"></i>Salvar nome</button></div>
+      </div>
       <div class="k-card p-5 space-y-3 clean-theme-card">
         <div class="flex items-center gap-2"><i class="fa-solid fa-palette" style="color:var(--blue-hi)"></i><h2 class="text-sm font-semibold" style="color:var(--text)">Tema da interface</h2></div>
         <p class="text-xs leading-relaxed" style="color:var(--text-muted)">Escolha a cor de destaque do CLEAN Leads. A preferência fica salva neste navegador.</p>
@@ -4949,7 +4966,7 @@ function app(){
   return {
     aba:'scraper',
     mobileCRMOpen:false,
-    showWelcome:false,
+    showWelcome:false,nomeUsuario:'',nomeUsuarioInput:'',nomeUsuarioEdicao:'',
     szapTutorial:false,
     szapTutorialStep:0,
     apiTut:'',        // '' | 'fsq' | 'gmaps' — tutorial de API aberto
@@ -4958,6 +4975,11 @@ function app(){
     toasts:[],
     // Novidades do app instalável — preenchido por carregarNovidadesApp() no init.
     novidadesApp:{aberto:false,versao:'',itens:[]},
+    novidadesFixas:[
+      {id:'painel',titulo:'Painel comercial',texto:'Acompanhe leads captados, abordados, qualificados e oportunidades sem site.'},
+      {id:'crm',titulo:'Relacionamento',texto:'Pipeline, follow-ups e modelos de mensagens para organizar seus contatos.'},
+      {id:'mobile',titulo:'Experiência mobile',texto:'Navegação inferior otimizada para usar o CLEAN Leads pelo celular.'}
+    ],
 
     // ─── ESTADO LEADS ───
     leads:[],leadsQualificados:[],leadsEmContato:[],leadsArquivados:[],
@@ -4990,7 +5012,8 @@ function app(){
     // ─── SCRAPER ───
     scraper:{fonte:'google_maps',categorias:[],max_results:100,campos_google:'telefone_site',filtroPresenca:{exige_telefone:false,exige_site:false,exige_instagram:false,exige_site_ou_whatsapp:false}},
     googleUso:{requests:0,limite:1000,max_leads_restantes:20000},
-    pins:[],cidadeSelecionada:'',leafletMap:null,mapLoaded:false,scanLayer:null,scanVisualAtivo:false,custoEstimado:null,fonteInfo:false,
+    pins:[],cidadeSelecionada:'',cidadeBusca:'',cidadeBuscando:false,leafletMap:null,mapLoaded:false,scanLayer:null,scanVisualAtivo:false,custoEstimado:null,fonteInfo:false,
+    cidadesDisponiveis:['São Paulo — SP','Rio de Janeiro — RJ','Belo Horizonte — MG','Brasília — DF','Salvador — BA','Fortaleza — CE','Recife — PE','Porto Alegre — RS','Curitiba — PR','Manaus — AM','Belém — PA','Goiânia — GO','São Luís — MA','Maceió — AL','Natal — RN','João Pessoa — PB','Teresina — PI','Aracaju — SE','Florianópolis — SC','Campo Grande — MS','Cuiabá — MT','Vitória — ES','Macapá — AP','Boa Vista — RR','Rio Branco — AC','Palmas — TO','Campinas — SP','Santos — SP','São José dos Campos — SP','Uberlândia — MG'],
     buscaCategoria:'',
     catsMobileOpen:false,   // dropdown de nichos no mobile
     scraperStatus:{rodando:false,mensagem:'',novos:0,fontes:{}},
@@ -5176,7 +5199,10 @@ function app(){
       // Tick de 1 min: re-avalia bindings que dependem do horário (ex.: janela do suporte),
       // senão a aba aberta desde antes das 20h continuaria mostrando o botão ativo.
       setInterval(()=>{this._agoraTick=Date.now();},60000);
-      this.showWelcome=localStorage.getItem('kaptar-welcome-seen')!=='1';
+      this.nomeUsuario=localStorage.getItem('clean-leads-user-name')||'';
+      this.nomeUsuarioInput=this.nomeUsuario;
+      this.nomeUsuarioEdicao=this.nomeUsuario;
+      this.showWelcome=!this.nomeUsuario;
       this.cfg={foursquare_api_key:'',google_maps_api_key:'',foursquare_ativo:false,ddi:'55',autoCatchUp:false,...this._loadConfig()};
       if(!this.cfg.ddi)this.cfg.ddi='55';
       this._migrarLocalLeads();
@@ -5211,7 +5237,9 @@ function app(){
       setTimeout(()=>this.initMap(),400);
     },
 
-    fecharWelcome(){localStorage.setItem('kaptar-welcome-seen','1');this.showWelcome=false;},
+    salvarNomeUsuario(){const nome=(this.nomeUsuarioInput||'').trim();if(!nome)return;this.nomeUsuario=nome;this.nomeUsuarioEdicao=nome;localStorage.setItem('clean-leads-user-name',nome);localStorage.setItem('kaptar-welcome-seen','1');this.showWelcome=false;},
+    salvarNomeEdicao(){const nome=(this.nomeUsuarioEdicao||'').trim();if(!nome){this.showToast('Digite um nome','error');return;}this.nomeUsuario=nome;this.nomeUsuarioInput=nome;localStorage.setItem('clean-leads-user-name',nome);this.showToast('Nome atualizado');},
+    fecharWelcome(){this.salvarNomeUsuario();},
 
     /*
       As novidades do app instalável, lidas do /app/latest.yml — o MESMO
@@ -6688,9 +6716,25 @@ function app(){
         'São José dos Campos — SP':[-23.1896,-45.8841],'Uberlândia — MG':[-18.9186,-48.2772]
       };
       const coords=cidades[label];
-      if(!coords)return;
+      if(!coords){this.buscarCidadeDigitada(label);return;}
+      this.cidadeBusca=label;
       this.pins=[{lat:coords[0],lng:coords[1],radius_km:10,label,marker:null,circle:null}];
       this._scanVisualReset();
+    },
+    async buscarCidadeDigitada(label){
+      label=(label||'').trim();if(!label)return;
+      this.cidadeBuscando=true;
+      try{
+        const r=await fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=br&q='+encodeURIComponent(label));
+        const item=(await r.json())[0];
+        if(!item)throw new Error('Cidade não encontrada');
+        const nome=(item.display_name||label).split(',').slice(0,2).join(' —').trim();
+        this.cidadeSelecionada=label;this.cidadeBusca=label;
+        this.pins=[{lat:Number(item.lat),lng:Number(item.lon),radius_km:10,label,marker:null,circle:null}];
+        this._scanVisualReset();
+        this.showToast('Área definida para '+label);
+      }catch(_){this.showToast('Não encontrei essa cidade. Digite cidade e estado, por exemplo: Arapiraca — AL.','error');}
+      finally{this.cidadeBuscando=false;}
     },
 
     // ─── MAPA (mantido para a área de automações) ───
