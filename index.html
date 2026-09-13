@@ -903,6 +903,67 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
 <style id="clean-desktop-updates-final">.clean-updates-desktop{display:none!important}</style>
 <style id="clean-remove-tutorial-and-browser-credit">.tutorial-control,.credit-browser{display:none!important}</style>
 <style id="clean-credit-responsive-final">@media(max-width:768px){.desktop-credit{display:none!important}}@media(min-width:769px){.desktop-credit{display:inline!important;font-size:11px!important;opacity:.48!important}}</style>
+<style id="clean-hide-desktop-search-title">@media(min-width:769px){.mobile-page-title-text{display:none!important}}</style>
+<style id="clean-icon-sidebar-reference">
+@media(min-width:769px){
+  .k-sidebar{width:78px!important;align-items:stretch!important;overflow:visible!important;background:#fff4f5!important;border-right:1px solid #ffe2e3!important}
+  [data-theme="dark"] .k-sidebar{background:#101a29!important;border-right-color:#243650!important}
+  .k-sidebar__brand,.k-sidebar__support,.k-app-card{display:none!important}
+  .k-sidebar__nav{width:78px!important;margin:0!important;padding:0!important;gap:0!important;border:0!important;border-radius:0!important;background:transparent!important;overflow:visible!important}
+  .k-sidebar__nav .k-nav-btn{position:relative;width:78px!important;height:78px!important;min-height:78px!important;margin:0!important;padding:0!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:0!important;border:0!important;border-bottom:1px solid #ffe2e3!important;border-radius:0!important;background:#fff4f5!important;color:#ff5c62!important;font-size:0!important;overflow:visible!important}
+  [data-theme="dark"] .k-sidebar__nav .k-nav-btn{background:#101a29!important;border-bottom-color:#243650!important;color:#78baff!important}
+  .k-sidebar__nav .k-nav-btn>span{display:none!important}
+  .k-sidebar__nav .k-nav-btn>i{display:block!important;width:auto!important;font-size:20px!important;line-height:1!important;color:currentColor!important}
+  .k-sidebar__nav .k-nav-btn .k-badge{display:none!important}
+  .k-sidebar__nav .k-nav-btn:hover,.k-sidebar__nav .k-nav-btn.active{background:#ff5c62!important;color:#fff!important}
+  [data-theme="dark"] .k-sidebar__nav .k-nav-btn:hover,[data-theme="dark"] .k-sidebar__nav .k-nav-btn.active{background:#2f8ee8!important;color:#fff!important}
+  .k-sidebar__nav .k-nav-btn.active:after{content:"";position:absolute;left:78px;top:0;border:39px solid transparent;border-left:14px solid #ff5c62;border-right:0}
+  [data-theme="dark"] .k-sidebar__nav .k-nav-btn.active:after{border-left-color:#2f8ee8}
+  .k-sidebar__nav .k-nav-btn:before{content:attr(data-label);position:absolute;z-index:20;left:78px;top:0;height:78px;min-width:150px;box-sizing:border-box;display:flex;align-items:center;padding:0 20px;text-transform:uppercase;letter-spacing:.05em;font-size:11px;font-weight:700;background:#ff5c62;color:#fff;visibility:hidden;opacity:0;transform:translateX(-6px);transition:opacity .22s ease,transform .22s ease;pointer-events:none}
+  [data-theme="dark"] .k-sidebar__nav .k-nav-btn:before{background:#2f8ee8;color:#fff}
+  .k-sidebar__nav .k-nav-btn:hover:before{visibility:visible;opacity:1;transform:translateX(0)}
+  .k-sidebar__footer{width:78px!important;margin-top:auto!important;padding:12px 4px!important;border-top:1px solid #ffe2e3!important;background:inherit!important}
+  .k-sidebar__footer .desktop-credit{font-size:8px!important;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap}
+  .k-main{width:calc(100% - 78px)!important}
+}
+</style>
+<style id="clean-glass-sidebar-final">
+@media(min-width:769px){
+  .k-sidebar{width:58px!important;margin:6px 0 6px 6px!important;height:calc(100vh - 12px)!important;border:1px solid rgba(255,255,255,.16)!important;border-radius:16px!important;background:rgba(255,255,255,.07)!important;background-image:none!important;backdrop-filter:blur(18px) saturate(110%)!important;-webkit-backdrop-filter:blur(18px) saturate(110%)!important;box-shadow:0 8px 26px rgba(0,0,0,.18)!important;overflow:visible!important}
+  [data-theme="light"] .k-sidebar{background:rgba(255,255,255,.48)!important;border-color:rgba(0,0,0,.12)!important}
+  .k-sidebar__nav{width:58px!important}
+  .k-sidebar__nav .k-nav-btn{width:58px!important;height:58px!important;min-height:58px!important;background:transparent!important;border-bottom:1px solid rgba(255,255,255,.12)!important;color:var(--text-muted)!important}
+  [data-theme="light"] .k-sidebar__nav .k-nav-btn{border-bottom-color:rgba(0,0,0,.10)!important}
+  .k-sidebar__nav .k-nav-btn>i{font-size:17px!important}
+  .k-sidebar__nav .k-nav-btn:hover,.k-sidebar__nav .k-nav-btn.active{background:rgba(var(--brand-rgb),.16)!important;color:var(--brand)!important}
+  .k-sidebar__nav .k-nav-btn.active:after{left:58px;border-top-width:29px;border-bottom-width:29px;border-left-width:9px;border-left-color:rgba(var(--brand-rgb),.45)!important}
+  .k-sidebar__nav .k-nav-btn:before{left:52px;height:42px;min-width:118px;padding:0 13px;border:1px solid rgba(255,255,255,.16);border-radius:10px;background:rgba(255,255,255,.10)!important;color:var(--text)!important;backdrop-filter:blur(16px) saturate(110%)!important;-webkit-backdrop-filter:blur(16px) saturate(110%)!important;box-shadow:0 8px 22px rgba(0,0,0,.16);font-size:10px;letter-spacing:.03em}
+  [data-theme="light"] .k-sidebar__nav .k-nav-btn:before{background:rgba(255,255,255,.62)!important;border-color:rgba(0,0,0,.12)!important}
+  .k-sidebar__footer{width:58px!important;border-top-color:rgba(255,255,255,.12)!important}
+  [data-theme="light"] .k-sidebar__footer{border-top-color:rgba(0,0,0,.10)!important}
+  .k-main{width:calc(100% - 64px)!important}
+}
+</style>
+<style id="clean-invisible-icon-sidebar-final">
+@media(min-width:769px){
+  .k-sidebar{width:58px!important;margin:0!important;height:100vh!important;border:0!important;border-radius:0!important;background:transparent!important;background-image:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important;overflow:visible!important}
+  .k-sidebar__nav{width:58px!important;margin:0!important;padding:0!important;background:transparent!important;border:0!important}
+  .k-sidebar__nav{height:100vh!important;display:flex!important;flex-direction:column!important;justify-content:center!important}
+  .k-sidebar__nav .mobile-crm-trigger{display:none!important}
+  .k-sidebar__nav .k-nav-btn{width:58px!important;height:58px!important;min-height:58px!important;background:transparent!important;border:0!important;color:var(--text-muted)!important}
+  .k-sidebar__nav .k-nav-btn:hover,.k-sidebar__nav .k-nav-btn.active{background:transparent!important;color:var(--brand)!important}
+  .k-sidebar__nav .k-nav-btn.active:after,.k-sidebar__nav .k-nav-btn:before{display:none!important}
+  .k-sidebar__footer{display:none!important}
+  .k-main{width:calc(100% - 58px)!important}
+}
+</style>
+<style id="clean-icon-tooltip-final">
+@media(min-width:769px){
+  .k-sidebar__nav .k-nav-btn:before{display:flex!important;content:attr(data-label);position:absolute;z-index:30;left:64px;top:50%;transform:translateY(-50%) translateX(-4px);height:30px;min-width:max-content;padding:0 11px;align-items:center;border:1px solid rgba(255,255,255,.14);border-radius:8px;background:rgba(20,20,20,.62);color:var(--text);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 5px 16px rgba(0,0,0,.14);font-size:10px;font-weight:600;letter-spacing:.02em;white-space:nowrap;opacity:0;visibility:hidden;transition:opacity .18s ease,transform .18s ease,visibility .18s ease;pointer-events:none}
+  [data-theme="light"] .k-sidebar__nav .k-nav-btn:before{background:rgba(255,255,255,.78);border-color:rgba(0,0,0,.10);color:var(--text)}
+  .k-sidebar__nav .k-nav-btn:hover:before{opacity:1;visibility:visible;transform:translateY(-50%) translateX(0)}
+}
+</style>
 <style id="clean-mobile-header-final">
 @media(max-width:768px){
   .scraper-header-copy{display:flex!important;flex-direction:column!important;align-items:flex-start!important}
@@ -1794,37 +1855,37 @@ document.addEventListener('DOMContentLoaded',()=>{
       </div>
     </div>
     <nav class="k-sidebar__nav">
-      <button @click="aba='scraper'" :class="aba==='scraper'?'active':''" class="k-nav-btn">
+      <button data-label="Buscar Leads" @click="aba='scraper'" :class="aba==='scraper'?'active':''" class="k-nav-btn">
         <i class="fa-solid fa-crosshairs" style="width:16px;text-align:center"></i>
         <span>Buscar Leads</span>
       </button>
-      <button @click="aba='painel';carregarLeads()" :class="aba==='painel'?'active':''" class="k-nav-btn">
+      <button data-label="Painel" @click="aba='painel';carregarLeads()" :class="aba==='painel'?'active':''" class="k-nav-btn">
         <i class="fa-solid fa-chart-line" style="width:16px;text-align:center"></i>
         <span>Painel</span>
       </button>
-      <button @click="aba='leads'; carregarLeads()" :class="aba==='leads'?'active':''" class="k-nav-btn">
+      <button data-label="Leads" @click="aba='leads'; carregarLeads()" :class="aba==='leads'?'active':''" class="k-nav-btn">
         <i class="fa-solid fa-users" style="width:16px;text-align:center"></i>
         <span>Leads</span>
         <span x-show="statsTotais.total>0" x-text="statsTotais.total" class="k-badge"></span>
       </button>
-      <button @click="aba='pipeline';carregarLeads()" :class="aba==='pipeline'?'active':''" class="k-nav-btn mobile-crm-child">
+      <button data-label="Pipeline" @click="aba='pipeline';carregarLeads()" :class="aba==='pipeline'?'active':''" class="k-nav-btn mobile-crm-child">
         <i class="fa-solid fa-filter-circle-dollar" style="width:16px;text-align:center"></i>
         <span>Pipeline</span>
         <span x-show="pipelineContagem()>0" x-text="pipelineContagem()" class="k-badge"></span>
       </button>
-      <button @click="aba='followups';carregarLeads()" :class="aba==='followups'?'active':''" class="k-nav-btn mobile-crm-child">
+      <button data-label="Follow-ups" @click="aba='followups';carregarLeads()" :class="aba==='followups'?'active':''" class="k-nav-btn mobile-crm-child">
         <i class="fa-regular fa-calendar-check" style="width:16px;text-align:center"></i>
         <span>Follow-ups</span>
       </button>
-      <button @click="aba='mensagens'" :class="aba==='mensagens'?'active':''" class="k-nav-btn mobile-crm-child">
+      <button data-label="Mensagens" @click="aba='mensagens'" :class="aba==='mensagens'?'active':''" class="k-nav-btn mobile-crm-child">
         <i class="fa-regular fa-message" style="width:16px;text-align:center"></i>
         <span>Mensagens</span>
       </button>
-      <button @click="mobileCRMOpen=!mobileCRMOpen" :class="['k-nav-btn','mobile-crm-trigger',mobileCRMOpen||['pipeline','followups','mensagens'].includes(aba)?'active':'']">
+      <button data-label="Relacionamento" @click="mobileCRMOpen=!mobileCRMOpen" :class="['k-nav-btn','mobile-crm-trigger',mobileCRMOpen||['pipeline','followups','mensagens'].includes(aba)?'active':'']">
         <i class="fa-solid fa-layer-group" style="width:16px;text-align:center"></i>
         <span>Relacionamento</span>
       </button>
-      <button @click="aba='config'" :class="aba==='config'?'active':''" class="k-nav-btn">
+      <button data-label="Configurações" @click="aba='config'" :class="aba==='config'?'active':''" class="k-nav-btn">
         <i class="fa-solid fa-gear" style="width:16px;text-align:center"></i>
         <span>Configurações</span>
       </button>
