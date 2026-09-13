@@ -5525,6 +5525,39 @@ function app(){
       return s;
     },
     _leadDuplicado(l,set){ return this._leadKeys(l).some(k=>set.has(k)); },
+    _normalizarSiteLead(value){
+      let s=String(value||'').trim();
+      if(!s)return '';
+      if(/^https?:\/\//i.test(s)===false)s='https://'+s;
+      try{
+        const u=new URL(s);
+        const host=u.hostname.toLowerCase().replace(/^www\./,'');
+        if(host==='google.com'||host.endsWith('.google.com')||host==='maps.google.com'||host.endsWith('.googleusercontent.com'))return '';
+        if(host==='instagram.com'||host.endsWith('.instagram.com')||host==='facebook.com'||host.endsWith('.facebook.com'))return '';
+        return u.href;
+      }catch{return '';}
+    },
+    _normalizarTelefoneLead(...values){
+      for(const value of values){
+        const raw=String(value||'').trim();
+        const digits=raw.replace(/\D/g,'');
+        if(digits.length>=8&&digits.length<=15)return this._formatTel(digits);
+      }
+      return '';
+    },
+    _mesclarDadosContato(dest,src){
+      let mudou=false;
+      const site=this._normalizarSiteLead(src.site);
+      const tel=this._normalizarTelefoneLead(src.telefone);
+      if(!dest.site&&site){dest.site=site;dest.tem_site=true;mudou=true;}
+      if(!dest.telefone&&tel){dest.telefone=tel;dest.tem_whatsapp=src.tem_whatsapp??dest.tem_whatsapp;mudou=true;}
+      if(!dest.instagram&&src.instagram){dest.instagram=src.instagram;dest.tem_instagram=true;mudou=true;}
+      if(!dest.google_maps_url&&src.google_maps_url){dest.google_maps_url=src.google_maps_url;mudou=true;}
+      if(!dest.cidade&&src.cidade){dest.cidade=src.cidade;mudou=true;}
+      if(!dest.estado&&src.estado){dest.estado=src.estado;mudou=true;}
+      if(mudou){dest.tem_site=!!dest.site;dest.tem_instagram=!!dest.instagram;dest.categoria_lead=this._calcCategoria(dest);dest.score_oportunidade=this._calcScore(dest);}
+      return mudou;
+    },
     /*
       Grava os leads novos POR CIMA do que está no storage AGORA.
 
@@ -5544,8 +5577,15 @@ function app(){
       const chaves=new Set();
       for(const l of atuais){ for(const k of this._leadKeys(l)) chaves.add(k); }
       const entram=[];
+      let atualizados=0;
       for(const l of novosLeads){
-        if(this._leadDuplicado(l,chaves))continue;
+        const porId=l.id?atuais.find(a=>a.id===l.id):null;
+        if(porId){if(this._mesclarDadosContato(porId,l))atualizados++;continue;}
+        if(this._leadDuplicado(l,chaves)){
+          const existente=atuais.find(a=>this._leadKeys(a).some(k=>this._leadKeys(l).includes(k)));
+          if(existente&&this._mesclarDadosContato(existente,l))atualizados++;
+          continue;
+        }
         this._leadKeys(l).forEach(k=>chaves.add(k));
         entram.push(l);
       }
@@ -5561,7 +5601,7 @@ function app(){
         silêncio) e excluía o último, que ESTAVA gravado e nunca era abordado.
         Lead pago, guardado, e nunca contatado.
       */
-      return { gravados: entram.length, entrados: entram };
+      return { gravados: entram.length, entrados: entram, atualizados };
     },
     _detectDelim(linha){
       let best=';',bestN=-1;
@@ -7230,7 +7270,7 @@ function app(){
       if(!Number.isFinite(pin.lat)||!Number.isFinite(pin.lng)||Math.abs(pin.lat)>90||Math.abs(pin.lng)>180||!Number.isFinite(pin.radius_km)||pin.radius_km<=0){
         throw new Error(`pin com coordenadas inválidas (lat=${pin.lat}, lng=${pin.lng}, raio=${pin.radius_km}km) — remova este pin do mapa e marque de novo`);
       }
-      const baseFields='places.id,places.displayName,places.nationalPhoneNumber,places.rating,places.userRatingCount,places.location,places.formattedAddress,places.primaryTypeDisplayName';
+      const baseFields='places.id,places.displayName,places.nationalPhoneNumber,places.internationalPhoneNumber,places.rating,places.userRatingCount,places.location,places.formattedAddress,places.primaryTypeDisplayName';
       // comSite começa conforme a escolha do usuário; se a API rejeitar o campo de site,
       // cai automaticamente para só telefone e continua funcionando.
       let comSite=this.scraper.campos_google!=='telefone';
@@ -7355,12 +7395,12 @@ function app(){
       // com target 30, duas páginas trazem 40. Cortar aqui jogava fora lugares
       // que a requisição JÁ pagou — cota virando fumaça sem lead.
       return allPlaces.map(p=>{
-        const tel=(p.nationalPhoneNumber||'').replace(/\D/g,'');
-        const site=p.websiteUri||'';
+        const tel=this._normalizarTelefoneLead(p.nationalPhoneNumber,p.internationalPhoneNumber,p.phone,p.formattedPhoneNumber);
+        const site=this._normalizarSiteLead(p.websiteUri||p.website||p.websiteUrl);
         const {cidade,estado}=this._parseCidadeUF(p.formattedAddress||'');
         const lead={
           id:'gm_'+p.id,nome:p.displayName?.text||cat,categoria:p.primaryTypeDisplayName?.text||cat,categoria_busca:cat,
-          telefone:tel?this._formatTel(tel):'',email:'',site,instagram:'',
+          telefone:tel,email:'',site,instagram:'',
           tem_site:!!site,tem_instagram:false,tem_whatsapp:this._ehCelular(tel),
           cidade,estado,
           avaliacao:p.rating||0,num_avaliacoes:p.userRatingCount||0,
