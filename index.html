@@ -5076,7 +5076,7 @@ function app(){
     statsTotais:{total:0,ativos:0,qualificados:0,em_contato:0,arquivados:0},
     painelDados:{captados:0,semSite:0,comTelefone:0},painelSerie:[],
     pipelineColunas:[{id:'novo',nome:'Novo'},{id:'contato',nome:'Abordado'},{id:'qualificado',nome:'Qualificado'},{id:'fechado',nome:'Fechado'},{id:'descartado',nome:'Descartado'}],
-    pipelineArrastando:null,pipelineDropCol:null,
+    pipelineArrastando:null,pipelineDropCol:null,pipelineVersion:0,
     modelosMensagem:[
       {id:'primeiro',titulo:'Primeiro contato',descricao:'Abordagem inicial pelo WhatsApp',texto:'Olá! Tudo bem? Encontrei a empresa de vocês e gostei do trabalho. Posso apresentar uma ideia rápida para ajudar a melhorar a presença digital do negócio?'},
       {id:'semsite',titulo:'Empresa sem site',descricao:'Oportunidade de presença digital',texto:'Olá! Vi que a empresa ainda não possui um site oficial. Posso mostrar como uma página profissional pode ajudar a trazer mais clientes e facilitar o contato?'},
@@ -5383,7 +5383,7 @@ function app(){
       }
       return r;
     },
-    pipelineLeads(col){const all=this._allLeads().filter(l=>!l.arquivado&&!l.limpo);return all.filter(l=>l.status==='descartado'?col==='descartado':col==='descartado'?false:col==='fechado'?l.status==='fechado'||l.convertido:col==='qualificado'?!!l.qualificado&&!l.em_contato:col==='contato'?!!l.em_contato&&!l.qualificado:l.status==='novo'||(!l.em_contato&&!l.qualificado));},
+    pipelineLeads(col){this.pipelineVersion;const all=this._allLeads().filter(l=>!l.arquivado&&!l.limpo);return all.filter(l=>l.status==='descartado'?col==='descartado':col==='descartado'?false:col==='fechado'?l.status==='fechado'||l.convertido:col==='qualificado'?!!l.qualificado&&!l.em_contato:col==='contato'?!!l.em_contato&&!l.qualificado:l.status==='novo'||(!l.em_contato&&!l.qualificado));},
     iniciarArraste(lead,col,e){this.pipelineArrastando={id:String(lead.id),col};this.pipelineDropCol=col;if(e?.dataTransfer){e.dataTransfer.effectAllowed='move';e.dataTransfer.setData('text/plain',String(lead.id));}},
     finalizarArraste(){this.pipelineArrastando=null;this.pipelineDropCol=null;},
     soltarNoPipeline(col,e){let drag=this.pipelineArrastando;const transferId=e?.dataTransfer?.getData('text/plain');if(!drag&&transferId)drag={id:transferId,col:null};if(!drag){this.finalizarArraste();return;}if(drag.col===col){this.finalizarArraste();return;}const patch=col==='descartado'?{status:'descartado',convertido:false,qualificado:false,em_contato:false,proximo_contato:null}:col==='fechado'?{status:'fechado',convertido:true,qualificado:false,em_contato:true,proximo_contato:null}:col==='qualificado'?{status:'qualificado',convertido:false,qualificado:true,em_contato:false}:col==='contato'?{status:'em_contato',convertido:false,qualificado:false,em_contato:true}:{status:'novo',convertido:false,qualificado:false,em_contato:false};this._updateLead(String(drag.id),patch);this.carregarLeads();this.showToast(`Lead movido para ${this.pipelineColunas.find(c=>c.id===col)?.nome||col}`);this.finalizarArraste();},
@@ -5434,6 +5434,7 @@ function app(){
       if(idx<0)return;
       all[idx]={...all[idx],...changes};
       this._saveLeads(all);
+      this.pipelineVersion++;
       if(this.leadAberto?.id===id)this.leadAberto={...all[idx]};
       this.carregarLeads();
     },
