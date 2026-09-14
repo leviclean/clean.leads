@@ -2206,7 +2206,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             <p class="k-label mb-0">Filtro de Captura</p>
             <template x-if="scraper.fonte==='google_maps'||scraper.fonte==='todos'">
               <div class="space-y-3">
-                <p class="text-xs" style="color:var(--text-muted)">Dados que o Google deve retornar:</p>
+                <p class="text-xs" style="color:var(--text-muted)">Escolha quais dados são obrigatórios nos resultados:</p>
                 <div class="flex gap-2 flex-wrap">
                   <button @click="scraper.campos_google='telefone'" class="k-chip flex items-center gap-1.5" :class="scraper.campos_google==='telefone'?'selected':''">
                     <i class="fa-solid fa-phone text-xs"></i><span>Só telefone</span>
@@ -5112,7 +5112,8 @@ function app(){
     storageUsado:'0 KB',
     filtrosPresencaOpcoes:[
       {id:'telefone',label:'Tem telefone',icon:'fa-solid fa-phone',cor:'#a8a8a8'},
-      {id:'site',label:'Tem site',icon:'fa-solid fa-globe',cor:'#888'},
+      {id:'com_site',label:'Com site',icon:'fa-solid fa-globe',cor:'#888'},
+      {id:'sem_site',label:'Sem site',icon:'fa-solid fa-link-slash',cor:'#888'},
       {id:'instagram',label:'Tem Instagram',icon:'fa-brands fa-instagram',cor:'#808080'},
       {id:'sem_nada',label:'Sem nada',icon:'fa-solid fa-ban',cor:'#666'},
     ],
@@ -5399,10 +5400,11 @@ function app(){
       if(q)r=r.filter(l=>(l.nome||'').toLowerCase().includes(q)||(l.categoria||'').toLowerCase().includes(q)||(l.telefone||'').includes(q)||(l.cidade||'').toLowerCase().includes(q));
       if(this.filtroScore){const[lo,hi]=this.filtroScore.split('-').map(Number);r=r.filter(l=>{const s=Number(l.score_oportunidade)||0;return s>=lo&&s<=hi;});}
       if(this.filtroStatus)r=r.filter(l=>l.status===this.filtroStatus);
-      if(this.filtrosPresenca.includes('sem_nada'))r=r.filter(l=>!l.tem_site&&!l.tem_instagram&&!l.telefone);
+      if(this.filtrosPresenca.includes('sem_nada'))r=r.filter(l=>!l.tem_site&&!l.site&&!l.tem_instagram&&!l.telefone);
       else{
         if(this.filtrosPresenca.includes('telefone'))r=r.filter(l=>!!l.telefone);
-        if(this.filtrosPresenca.includes('site'))r=r.filter(l=>l.tem_site);
+        if(this.filtrosPresenca.includes('com_site'))r=r.filter(l=>!!(l.site||l.tem_site));
+        if(this.filtrosPresenca.includes('sem_site'))r=r.filter(l=>!(l.site||l.tem_site));
         if(this.filtrosPresenca.includes('instagram'))r=r.filter(l=>l.tem_instagram);
       }
       return r;
@@ -6003,6 +6005,8 @@ function app(){
     labelCategoria(cat){return{sem_presenca:'Sem presença',sem_site:'Sem site',site_ruim:'Site ruim',site_medio:'Site médio',ativo:'Presença boa'}[cat]||cat||'—';},
     labelStatus(s){return{novo:'Novo',contato:'Em contato',proposta:'Proposta',negociacao:'Negociando',fechado:'Fechado',perdido:'Perdido'}[s]||s||'Novo';},
     toggleFiltroPresenca(id){
+      if(id==='com_site'&&this.filtrosPresenca.includes('sem_site'))this.filtrosPresenca=this.filtrosPresenca.filter(x=>x!=='sem_site');
+      if(id==='sem_site'&&this.filtrosPresenca.includes('com_site'))this.filtrosPresenca=this.filtrosPresenca.filter(x=>x!=='com_site');
       if(id==='sem_nada'){this.filtrosPresenca=this.filtrosPresenca.includes('sem_nada')?[]:['sem_nada'];}
       else{let f=this.filtrosPresenca.filter(x=>x!=='sem_nada');this.filtrosPresenca=f.includes(id)?f.filter(x=>x!==id):[...f,id];}
       this.carregarLeads();
@@ -7092,6 +7096,10 @@ function app(){
             }
             // OR: mantém quem tem site OU telefone/WhatsApp
             if(f.exige_site_ou_whatsapp)results=results.filter(l=>l.tem_site||!!l.telefone);
+            // O modo escolhido define os dados obrigatórios do resultado:
+            // só telefone = telefone presente; telefone + site = ambos presentes.
+            if(this.scraper.campos_google==='telefone')results=results.filter(l=>!!l.telefone);
+            if(this.scraper.campos_google==='telefone_site')results=results.filter(l=>!!l.telefone&&!!(l.site||l.tem_site));
             for(const l of _antesLista){ if(!results.includes(l)) barrados.add(l.id||(l.nome+'|'+(l.cidade||''))); }
 
             // Deduplicar
