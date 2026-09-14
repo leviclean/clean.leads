@@ -6012,6 +6012,26 @@ function app(){
       else base=50-(av>0?(av-3.6)*12:0);                       // tem site (não escaneado): estima pela nota
       return Math.round(Math.max(6,Math.min(100,base+this._bizNudge(lead))));
     },
+    async _consultarWhatsApp(phone){
+      const base=String(phone||'').replace(/\D/g,'');
+      if(!base)throw new Error('telefone vazio');
+      const tentativas=[base];
+      // No Brasil, números móveis antigos podem vir com 10 dígitos (sem o 9º).
+      // Tenta também a forma móvel oficial antes de concluir que não existe.
+      if(base.startsWith('55')&&base.length===12){
+        const nacional=base.slice(2);
+        if(/^[6-9]/.test(nacional.slice(2)))tentativas.push('55'+nacional.slice(0,2)+'9'+nacional.slice(2));
+      }
+      let ultimo=null;
+      for(const number of tentativas){
+        const cr=await fetch(this._szapUrl('/check-number'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({number}),signal:AbortSignal.timeout(6000)});
+        const cd=await cr.json();
+        ultimo=cd;
+        if(cd?.registered===true)return {...cd,_number:number};
+        if(cd?.registered!==false)throw new Error('resposta incompleta ao verificar telefone');
+      }
+      return {...ultimo,registered:false,_number:tentativas[0]};
+    },
     _formatTel(digits){
       if(!digits)return '';
       if(digits.startsWith('55')&&digits.length>=12)digits=digits.slice(2);
@@ -6547,9 +6567,8 @@ function app(){
         const phone=this._telInternacional(lead.telefone);
         let destJid=null;
         try{
-          const cr=await fetch(this._szapUrl('/check-number'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({number:phone}),signal:AbortSignal.timeout(6000)});
-          const cd=await cr.json();
-          if(!cd.registered){
+          const cd=await this._consultarWhatsApp(phone);
+          if(cd.registered===false){
             consumidos.push(lead.id);   // sem WhatsApp → não tenta de novo nos próximos horários
             semWpp++; semWppSeguidos++;
             if(semWppSeguidos>=8){ parouRestrito=true; break; }   // provável restrição da conta → para
@@ -7238,6 +7257,11 @@ function app(){
           if(r.cidade!==(l.cidade||'')||r.estado!==(l.estado||'')){ l.cidade=r.cidade; l.estado=r.estado; mudou=true; }
           const siteReal=this._normalizarSiteLead(l.site);
           if((l.site||'')!==siteReal||l.tem_site!==!!siteReal){l.site=siteReal;l.tem_site=!!siteReal;mudou=true;}
+          const placeId=String(l.id||'').startsWith('gm_')?String(l.id).slice(3):'';
+          if(placeId){
+            const mapsReal=`https://www.google.com/maps/search/?api=1&query=Google&query_place_id=${encodeURIComponent(placeId)}`;
+            if(l.google_maps_url!==mapsReal){l.google_maps_url=mapsReal;mudou=true;}
+          }
         }
         if(mudou)this._saveLeads(all);
       }catch(_){}
@@ -7418,7 +7442,7 @@ function app(){
           cidade,estado,
           avaliacao:p.rating||0,num_avaliacoes:p.userRatingCount||0,
           lat:p.location?.latitude||0,lng:p.location?.longitude||0,
-          google_maps_url:`https://www.google.com/maps/place/?q=place_id:${p.id}`,
+          google_maps_url:`https://www.google.com/maps/search/?api=1&query=Google&query_place_id=${encodeURIComponent(p.id)}`,
           fonte:'google_maps',status:'novo',qualificado:false,em_contato:false,limpo:false,arquivado:false,
           notas:'',atividades:[],criado_em:new Date().toISOString(),
         };
@@ -8937,13 +8961,8 @@ function app(){
         let destJid=null; // JID canônico que o /check-number confirmar — garante entrega no destino certo
         // 1) Verificar se o número está no WhatsApp
         try{
-          const cr=await fetch(this._szapUrl('/check-number'),{
-            method:'POST',headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({number:phone}),
-            signal:AbortSignal.timeout(6000),
-          });
-          const cd=await cr.json();
-          if(!cd.registered){
+          const cd=await this._consultarWhatsApp(phone);
+          if(cd.registered===false){
             semWpp++; semWppSeguidos++;
             this.szap.campLog.push({id:lead.id,nome:lead.nome,status:'sem_wpp'});
             this.szapMostrarNotif(lead.nome,i+1,leads.length,'skip');
