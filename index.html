@@ -1042,6 +1042,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   cards.forEach(el=>io.observe(el));
 });
 </script>
+<style id="clean-extra-palettes-final">html[data-clean-palette="cyan"]{--blue:#22d3ee;--blue-hi:#a5f3fc;--brand:#22d3ee;--brand-600:#0891b2;--brand-soft:rgba(34,211,238,.14);--brand-rgb:34,211,238;--border:rgba(103,232,249,.22);--border-strong:rgba(103,232,249,.42)}html[data-clean-palette="pink"]{--blue:#f472b6;--blue-hi:#fbcfe8;--brand:#f472b6;--brand-600:#db2777;--brand-soft:rgba(244,114,182,.14);--brand-rgb:244,114,182;--border:rgba(249,168,212,.22);--border-strong:rgba(249,168,212,.42)}html[data-clean-palette="orange"]{--blue:#fb923c;--blue-hi:#fed7aa;--brand:#fb923c;--brand-600:#ea580c;--brand-soft:rgba(251,146,60,.14);--brand-rgb:251,146,60;--border:rgba(253,186,116,.22);--border-strong:rgba(253,186,116,.42)}html[data-clean-palette="lime"]{--blue:#a3e635;--blue-hi:#d9f99d;--brand:#a3e635;--brand-600:#65a30d;--brand-soft:rgba(163,230,53,.14);--brand-rgb:163,230,53;--border:rgba(190,242,100,.22);--border-strong:rgba(190,242,100,.42)}html[data-clean-palette="cyan"] body:before,html[data-clean-palette="cyan"] .k-main:before{background:repeating-radial-gradient(ellipse at 18% 25%,transparent 0 58px,rgba(34,211,238,.25) 59px 62px,transparent 63px 125px),repeating-radial-gradient(ellipse at 78% 72%,transparent 0 82px,rgba(165,243,252,.16) 83px 86px,transparent 87px 170px)!important}html[data-clean-palette="pink"] body:before,html[data-clean-palette="pink"] .k-main:before{background:repeating-radial-gradient(ellipse at 18% 25%,transparent 0 58px,rgba(244,114,182,.25) 59px 62px,transparent 63px 125px)!important}html[data-clean-palette="orange"] body:before,html[data-clean-palette="orange"] .k-main:before{background:repeating-radial-gradient(ellipse at 18% 25%,transparent 0 58px,rgba(251,146,60,.25) 59px 62px,transparent 63px 125px)!important}html[data-clean-palette="lime"] body:before,html[data-clean-palette="lime"] .k-main:before{background:repeating-radial-gradient(ellipse at 18% 25%,transparent 0 58px,rgba(163,230,53,.25) 59px 62px,transparent 63px 125px)!important}</style>
 </head>
 <body x-data="app()" x-init="init()" x-cloak>
 
@@ -2652,8 +2653,10 @@ document.addEventListener('DOMContentLoaded',()=>{
         <p class="text-xs" style="color:var(--text-muted)">Corrija ou troque o nome que aparece na saudação do CLEAN Leads.</p>
         <div class="flex flex-col sm:flex-row gap-2"><input x-model.trim="nomeUsuarioEdicao" maxlength="60" class="k-input flex-1" placeholder="Digite seu nome"/><button @click="salvarNomeEdicao()" class="k-btn k-btn-primary justify-center"><i class="fa-solid fa-check"></i>Salvar nome</button></div>
       </div>
-      <div class="k-card p-5 space-y-3 clean-theme-card">
-        <div class="flex items-center gap-2"><i class="fa-solid fa-palette" style="color:var(--blue-hi)"></i><h2 class="text-sm font-semibold" style="color:var(--text)">Tema da interface</h2></div>
+      <section class="k-card p-5 space-y-4 clean-personalization-card">
+        <div class="flex items-center gap-2"><i class="fa-solid fa-sliders" style="color:var(--brand)"></i><h2 class="text-sm font-semibold" style="color:var(--text)">Personalização</h2></div>
+        <div class="k-card p-5 space-y-3 clean-theme-card">
+        <div class="flex items-center gap-2"><i class="fa-solid fa-palette" style="color:var(--blue-hi)"></i><h2 class="text-sm font-semibold" style="color:var(--text)">Cores da interface</h2></div>
         <p class="text-xs leading-relaxed" style="color:var(--text-muted)">Escolha a cor de destaque do CLEAN Leads. A preferência fica salva neste navegador.</p>
         <div class="clean-theme-options" role="group" aria-label="Cores do tema">
           <button type="button" data-clean-theme="blue" onclick="setCleanTheme('blue')"><i></i>Azul</button>
@@ -2661,8 +2664,24 @@ document.addEventListener('DOMContentLoaded',()=>{
           <button type="button" data-clean-theme="purple" onclick="setCleanTheme('purple')"><i></i>Roxo</button>
           <button type="button" data-clean-theme="red" onclick="setCleanTheme('red')"><i></i>Vermelho</button>
           <button type="button" data-clean-theme="green" onclick="setCleanTheme('green')"><i></i>Verde</button>
+          <button type="button" data-clean-theme="cyan" onclick="setCleanTheme('cyan')"><i></i>Ciano</button>
+          <button type="button" data-clean-theme="pink" onclick="setCleanTheme('pink')"><i></i>Rosa</button>
+          <button type="button" data-clean-theme="orange" onclick="setCleanTheme('orange')"><i></i>Laranja</button>
+          <button type="button" data-clean-theme="lime" onclick="setCleanTheme('lime')"><i></i>Lima</button>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 pt-1">
+          <button type="button" class="k-btn k-btn-secondary text-xs" data-clean-rgb="toggle" onclick="toggleCleanRGB()"><i class="fa-solid fa-rainbow"></i>Modo LGBT</button>
         </div>
       </div>
+      <div class="k-card p-5 space-y-3">
+        <div class="flex items-center gap-2"><i class="fa-solid fa-lines-leaning" style="color:var(--blue-hi)"></i><h2 class="text-sm font-semibold" style="color:var(--text)">Linhas do fundo</h2></div>
+        <p class="text-xs leading-relaxed" style="color:var(--text-muted)">Escolha se as linhas animadas aparecem no fundo da interface.</p>
+        <div class="flex flex-wrap gap-2" role="group" aria-label="Linhas do fundo">
+          <button type="button" class="k-btn k-btn-secondary text-xs" data-clean-lines="on" onclick="setCleanLines(true)"><i class="fa-solid fa-grip-lines"></i>Com linhas</button>
+          <button type="button" class="k-btn k-btn-secondary text-xs" data-clean-lines="off" onclick="setCleanLines(false)"><i class="fa-solid fa-square"></i>Sem linhas</button>
+        </div>
+      </div>
+      </section>
       <div class="max-w-xl space-y-5">
 
         <!-- País / DDI — código do país usado nas campanhas e links de WhatsApp -->
@@ -9038,5 +9057,5 @@ function app(){
   </span>
 </div>
 
-<script id="clean-theme-controller">(function(){const key='clean-leads-palette';window.setCleanTheme=function(name){if(!['blue','white','purple','red','green'].includes(name))name='blue';document.documentElement.dataset.cleanPalette=name;localStorage.setItem(key,name);document.querySelectorAll('[data-clean-theme]').forEach(b=>b.classList.toggle('is-active',b.dataset.cleanTheme===name))};const saved=localStorage.getItem(key)||'blue';window.setCleanTheme(saved)})();</script><script id="clean-pwa-register">if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(function(){})})}</script></body>
-</html>
+<script id="clean-theme-controller">(function(){const key='clean-leads-palette';window.setCleanTheme=function(name){window.clearCleanCustomColor?.();if(!['blue','white','purple','red','green','cyan','pink','orange','lime'].includes(name))name='blue';document.documentElement.dataset.cleanPalette=name;localStorage.setItem(key,name);document.querySelectorAll('[data-clean-theme]').forEach(b=>b.classList.toggle('is-active',b.dataset.cleanTheme===name))};const saved=localStorage.getItem(key)||'blue';window.setCleanTheme(saved)})();</script><script id="clean-pwa-register">if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(function(){})})}</script></body>
+<style id="clean-rgb-lines-controls-final">html.clean-no-lines body:before,html.clean-no-lines .k-main:before{display:none!important;animation:none!important}html.clean-rgb-active,html.clean-rgb-active *{transition:color 1.35s ease,background 1.35s ease,background-color 1.35s ease,border-color 1.35s ease,box-shadow 1.35s ease!important}[data-clean-rgb="toggle"].is-active,[data-clean-lines="on"].is-active,[data-clean-lines="off"].is-active{border-color:var(--brand)!important;color:var(--brand)!important;box-shadow:0 0 0 2px var(--brand-soft)!important}</style><script id="clean-rgb-lines-controller">(function(){const rgbKey='clean-leads-rgb',linesKey='clean-leads-lines',colors=['blue','purple','red','green','white','cyan','pink','orange','lime'];let timer=null;function paint(name){document.documentElement.dataset.cleanPalette=name;localStorage.setItem('clean-leads-palette',name);document.querySelectorAll('[data-clean-theme]').forEach(b=>b.classList.toggle('is-active',b.dataset.cleanTheme===name));if(typeof window.setCleanTheme==='function'&&window.setCleanTheme!==paint)window.setCleanTheme(name)}window.setCleanThemeRgb=paint;window.stopCleanRGB=function(){if(timer){clearInterval(timer);timer=null}localStorage.setItem(rgbKey,'0');document.documentElement.classList.remove('clean-rgb-active');document.querySelector('[data-clean-rgb="toggle"]')?.classList.remove('is-active')};window.startCleanRGB=function(){window.stopCleanRGB();localStorage.setItem(rgbKey,'1');document.documentElement.classList.add('clean-rgb-active');document.querySelector('[data-clean-rgb="toggle"]')?.classList.add('is-active');let i=Math.max(0,colors.indexOf(document.documentElement.dataset.cleanPalette));if(i<0)i=0;paint(colors[i]);timer=setInterval(()=>{i=(i+1)%colors.length;paint(colors[i])},1800)};window.toggleCleanRGB=function(){if(localStorage.getItem(rgbKey)==="1")window.stopCleanRGB();else window.startCleanRGB()};window.setCleanLines=function(on){document.documentElement.classList.toggle('clean-no-lines',!on);localStorage.setItem(linesKey,on?'1':'0');document.querySelector('[data-clean-lines="on"]')?.classList.toggle('is-active',!!on);document.querySelector('[data-clean-lines="off"]')?.classList.toggle('is-active',!on)};window.setCleanLines(localStorage.getItem(linesKey)!=='0');if(localStorage.getItem(rgbKey)==='1')setTimeout(window.startCleanRGB,0)})();</script></html>
