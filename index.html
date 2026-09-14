@@ -2215,6 +2215,14 @@ document.addEventListener('DOMContentLoaded',()=>{
                     <i class="fa-solid fa-phone text-xs"></i><i class="fa-solid fa-globe text-xs ml-0.5"></i><span class="ml-0.5">Telefone + Site</span>
                   </button>
                 </div>
+                <div class="pt-1">
+                  <p class="text-xs mb-1.5" style="color:var(--text-muted)">Filtro de site:</p>
+                  <div class="flex gap-2 flex-wrap">
+                    <button @click="scraper.filtroPresenca.site_mode='any'" class="k-chip flex items-center gap-1.5" :class="scraper.filtroPresenca.site_mode==='any'?'selected':''"><i class="fa-solid fa-globe text-xs"></i><span>Qualquer site</span></button>
+                    <button @click="scraper.filtroPresenca.site_mode='com'" class="k-chip flex items-center gap-1.5" :class="scraper.filtroPresenca.site_mode==='com'?'selected':''"><i class="fa-solid fa-link text-xs"></i><span>Com site</span></button>
+                    <button @click="scraper.filtroPresenca.site_mode='sem'" class="k-chip flex items-center gap-1.5" :class="scraper.filtroPresenca.site_mode==='sem'?'selected':''"><i class="fa-solid fa-link-slash text-xs"></i><span>Sem site</span></button>
+                  </div>
+                </div>
                 <div>
                   <div class="flex justify-between mb-1.5">
                     <span class="text-xs" style="color:var(--text-muted)">Cota gratuita Google Maps</span>
@@ -2408,7 +2416,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                       <div class="font-semibold text-sm" style="color:var(--text)" x-text="lead.nome"></div>
                       <div class="text-xs mt-0.5" style="color:var(--text-muted)" x-text="lead.categoria"></div>
                       <div class="flex items-center gap-2 mt-1">
-                        <span :style="lead.tem_site?'color:#888':'color:var(--border-strong)'" title="Site"><i class="fa-solid fa-globe text-xs"></i></span>
+                        <span :style="(lead.site||lead.tem_site)?'color:#888':'color:var(--border-strong)'" :title="(lead.site||lead.tem_site)?'Com site':'Sem site'"><i :class="(lead.site||lead.tem_site)?'fa-solid fa-globe text-xs':'fa-solid fa-link-slash text-xs'"></i></span>
                         <span :style="lead.tem_instagram?'color:#808080':'color:var(--border-strong)'" title="Instagram"><i class="fa-brands fa-instagram text-xs"></i></span><span x-show="lead.tem_whatsapp!==undefined" :style="lead.tem_whatsapp?'color:var(--wpp)':'color:var(--border-strong)'" title="WhatsApp verificado"><i class="fa-brands fa-whatsapp text-xs"></i></span>
                         <span x-show="lead.cidade" class="text-xs" style="color:var(--text-muted)" x-text="lead.cidade"></span>
                       </div>
@@ -2479,7 +2487,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                           <div class="font-semibold text-sm" style="color:var(--text)" x-text="lead.nome"></div>
                           <div class="text-xs" style="color:var(--text-muted)" x-text="lead.categoria"></div>
                           <div class="flex items-center gap-2 mt-1">
-                            <span :style="lead.tem_site?'color:#888':'color:var(--border-strong)'" title="Site"><i class="fa-solid fa-globe text-xs"></i></span>
+                            <span :style="(lead.site||lead.tem_site)?'color:#888':'color:var(--border-strong)'" :title="(lead.site||lead.tem_site)?'Com site':'Sem site'"><i :class="(lead.site||lead.tem_site)?'fa-solid fa-globe text-xs':'fa-solid fa-link-slash text-xs'"></i></span>
                             <span :style="lead.tem_instagram?'color:#808080':'color:var(--border-strong)'" title="Instagram"><i class="fa-brands fa-instagram text-xs"></i></span><span x-show="lead.tem_whatsapp!==undefined" :style="lead.tem_whatsapp?'color:var(--wpp)':'color:var(--border-strong)'" title="WhatsApp verificado"><i class="fa-brands fa-whatsapp text-xs"></i></span>
                             <span x-show="lead.cidade" class="text-xs" style="color:var(--text-muted)" x-text="lead.cidade"></span>
                           </div>
@@ -2554,7 +2562,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                           <div class="font-semibold text-sm" style="color:var(--text)" x-text="lead.nome"></div>
                           <div class="text-xs" style="color:var(--text-muted)" x-text="lead.categoria"></div>
                           <div class="flex items-center gap-2 mt-1">
-                            <span :style="lead.tem_site?'color:#888':'color:var(--border-strong)'" title="Site"><i class="fa-solid fa-globe text-xs"></i></span>
+                            <span :style="(lead.site||lead.tem_site)?'color:#888':'color:var(--border-strong)'" :title="(lead.site||lead.tem_site)?'Com site':'Sem site'"><i :class="(lead.site||lead.tem_site)?'fa-solid fa-globe text-xs':'fa-solid fa-link-slash text-xs'"></i></span>
                             <span :style="lead.tem_instagram?'color:#808080':'color:var(--border-strong)'" title="Instagram"><i class="fa-brands fa-instagram text-xs"></i></span><span x-show="lead.tem_whatsapp!==undefined" :style="lead.tem_whatsapp?'color:var(--wpp)':'color:var(--border-strong)'" title="WhatsApp verificado"><i class="fa-brands fa-whatsapp text-xs"></i></span>
                             <span x-show="lead.cidade" class="text-xs" style="color:var(--text-muted)" x-text="lead.cidade"></span>
                           </div>
@@ -2615,7 +2623,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                       <div class="font-semibold text-sm" style="color:var(--text)" x-text="lead.nome"></div>
                       <div class="text-xs" style="color:var(--text-muted)" x-text="lead.categoria"></div>
                       <div class="flex items-center gap-2 mt-1">
-                        <span :style="lead.tem_site?'color:#888':'color:var(--border-strong)'" title="Site"><i class="fa-solid fa-globe text-xs"></i></span>
+                        <span :style="(lead.site||lead.tem_site)?'color:#888':'color:var(--border-strong)'" :title="(lead.site||lead.tem_site)?'Com site':'Sem site'"><i :class="(lead.site||lead.tem_site)?'fa-solid fa-globe text-xs':'fa-solid fa-link-slash text-xs'"></i></span>
                         <span :style="lead.tem_instagram?'color:#808080':'color:var(--border-strong)'" title="Instagram"><i class="fa-brands fa-instagram text-xs"></i></span><span x-show="lead.tem_whatsapp!==undefined" :style="lead.tem_whatsapp?'color:var(--wpp)':'color:var(--border-strong)'" title="WhatsApp verificado"><i class="fa-brands fa-whatsapp text-xs"></i></span>
                         <span x-show="lead.cidade" class="text-xs" style="color:var(--text-muted)" x-text="lead.cidade"></span>
                       </div>
@@ -5119,7 +5127,7 @@ function app(){
     ],
 
     // ─── SCRAPER ───
-    scraper:{fonte:'google_maps',categorias:[],max_results:100,campos_google:'telefone_site',filtroPresenca:{exige_telefone:false,exige_site:false,exige_instagram:false,exige_site_ou_whatsapp:false}},
+    scraper:{fonte:'google_maps',categorias:[],max_results:100,campos_google:'telefone_site',filtroPresenca:{exige_telefone:false,exige_site:false,exige_instagram:false,exige_site_ou_whatsapp:false,site_mode:'any'}},
     googleUso:{requests:0,limite:1000,max_leads_restantes:20000},
     pins:[],cidadeSelecionada:'',cidadeBusca:'',cidadeBuscando:false,leafletMap:null,mapLoaded:false,scanLayer:null,scanVisualAtivo:false,custoEstimado:null,fonteInfo:false,
     cidadesDisponiveis:['São Paulo — SP','Rio de Janeiro — RJ','Belo Horizonte — MG','Brasília — DF','Salvador — BA','Fortaleza — CE','Recife — PE','Porto Alegre — RS','Curitiba — PR','Manaus — AM','Belém — PA','Goiânia — GO','São Luís — MA','Maceió — AL','Natal — RN','João Pessoa — PB','Teresina — PI','Aracaju — SE','Florianópolis — SC','Campo Grande — MS','Cuiabá — MT','Vitória — ES','Macapá — AP','Boa Vista — RR','Rio Branco — AC','Palmas — TO','Campinas — SP','Santos — SP','São José dos Campos — SP','Uberlândia — MG'],
@@ -6981,7 +6989,7 @@ function app(){
     onFonteChange(){
       this.fonteInfo=false;
       if(this.scraper.fonte!=='openstreetmap'&&this.scraper.fonte!=='foursquare'){
-        this.scraper.filtroPresenca={exige_telefone:false,exige_site:false,exige_instagram:false,exige_site_ou_whatsapp:false};
+        this.scraper.filtroPresenca={...this.scraper.filtroPresenca,exige_telefone:false,exige_site:false,exige_instagram:false,exige_site_ou_whatsapp:false,site_mode:this.scraper.filtroPresenca.site_mode||'any'};
       }
     },
 
@@ -7099,7 +7107,9 @@ function app(){
             // O modo escolhido define os dados obrigatórios do resultado:
             // só telefone = telefone presente; telefone + site = ambos presentes.
             if(this.scraper.campos_google==='telefone')results=results.filter(l=>!!l.telefone);
-            if(this.scraper.campos_google==='telefone_site')results=results.filter(l=>!!l.telefone&&!!(l.site||l.tem_site));
+            if(this.scraper.campos_google==='telefone_site'&&f.site_mode!=='sem')results=results.filter(l=>!!l.telefone&&!!(l.site||l.tem_site));
+            if(f.site_mode==='com')results=results.filter(l=>!!(l.site||l.tem_site));
+            if(f.site_mode==='sem')results=results.filter(l=>!(l.site||l.tem_site));
             for(const l of _antesLista){ if(!results.includes(l)) barrados.add(l.id||(l.nome+'|'+(l.cidade||''))); }
 
             // Deduplicar
@@ -7306,7 +7316,7 @@ function app(){
       const baseFields='places.id,places.displayName,places.nationalPhoneNumber,places.internationalPhoneNumber,places.rating,places.userRatingCount,places.location,places.formattedAddress,places.primaryTypeDisplayName';
       // comSite começa conforme a escolha do usuário; se a API rejeitar o campo de site,
       // cai automaticamente para só telefone e continua funcionando.
-      let comSite=this.scraper.campos_google!=='telefone';
+      let comSite=this.scraper.campos_google!=='telefone'||this.scraper.filtroPresenca.site_mode!=='any';
       const target=this.scraper.max_results;
       const doFetch=(body,withSite)=>fetch('https://places.googleapis.com/v1/places:searchText',{
         method:'POST',
