@@ -30,6 +30,9 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
 .k-layout{display:flex;height:100vh;overflow:hidden}
 .k-main{flex:1;overflow-y:auto;background:var(--bg)}
 .k-sidebar{width:220px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--border) transparent;transition:background var(--dur),border-color var(--dur)}
+.k-main{position:relative}
+.clean-top-credit{position:absolute;top:14px;right:22px;z-index:40;color:var(--text-muted);font-size:10px;font-weight:500;letter-spacing:.02em;opacity:.62;pointer-events:none;white-space:nowrap}
+@media(max-width:768px){.clean-top-credit{top:10px;right:14px;font-size:9px;opacity:.48}}
 /* Nada aqui dentro é espremido: quem cede quando falta altura é a rolagem
    da barra, nunca o conteúdo. Sem isto o cartao de download encolhia e
    cortava o proprio botao — e o cliente ficava sem como baixar o app. */
@@ -71,7 +74,7 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',syst
 [data-theme="dark"] .k-icon-moon{display:none}
 [data-theme="light"] .k-icon-sun{display:none}
 .k-version{font-size:11px;color:var(--text-muted)}
-/* ════════════ CARD: BAIXE O KAPTAR APP (no menu lateral) ════════════
+/* ════════════ CARD: BAIXE O CLEAN LEADS (no menu lateral) ════════════
 
    Ele mora no vao entre o S-zap e o botao de suporte — o unico espaco vazio da
    barra, e o que a pessoa olha de relance a cada troca de aba.
@@ -611,7 +614,7 @@ body:has(.k-logo-dark[src]):not(:has(.k-logo-dark[src=""])) .k-logo-fallback{dis
   .sz-scripts-panel.fechado{width:0!important}
 }
 </style>
-<!-- Matomo (MazyoHub analytics — analytics.mazzeoia.com.br, site 1) -->
+
 <script>
   var _paq = window._paq = window._paq || [];
   _paq.push(['trackPageView']);
@@ -624,9 +627,9 @@ body:has(.k-logo-dark[src]):not(:has(.k-logo-dark[src=""])) .k-logo-fallback{dis
     g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
   })();
 </script>
-<!-- End Matomo Code -->
-<style id="clean-payments-visual-skin">
-/* CLEAN Payments visual language applied without changing Captar's structure or behavior. */
+
+<style id="clean-leads-visual-skin">
+/* Identidade visual CLEAN Leads. */
 :root,[data-theme="dark"]{--bg:#070a0d;--bg-2:#0b1015;--surface:#0d1217;--surface-2:#111920;--border:rgba(153,203,255,.16);--border-strong:rgba(153,203,255,.35);--text:#eef5f7;--text-2:#d8e7ef;--text-muted:#8e9da6;--brand:#4da3ff;--brand-600:#327fd0;--brand-soft:rgba(77,163,255,.13);--brand-rgb:77,163,255;--scan:#4da3ff;--blue:#4da3ff;--blue-hi:#9bd0ff;--green:#85e6b0;--amber:#9bd0ff;--serif:'Plus Jakarta Sans',system-ui,sans-serif;--sans:'Plus Jakarta Sans',system-ui,sans-serif;--mono:'Courier New',monospace}
 [data-theme="light"]{--bg:#eef5f7;--bg-2:#e3edf2;--surface:#f8fcfd;--surface-2:#edf5f8;--border:rgba(40,112,166,.16);--border-strong:rgba(40,112,166,.35);--text:#10202a;--text-2:#29495a;--text-muted:#66808f;--brand:#287fbe;--brand-600:#1e6599;--brand-soft:rgba(40,127,190,.11);--brand-rgb:40,127,190;--scan:#287fbe;--blue:#287fbe;--blue-hi:#236c9f;--green:#168455;--amber:#287fbe;--serif:'Plus Jakarta Sans',system-ui,sans-serif;--sans:'Plus Jakarta Sans',system-ui,sans-serif}
 html,body{background:var(--bg);color:var(--text);font-family:var(--sans)}
@@ -842,17 +845,16 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
   .k-main:after{content:"";display:block;height:120px;width:100%;pointer-events:none}
   .k-sidebar{bottom:0!important;top:auto!important;position:fixed!important}
 }
-</style><style id="clean-official-mobile-nav-overlay">
+</style><style id="clean-leads-mobile-nav-overlay">
 @media(max-width:768px){
-  /* Official Captar/CLEAN Leads mobile model: the bar is a fixed overlay,
-     never a document-flow element. Empty space passes gestures to the page. */
+  /* Barra mobile fixa sobre o conteúdo, sem ocupar o fluxo do documento. */
   .k-sidebar{position:fixed!important;left:10px!important;right:10px!important;bottom:10px!important;top:auto!important;width:auto!important;height:auto!important;z-index:10000!important;pointer-events:none!important;overflow:visible!important}
   .k-sidebar__brand,.k-sidebar__nav,.k-sidebar__brand *,.k-sidebar__nav *{pointer-events:auto!important}
   .k-main{padding-bottom:120px!important}
 }
-</style><style id="clean-captar-scroll-root-final">
+</style><style id="clean-leads-scroll-root-final">
 @media(max-width:768px){
-  /* One and only one scroll surface, matching the Captar layout. */
+  /* Uma única superfície de rolagem. */
   html,body{width:100%!important;height:100%!important;min-height:100%!important;overflow:hidden!important;position:fixed!important;inset:0!important}
   .k-layout{display:flex!important;flex-direction:column!important;width:100%!important;height:100dvh!important;min-height:0!important;max-height:none!important;overflow:hidden!important}
   .k-main{display:block!important;flex:1 1 auto!important;width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch!important;overscroll-behavior-y:auto!important;touch-action:pan-y!important;padding:0 0 calc(150px + env(safe-area-inset-bottom))!important;scroll-behavior:auto!important}
@@ -1047,7 +1049,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 </head>
 <body x-data="app()" x-init="init()" x-cloak>
 
-<!-- PRIMEIRO ACESSO: somente o nome -->
+
 <div x-show="showWelcome" x-transition.opacity class="fixed inset-0 z-[500] flex items-center justify-center p-4" style="background:rgba(0,0,0,.88);backdrop-filter:blur(10px)">
   <form @submit.prevent="salvarNomeUsuario()" class="k-card max-w-sm w-full p-7 space-y-5">
     <div class="text-center"><div class="clean-wordmark mx-auto mb-4" style="height:58px;width:170px"><span>CLEAN</span><em>leads</em></div><h1 class="text-lg font-bold" style="color:var(--text)">Como podemos chamar você?</h1><p class="text-xs mt-1" style="color:var(--text-muted)">Digite apenas seu nome para personalizar o CLEAN Leads.</p></div>
@@ -1056,8 +1058,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   </form>
 </div>
 
-<!-- SZAP TUTORIAL -->
-<!-- ═══ LIGHTBOX DE MÍDIA ═══ -->
+
+
 <div x-show="szapLightbox.open" x-transition.opacity x-cloak
      @keydown.escape.window="szapLightbox.open=false;szapLightbox.zoomed=false"
      @click="szapLightbox.open=false;szapLightbox.zoomed=false"
@@ -1080,7 +1082,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 <div x-show="szapTutorial" x-transition class="fixed inset-0 z-[600] flex items-center justify-center p-4" style="background:rgba(0,0,0,.92);backdrop-filter:blur(12px)">
   <div class="k-card w-full max-w-2xl overflow-hidden" style="box-shadow:0 24px 80px rgba(0,0,0,.7)">
 
-    <!-- Header barra verde -->
+    
     <div class="flex items-center justify-between px-6 py-4" style="background:linear-gradient(135deg,rgba(37,209,102,.15),rgba(37,209,102,.04));border-bottom:1px solid var(--wpp-border)">
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:var(--wpp-bg)">
@@ -1094,10 +1096,10 @@ document.addEventListener('DOMContentLoaded',()=>{
       <button @click="szapFecharTutorial()" class="k-icon-btn text-lg" title="Fechar tutorial"><i class="fa-solid fa-xmark"></i></button>
     </div>
 
-    <!-- Conteúdo dos steps -->
+    
     <div class="px-6 pt-5 pb-4 overflow-y-auto" style="max-height:calc(90vh - 160px);min-height:320px">
 
-      <!-- ── STEP 0: O que é o S-zap ── -->
+      
       <div x-show="szapTutorialStep===0" class="sz-tut-step">
         <div class="flex flex-col items-center text-center gap-4 flex-1">
           <div class="w-20 h-20 rounded-2xl flex items-center justify-center" style="background:var(--wpp-bg)">
@@ -1132,12 +1134,12 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- ── STEP 1: Como funciona ── -->
+      
       <div x-show="szapTutorialStep===1" class="sz-tut-step">
         <h2 class="text-lg font-bold mb-1" style="color:var(--text)">Como funciona</h2>
         <p class="text-sm mb-5" style="color:var(--text-muted)">Tudo acontece direto no <strong style="color:var(--text-2)">seu computador</strong>. Sem contas externas, sem dados na nuvem.</p>
 
-        <!-- Flow diagram -->
+        
         <div class="flex items-center justify-center gap-2 mb-5">
           <div class="sz-flow-box" style="color:var(--text)">
             <i class="fa-solid fa-crosshairs block mb-1 text-lg" style="color:var(--brand)"></i>
@@ -1172,11 +1174,11 @@ document.addEventListener('DOMContentLoaded',()=>{
 
         <div class="p-3 rounded-xl flex gap-3" style="background:rgba(200,160,255,.06);border:1px solid rgba(200,160,255,.2)">
           <i class="fa-solid fa-shield-halved flex-shrink-0 mt-0.5 text-sm" style="color:#c8a0ff"></i>
-          <p class="text-xs" style="color:var(--text-2)"><strong style="color:var(--text)">Os leads ficam no seu PC:</strong> eles moram no navegador desta máquina, e o CLEAN Leads não tem servidor de dados — nem o site kaptar.mazzeoia.com.br guarda nada. As <em>buscas</em> passam por quem responde a elas: a chave do Google vai direto ao Google; a da Foursquare e a análise de sites passam por um intermediário, porque o navegador não deixa chamar esses endereços direto. Nenhum dos dois guarda nada.</p>
+          <p class="text-xs" style="color:var(--text-2)"><strong style="color:var(--text)">Os leads ficam no seu PC:</strong> eles moram no navegador desta máquina, e o CLEAN Leads não tem servidor de dados — nem o site CLEAN Leads guarda nada. As <em>buscas</em> passam por quem responde a elas: a chave do Google vai direto ao Google; a da Foursquare e a análise de sites passam por um intermediário, porque o navegador não deixa chamar esses endereços direto. Nenhum dos dois guarda nada.</p>
         </div>
       </div>
 
-      <!-- ── STEP 2: Ativando o S-zap ── -->
+      
       <div x-show="szapTutorialStep===2" class="sz-tut-step">
         <h2 class="text-lg font-bold mb-1" style="color:var(--text)">Como ativar</h2>
         <p class="text-sm mb-4" style="color:var(--text-muted)">Configuração inicial em 4 passos. Depois disso, é automático.</p>
@@ -1219,7 +1221,7 @@ document.addEventListener('DOMContentLoaded',()=>{
           </div>
         </div>
 
-        <!-- Por que funciona assim? -->
+        
         <div x-data="{aberto:false}" class="rounded-xl overflow-hidden mb-3" style="border:1px solid var(--border)">
           <button @click="aberto=!aberto" class="w-full flex items-center justify-between p-3 text-left" style="background:var(--surface-2)">
             <span class="flex items-center gap-2 text-xs font-semibold" style="color:var(--text)">
@@ -1252,13 +1254,13 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- ── STEP 3: QR Code ── -->
+      
       <div x-show="szapTutorialStep===3" class="sz-tut-step">
         <h2 class="text-lg font-bold mb-1" style="color:var(--text)">Conectando o WhatsApp</h2>
         <p class="text-sm mb-5" style="color:var(--text-muted)">Depois de clicar em Ativar S-zap, siga estes passos:</p>
 
         <div class="flex gap-5 mb-5">
-          <!-- QR visual mockup -->
+          
           <div class="flex-shrink-0 w-36 h-36 rounded-xl flex items-center justify-center" style="background:#fff;border:3px solid var(--wpp)">
             <div class="grid grid-cols-3 gap-1 p-2">
               <div style="width:32px;height:32px;background:#0d0d0d;border-radius:4px"></div>
@@ -1299,7 +1301,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- ── STEP 4: O que cada aba faz ── -->
+      
       <div x-show="szapTutorialStep===4" class="sz-tut-step">
         <h2 class="text-lg font-bold mb-1" style="color:var(--text)">Tudo pronto! Veja o que você pode fazer</h2>
         <p class="text-sm mb-5" style="color:var(--text-muted)">O S-zap tem 4 seções. Aqui está o que cada uma faz:</p>
@@ -1343,15 +1345,15 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     </div>
 
-    <!-- Footer: progress dots + nav -->
+    
     <div class="flex items-center justify-between px-6 py-4" style="border-top:1px solid var(--border)">
-      <!-- Progress dots -->
+      
       <div class="flex items-center gap-2">
         <template x-for="i in [0,1,2,3,4]" :key="i">
           <div class="sz-tut-dot" :class="szapTutorialStep===i?'active':''"></div>
         </template>
       </div>
-      <!-- Navigation -->
+      
       <div class="flex items-center gap-2">
         <button x-show="szapTutorialStep>0" @click="szapTutorialStep--" class="k-btn k-btn-secondary text-sm">
           <i class="fa-solid fa-arrow-left"></i>Voltar
@@ -1365,7 +1367,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       </div>
     </div>
 
-    <!-- Re-open hint -->
+    
     <div x-show="szapTutorialStep===4" class="px-6 pb-4 text-center">
       <button @click="szapFecharTutorial()" class="text-xs" style="color:var(--text-muted)">Fechar e explorar por conta própria</button>
     </div>
@@ -1373,11 +1375,11 @@ document.addEventListener('DOMContentLoaded',()=>{
   </div>
 </div>
 
-<!-- ══════════════ TUTORIAL FOURSQUARE ══════════════ -->
+
 <div x-show="apiTut==='fsq'" x-transition class="fixed inset-0 z-[600] flex items-center justify-center p-4" style="background:rgba(0,0,0,.92);backdrop-filter:blur(12px)">
   <div class="k-card w-full max-w-2xl overflow-hidden" style="box-shadow:0 24px 80px rgba(0,0,0,.7)">
 
-    <!-- Header -->
+    
     <div class="flex items-center justify-between px-6 py-4" style="background:linear-gradient(135deg,rgba(160,160,160,.16),rgba(160,160,160,.04));border-bottom:1px solid var(--border)">
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:rgba(160,160,160,.15)">
@@ -1393,7 +1395,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     <div class="px-6 pt-5 pb-4 overflow-y-auto" style="max-height:calc(90vh - 160px);min-height:320px">
 
-      <!-- STEP 0 -->
+      
       <div x-show="apiTutStep===0" class="sz-tut-step">
         <div class="flex flex-col items-center text-center gap-4">
           <div class="w-20 h-20 rounded-2xl flex items-center justify-center" style="background:rgba(160,160,160,.12)">
@@ -1428,7 +1430,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- STEP 1 -->
+      
       <div x-show="apiTutStep===1" class="sz-tut-step">
         <h2 class="text-lg font-bold mb-1" style="color:var(--text)">1. Crie sua conta e um projeto</h2>
         <p class="text-sm mb-4" style="color:var(--text-muted)">Tudo no site oficial de desenvolvedores da Foursquare.</p>
@@ -1453,7 +1455,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- STEP 2 -->
+      
       <div x-show="apiTutStep===2" class="sz-tut-step">
         <h2 class="text-lg font-bold mb-1" style="color:var(--text)">2. Gere a chave CERTA ⚠️</h2>
         <p class="text-sm mb-4" style="color:var(--text-muted)">Esse é o passo onde quase todo mundo erra. Preste atenção aqui.</p>
@@ -1467,7 +1469,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- STEP 3 -->
+      
       <div x-show="apiTutStep===3" class="sz-tut-step">
         <h2 class="text-lg font-bold mb-1" style="color:var(--text)">3. Finalize a configuração da API</h2>
         <p class="text-sm mb-4" style="color:var(--text-muted)">Depois de ativar o serviço escolhido, copie a chave e cole-a nas Configurações do CLEAN Leads.</p>
@@ -1484,11 +1486,11 @@ document.addEventListener('DOMContentLoaded',()=>{
   </div>
 </div>
 
-<!-- ══════════════ TUTORIAL GOOGLE MAPS ══════════════ -->
+
 <div x-show="apiTut==='gmaps'" x-transition class="fixed inset-0 z-[600] flex items-center justify-center p-4" style="background:rgba(0,0,0,.92);backdrop-filter:blur(12px)">
   <div class="k-card w-full max-w-2xl overflow-hidden" style="box-shadow:0 24px 80px rgba(0,0,0,.7)">
 
-    <!-- Header -->
+    
     <div class="flex items-center justify-between px-6 py-4" style="background:linear-gradient(135deg,rgba(100,160,255,.16),rgba(100,160,255,.04));border-bottom:1px solid var(--border)">
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:rgba(100,160,255,.15)">
@@ -1504,7 +1506,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     <div class="px-6 pt-5 pb-4 overflow-y-auto" style="max-height:calc(90vh - 160px);min-height:320px">
 
-      <!-- STEP 0 -->
+      
       <div x-show="apiTutStep===0" class="sz-tut-step">
         <div class="flex flex-col items-center text-center gap-4">
           <div class="w-20 h-20 rounded-2xl flex items-center justify-center" style="background:rgba(100,160,255,.12)">
@@ -1521,7 +1523,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- STEP 1 -->
+      
       <div x-show="apiTutStep===1" class="sz-tut-step">
         <h2 class="text-lg font-bold mb-1" style="color:var(--text)">1. Crie um projeto no Google Cloud</h2>
         <p class="text-sm mb-4" style="color:var(--text-muted)">Use a mesma conta Google (Gmail) que você já tem.</p>
@@ -1545,7 +1547,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- STEP 2 -->
+      
       <div x-show="apiTutStep===2" class="sz-tut-step">
         <h2 class="text-lg font-bold mb-1" style="color:var(--text)">2. Ative a "Places API (New)"</h2>
         <p class="text-sm mb-4" style="color:var(--text-muted)">Atenção: tem que ser a <strong style="color:var(--text-2)">(New)</strong> — não a "Places API" antiga.</p>
@@ -1561,7 +1563,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </a>
       </div>
 
-      <!-- STEP 3 -->
+      
       <div x-show="apiTutStep===3" class="sz-tut-step">
         <h2 class="text-lg font-bold mb-1" style="color:var(--text)">3. Finalize a configuração da API</h2>
         <p class="text-sm mb-4" style="color:var(--text-muted)">Depois de ativar a Places API, copie a chave e cole-a nas Configurações do CLEAN Leads.</p>
@@ -1575,7 +1577,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- STEP 4 -->
+      
       <div x-show="apiTutStep===4" class="sz-tut-step">
         <h2 class="text-lg font-bold mb-1" style="color:var(--text)">4. Quanto vem de graça 🎁</h2>
         <p class="text-sm mb-4" style="color:var(--text-muted)">O Google dá uma cota gratuita todo mês, e o CLEAN Leads <strong style="color:var(--text-2)">trava as buscas sozinho</strong> quando ela acaba:</p>
@@ -1609,7 +1611,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- STEP 5 -->
+      
       <div x-show="apiTutStep===5" class="sz-tut-step">
         <h2 class="text-lg font-bold mb-1" style="color:var(--text)">5. Crie a chave e cole no CLEAN Leads ✅</h2>
         <p class="text-sm mb-4" style="color:var(--text-muted)">Reta final.</p>
@@ -1649,7 +1651,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       </div>
     </div>
 
-    <!-- Footer -->
+    
     <div class="flex items-center justify-between px-6 py-4" style="border-top:1px solid var(--border)">
       <div class="flex items-center gap-2">
         <template x-for="i in [0,1,2,3,4,5]" :key="i">
@@ -1665,11 +1667,11 @@ document.addEventListener('DOMContentLoaded',()=>{
   </div>
 </div>
 
-<!-- ── MODAL SETUP S-ZAP ── -->
+
 <div x-show="szap.setupModal" x-transition class="fixed inset-0 z-[550] flex items-center justify-center p-4" style="background:rgba(0,0,0,.92);backdrop-filter:blur(12px)">
   <div class="k-card w-full max-w-lg overflow-hidden" style="box-shadow:0 24px 80px rgba(0,0,0,.7)">
 
-    <!-- Header -->
+    
     <div class="flex items-center justify-between px-6 py-4" style="background:linear-gradient(135deg,rgba(37,209,102,.15),rgba(37,209,102,.04));border-bottom:1px solid var(--wpp-border)">
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:var(--wpp-bg)">
@@ -1683,12 +1685,12 @@ document.addEventListener('DOMContentLoaded',()=>{
       <button @click="szap.setupModal=false" class="k-icon-btn text-lg"><i class="fa-solid fa-xmark"></i></button>
     </div>
 
-    <!-- Steps -->
+    
     <div class="px-6 pt-6 pb-4" style="min-height:300px">
 
-      <!-- ══ USUÁRIO JÁ CONFIGUROU (jaConfigurado=true) ══ -->
+      
 
-      <!-- Retorno Step 0: Abrir iniciar.bat de novo -->
+      
       <div x-show="szap.jaConfigurado&&szap.setupStep===0" class="space-y-4">
         <div class="flex items-center gap-2 mb-1">
           <i class="fa-solid fa-rotate-right" style="color:var(--wpp)"></i>
@@ -1731,7 +1733,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         <p class="text-xs text-center" style="color:var(--text-muted)">Precisa baixar novamente? <a :href="_SZAP_DOWNLOAD_URL" download style="color:var(--wpp);text-decoration:underline;cursor:pointer">Clique aqui.</a></p>
       </div>
 
-      <!-- Retorno Step 1: Conectar -->
+      
       <div x-show="szap.jaConfigurado&&szap.setupStep===1" class="space-y-4">
         <div class="flex items-center gap-2 mb-2">
           <i class="fa-brands fa-whatsapp" style="color:var(--wpp)"></i>
@@ -1749,9 +1751,9 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- ══ PRIMEIRA VEZ (jaConfigurado=false) ══ -->
+      
 
-      <!-- Primeira vez Step 0: Baixar -->
+      
       <div x-show="!szap.jaConfigurado&&szap.setupStep===0" class="space-y-4">
         <div class="flex items-center gap-3 mb-1">
           <div class="w-8 h-8 rounded-xl flex items-center justify-center font-bold text-sm flex-shrink-0" style="background:var(--wpp);color:#0d0d0d">1</div>
@@ -1768,7 +1770,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- Primeira vez Step 1: Executar -->
+      
       <div x-show="!szap.jaConfigurado&&szap.setupStep===1" class="space-y-4">
         <div class="flex items-center gap-3 mb-1">
           <div class="w-8 h-8 rounded-xl flex items-center justify-center font-bold text-sm flex-shrink-0" style="background:var(--wpp);color:#0d0d0d">2</div>
@@ -1812,7 +1814,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- Primeira vez Step 2: Conectar -->
+      
       <div x-show="!szap.jaConfigurado&&szap.setupStep===2" class="space-y-4">
         <div class="flex items-center gap-3 mb-1">
           <div class="w-8 h-8 rounded-xl flex items-center justify-center font-bold text-sm flex-shrink-0" style="background:var(--wpp);color:#0d0d0d">3</div>
@@ -1836,7 +1838,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     </div>
 
-    <!-- Footer -->
+    
     <div class="flex items-center justify-between px-6 py-4" style="border-top:1px solid var(--border)">
       <div class="flex items-center gap-2">
         <template x-for="i in (szap.jaConfigurado?[0,1]:[0,1,2])" :key="i">
@@ -1856,7 +1858,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   </div>
 </div>
 
-<!-- TOASTS -->
+
 <div class="k-toast-wrap">
   <template x-for="t in toasts" :key="t.id">
     <div class="k-toast" :style="t.type==='error'?'border-color:rgba(180,60,60,.4)':''">
@@ -1868,7 +1870,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 <div class="k-layout">
 
-  <!-- SIDEBAR -->
+  
   <aside class="k-sidebar">
     <div class="k-sidebar__brand" @click="aba='scraper'">
       <div class="clean-wordmark" aria-label="CLEAN leads"><span>CLEAN</span><em>leads</em></div>
@@ -1921,12 +1923,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       <button @click="aba='mensagens';mobileCRMOpen=false"><i class="fa-regular fa-message"></i><span>Mensagens</span></button>
     </div>
 
-    <!-- ══════════ BAIXE O KAPTAR APP ══════════
-         Entre o S-zap e o suporte, no vao da barra. A versao e o link saem do
-         `latest.yml` do servidor de atualizacao — o mesmo arquivo que o app
-         instalado consulta —, entao publicar uma versao nova nao pede editar
-         HTML nenhum, e o site nunca oferece um arquivo que saiu do ar.
-         Se aquele endereco nao responder, o card NAO aparece. Ver `cardDoApp`. -->
+    
     <section class="k-app-card" x-data="cardDoApp()" x-init="carregar()" x-cloak style="display:none!important"
              :class="{'is-mzs':face==='mazyos'}"
              @mouseenter="girando=false" @mouseleave="girando=escolheu?false:true"
@@ -1935,13 +1932,12 @@ document.addEventListener('DOMContentLoaded',()=>{
       <span class="k-app-card__luz k-app-card__luz--mzs" aria-hidden="true"></span>
 
       <div class="k-app-slides">
-        <!-- Face 1: o app. Some inteira se o `latest.yml` não responder. -->
+        
         <div class="k-app-slide" x-show="disponivel" :class="{'is-on':disponivel&&face==='app'}"
              :aria-hidden="face!=='app'">
           <img src="logo-escura.png" class="k-app-card__logo k-logo-dark" alt="" onerror="this.style.display='none'"/>
           <img src="logo-clara.png" class="k-app-card__logo k-logo-light" alt="" onerror="this.style.display='none'"/>
-          <!-- O titulo NOMEIA, o botao AGE. Antes os dois diziam "baixar o
-               CLEAN Leads", e a repeticao comia metade de uma coluna de 190px. -->
+          
           <p class="k-app-card__titulo">CLEAN Leads</p>
           <p class="k-app-card__texto">
             WhatsApp embutido e automação rodando com o app fechado.
@@ -1986,13 +1982,13 @@ document.addEventListener('DOMContentLoaded',()=>{
     </div>
     <div class="k-sidebar__footer">
       <span class="k-version" style="display:flex;align-items:center;justify-content:center;width:100%;line-height:1.3">
-        <span class="desktop-credit" style="font-size:11px;opacity:.48;font-weight:400">By Levi Maciel</span>
       </span>
     </div>
   </aside>
 
-  <!-- MAIN -->
+  
   <main class="k-main">
+    <span class="clean-top-credit">By Levi Maciel</span>
     <section x-show="aba==='painel'" x-transition:enter="tab-enter" x-transition:enter-start="tab-enter-start" x-transition:enter-end="tab-enter-end" x-transition:leave="tab-leave" x-transition:leave-start="tab-leave-start" x-transition:leave-end="tab-leave-end" class="p-6 space-y-5" x-cloak>
       <div class="flex items-center justify-between gap-3"><div><h1 class="k-page-title">Painel</h1><p class="text-sm mt-1" style="color:var(--text-muted)">Acompanhe o desempenho da sua prospecção em um só lugar.</p></div><button @click="carregarLeads();showToast('Painel atualizado')" class="k-btn-ghost text-sm flex items-center gap-2"><i class="fa-solid fa-rotate"></i><span class="hidden sm:inline">Atualizar</span></button></div>
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
@@ -2020,9 +2016,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       <div><h1 class="k-page-title">Mensagens</h1><p class="text-sm mt-1" style="color:var(--text-muted)">Modelos rápidos para iniciar uma conversa.</p></div>
       <div class="grid md:grid-cols-2 gap-3"><template x-for="modelo in modelosMensagem" :key="modelo.id"><div class="k-card p-4"><div class="flex items-center justify-between gap-3"><div><h2 class="font-bold text-sm" style="color:var(--text)" x-text="modelo.titulo"></h2><p class="text-xs mt-1" style="color:var(--text-muted)" x-text="modelo.descricao"></p></div><button @click="copiarMensagem(modelo.texto)" class="k-btn-ghost text-xs whitespace-nowrap"><i class="fa-regular fa-copy mr-1"></i>Copiar</button></div><p class="text-sm mt-4 p-3 rounded-lg whitespace-pre-line" style="background:var(--surface-2);color:var(--text-2)" x-text="modelo.texto"></p></div></template></div>
     </section>
-    <!-- ══ Faixa de download — SÓ no celular ══
-         Ver o bloco `.k-app-faixa` no CSS. Escondida nas abas que já são o
-         convite, para não dizer a mesma coisa duas vezes na mesma tela. -->
+    
     <section class="k-app-faixa" x-data="cardDoApp()" x-init="carregar()"
              x-show="aba!=='szap' && aba!=='automacao'" x-cloak>
       <template x-if="face==='app'">
@@ -2041,32 +2035,22 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     </section>
 
-    <!-- ══════════════ BUSCAR LEADS (SCRAPER) ══════════════ -->
+    
     <div x-show="aba==='scraper'" x-transition:enter="tab-enter" x-transition:enter-start="tab-enter-start" x-transition:enter-end="tab-enter-end" x-transition:leave="tab-leave" x-transition:leave-start="tab-leave-start" x-transition:leave-end="tab-leave-end" class="p-6 space-y-5">
       <div class="flex items-center justify-between">
         <div class="scraper-header-copy"><p class="text-lg whitespace-nowrap" style="color:var(--text-muted)">Olá, bem-vindo, <strong class="text-xl" style="color:var(--text)" x-text="nomeUsuario||'visitante'"></strong></p><h1 class="k-page-title mt-2"><span class="mobile-page-clean-logo" aria-label="CLEAN Leads"><b>CLEAN</b><em>leads</em></span><span class="mobile-page-title-text">Buscar Leads</span></h1></div>
         <div class="flex items-center gap-3">
-          <!--
-            Novidades do APP instalável — lidas do releaseNotes do /app/latest.yml,
-            o MESMO arquivo que alimenta a atualização do app. Sem notas (fetch
-            falhou, yml sem o bloco), o botão simplesmente não aparece — um botão
-            que abre uma caixa vazia ensina a não clicar nele.
-          -->
+          
           <button x-show="novidadesApp.itens.length>0" @click="novidadesApp.aberto=true" class="text-xs flex items-center gap-1.5" style="background:none;border:none;cursor:pointer;color:var(--text-muted)" title="O que a versão atual do CLEAN Leads trouxe">
             <i class="fa-solid fa-bullhorn"></i>Novidades
           </button>
           <button @click="showWelcome=true" class="tutorial-control text-xs flex items-center gap-1.5" style="background:none;border:none;cursor:pointer;color:var(--text-muted)" title="Ver tutorial do CLEAN Leads">
             <i class="fa-solid fa-circle-question"></i>Tutorial
           </button>
-            <span class="text-xs credit-mobile" style="color:var(--text-muted)"><i class="fa-solid fa-database mr-1"></i>by Levi Maciel</span>
         </div>
       </div>
 
-      <!-- ═══ POPUP: NOVIDADES DO KAPTAR APP ═══
-           A casca é a do modal de notas do S-zap, degradada para lista plana:
-           uma versão só (a publicada), sem acordeão. SEMPRE x-text — o conteúdo
-           vem da rede, e transformar conteúdo remoto em marcação é o caminho
-           curto para injeção. -->
+      
       <div x-show="novidadesApp.aberto" x-transition.opacity @click="novidadesApp.aberto=false" class="fixed inset-0 z-[650] flex items-center justify-center p-4" style="background:rgba(0,0,0,.85);backdrop-filter:blur(10px)">
         <div @click.stop class="k-card w-full max-w-lg overflow-hidden" style="box-shadow:0 24px 80px rgba(0,0,0,.7);max-height:88vh;display:flex;flex-direction:column">
           <div class="flex items-center justify-between px-5 py-4 flex-shrink-0" style="background:linear-gradient(135deg,rgba(37,211,102,.14),rgba(37,211,102,.03));border-bottom:1px solid var(--border)">
@@ -2097,7 +2081,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         <div class="flex items-center justify-between gap-3 mb-3"><div class="flex items-center gap-2"><i class="fa-solid fa-sparkles" style="color:var(--brand)"></i><div><h2 class="text-sm font-bold" style="color:var(--text)">Atualizações recentes</h2><p class="text-xs mt-0.5" style="color:var(--text-muted)">Novidades do CLEAN Leads</p></div></div><span class="text-[10px] px-2 py-1 rounded-full" style="color:var(--brand);background:var(--brand-soft)">NOVO</span></div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-2"><template x-for="item in novidadesFixas" :key="item.id"><div class="p-3 rounded-lg" style="background:var(--surface-2);border:1px solid var(--border)"><p class="text-xs font-semibold" style="color:var(--text)" x-text="item.titulo"></p><p class="text-[11px] mt-1 leading-relaxed" style="color:var(--text-muted)" x-text="item.texto"></p></div></template><template x-for="(item,idx) in novidadesApp.itens.slice(0,3)" :key="'app-'+idx"><div class="p-3 rounded-lg" style="background:var(--surface-2);border:1px solid var(--border)"><p class="text-xs font-semibold" style="color:var(--text)" x-text="'Versão '+novidadesApp.versao"></p><p class="text-[11px] mt-1 leading-relaxed" style="color:var(--text-muted)" x-text="item"></p></div></template></div>
       </section>
-      <!-- Localização por cidade brasileira -->
+      
       <div class="k-card p-4">
         <div class="flex items-center justify-between mb-2">
           <p class="k-label mb-0">Localização — selecione uma cidade para buscar</p>
@@ -2120,7 +2104,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-start">
 
-        <!-- Categorias -->
+        
         <div class="k-card p-5 flex flex-col overflow-hidden k-cats-card" style="max-height:540px" @click.outside="catsMobileOpen=false">
           <div class="flex items-center justify-between mb-3 flex-shrink-0">
             <p class="k-label mb-0">Categorias / Segmentos</p>
@@ -2176,9 +2160,9 @@ document.addEventListener('DOMContentLoaded',()=>{
           </div>
         </div>
 
-        <!-- Col direita -->
+        
         <div class="space-y-4">
-          <!-- Fonte de dados -->
+          
           <div class="k-card p-4 space-y-3">
             <div class="flex items-center justify-between">
               <label class="k-label mb-0">Fonte de dados</label>
@@ -2201,7 +2185,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             </select>
           </div>
 
-          <!-- Filtro de Captura (adapta-se à fonte de dados) -->
+          
           <div class="k-card p-4 space-y-3">
             <p class="k-label mb-0">Filtro de Captura</p>
             <template x-if="scraper.fonte==='google_maps'||scraper.fonte==='todos'">
@@ -2259,10 +2243,10 @@ document.addEventListener('DOMContentLoaded',()=>{
             </template>
           </div>
 
-          <!-- Máx. resultados -->
+          
           <div class="k-card p-4">
             <label class="k-label">Máx. resultados por categoria: <strong x-text="scraper.max_results" style="color:var(--text);text-transform:none;letter-spacing:0"></strong></label>
-            <!-- Personalizado de 1 a 1000: o slider é o gesto rápido, a caixinha aceita o número exato. É um TETO — a área entrega o que tem. -->
+            
             <div class="flex items-center gap-3">
               <input type="range" x-model.number="scraper.max_results" min="1" max="1000" step="1" class="flex-1 h-1.5 cursor-pointer mt-1" style="accent-color:var(--brand);background:transparent;border:none;box-shadow:none"/>
               <input type="number" min="1" max="1000" x-model.number="scraper.max_results" @change="scraper.max_results=Math.max(1,Math.min(1000,Math.round(scraper.max_results||1)))" class="px-2 py-1.5" style="width:84px"/>
@@ -2295,7 +2279,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- Progresso -->
+      
       <div x-show="scraperStatus.rodando||scraperStatus.mensagem" class="k-card p-5 space-y-3">
         <div class="flex items-center gap-3">
           <div class="w-2.5 h-2.5 rounded-full flex-shrink-0" :class="scraperStatus.rodando?'animate-pulse':''" :style="scraperStatus.rodando?'background:var(--brand)':'background:#a0a0a0'"></div>
@@ -2318,7 +2302,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       </div>
     </div>
 
-    <!-- ══════════════ LEADS ══════════════ -->
+    
     <div x-show="aba==='leads'" x-transition:enter="tab-enter" x-transition:enter-start="tab-enter-start" x-transition:enter-end="tab-enter-end" x-transition:leave="tab-leave" x-transition:leave-start="tab-leave-start" x-transition:leave-end="tab-leave-end" class="p-6 space-y-4 k-leads-page">
       <div class="flex items-center justify-between gap-4">
         <h1 class="k-page-title">Leads</h1>
@@ -2328,7 +2312,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- Sub-tabs -->
+      
       <div class="k-tabs">
         <button @click="leadsSubAba='ativos';carregarLeads()" :class="leadsSubAba==='ativos'?'active':''" class="k-tab">
           <i class="fa-solid fa-list-ul text-xs"></i>Ativos
@@ -2348,7 +2332,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </button>
       </div>
 
-      <!-- TOOLBAR DE FILTROS — compartilhada por TODAS as sub-abas -->
+      
       <div class="space-y-3">
         <div class="flex flex-wrap gap-3">
           <input x-model="busca" @input.debounce.300ms="carregarLeads()" type="text" readonly onfocus="this.removeAttribute('readonly')" name="kaptar-busca-leads" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore data-form-type="other" placeholder="Buscar por nome, categoria, telefone, cidade..." class="flex-1 min-w-48 px-3 py-2"/>
@@ -2394,7 +2378,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- SUB-ABA: Ativos -->
+      
       <div x-show="leadsSubAba==='ativos'" class="space-y-4">
         <div class="k-card overflow-hidden">
           <div class="overflow-x-auto">
@@ -2467,7 +2451,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- SUB-ABA: Qualificados -->
+      
       <div x-show="leadsSubAba==='qualificados'" class="space-y-4">
         <p class="text-sm" style="color:var(--text-muted)">Os leads mais promissores separados para prospecção focada.</p>
         <div class="k-card overflow-hidden">
@@ -2537,7 +2521,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- SUB-ABA: Em Contato -->
+      
       <div x-show="leadsSubAba==='em_contato'" class="space-y-4">
         <p class="text-sm" style="color:var(--text-muted)">Leads com quem você já iniciou uma conversa.</p>
         <div class="flex gap-1.5 flex-wrap">
@@ -2606,7 +2590,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- SUB-ABA: Arquivados -->
+      
       <div x-show="leadsSubAba==='arquivados'" class="space-y-4">
         <p class="text-sm" style="color:var(--text-muted)">Leads arquivados permanentemente.</p>
         <div class="k-card overflow-hidden">
@@ -2655,7 +2639,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       </div>
     </div>
 
-    <!-- ══════════════ CONFIGURAÇÕES ══════════════ -->
+    
     <div x-show="aba==='config'" x-transition:enter="tab-enter" x-transition:enter-start="tab-enter-start" x-transition:enter-end="tab-enter-end" x-transition:leave="tab-leave" x-transition:leave-start="tab-leave-start" x-transition:leave-end="tab-leave-end" class="p-6 space-y-6">
       <h1 class="k-page-title">Configurações</h1>
       <div class="k-card p-5 space-y-3">
@@ -2694,7 +2678,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       </section>
       <div class="max-w-xl space-y-5">
 
-        <!-- País / DDI — código do país usado nas campanhas e links de WhatsApp -->
+        
         <div class="k-card p-5 space-y-3">
           <div class="flex items-center gap-2">
             <i class="fa-solid fa-globe" style="color:var(--wpp)"></i>
@@ -2712,7 +2696,7 @@ document.addEventListener('DOMContentLoaded',()=>{
           <p class="text-xs" style="color:var(--text-muted)"><i class="fa-solid fa-circle-info mr-1"></i>Números que já vêm com o código do país são mantidos como estão.<span x-show="_SZAP_ATIVO"> Para campanhas em outro país, o S-zap precisa estar na versão 2.7.3+.</span></p>
         </div>
 
-        <!-- Google Maps — RECOMENDADO (aparece primeiro) -->
+        
         <div class="k-card p-5 space-y-3" style="border-color:rgba(100,160,255,.3)">
           <div class="flex items-center justify-between gap-2 flex-wrap">
             <div class="flex items-center gap-2">
@@ -2725,7 +2709,7 @@ document.addEventListener('DOMContentLoaded',()=>{
           </div>
           <p class="text-xs leading-relaxed" style="color:var(--text-muted)">A fonte <strong style="color:var(--text-2)">mais completa</strong> do CLEAN Leads: retorna telefone, site e endereço com alta cobertura. <strong style="color:var(--text-2)">1.000 requisições gratuitas por mês</strong> (≈ até 20.000 leads) — o CLEAN Leads trava as buscas sozinho quando a cota do mês acaba.</p>
 
-          <!-- Aviso de ativação obrigatória -->
+          
           <div class="p-3 rounded-lg space-y-2" style="background:rgba(136,136,136,.08);border:1px solid rgba(136,136,136,.25)">
             <p class="text-xs font-bold" style="color:var(--text-2)"><i class="fa-solid fa-triangle-exclamation mr-1.5" style="color:#b0b0b0"></i>API específica que precisa estar ativa</p>
             <p class="text-xs leading-relaxed" style="color:var(--text-muted)">Você precisa ativar a <strong style="color:var(--text-2)">Places API (New)</strong> — não a "Places API" antiga. São APIs diferentes no Console do Google.</p>
@@ -2756,7 +2740,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             </div>
           </div>
 
-          <!-- Verificação de restrições da chave -->
+          
           <div class="p-3 rounded-lg space-y-1.5" style="background:var(--surface-2);border:1px solid var(--border)">
             <p class="text-xs font-semibold" style="color:var(--text-2)"><i class="fa-solid fa-key mr-1.5"></i>Restrições da chave — verifique isso</p>
             <p class="text-xs leading-relaxed" style="color:var(--text-muted)">No Console do Google, vá em <strong style="color:var(--text-2)">APIs e Serviços → Credenciais → edite sua chave</strong>. Em <strong style="color:var(--text-2)">"Restrições de API"</strong>, confirme que está em <em>"Não restringir chave"</em> ou que <em>"Places API (New)"</em> está na lista permitida.</p>
@@ -2771,7 +2755,7 @@ document.addEventListener('DOMContentLoaded',()=>{
           </div>
         </div>
 
-        <!-- Automação — comportamento ao abrir com horário vencido (some enquanto o S-zap está desativado) -->
+        
         <div x-show="_SZAP_ATIVO" class="k-card p-5 space-y-3">
           <div class="flex items-center gap-2">
             <i class="fa-solid fa-robot" style="color:var(--wpp)"></i>
@@ -2791,7 +2775,7 @@ document.addEventListener('DOMContentLoaded',()=>{
           <p x-show="cfgMsg" x-text="cfgMsg" class="text-xs" style="color:var(--q-site-medio)"></p>
         </div>
 
-        <!-- Zona de perigo -->
+        
         <div class="k-card p-5 space-y-4" style="border-color:rgba(136,136,136,.2)">
           <h2 class="text-sm font-semibold" style="color:var(--text-2)">Dados locais</h2>
           <div class="text-xs space-y-1" style="color:var(--text-muted)">
@@ -2805,7 +2789,7 @@ document.addEventListener('DOMContentLoaded',()=>{
           </div>
         </div>
 
-        <!-- Info -->
+        
         <div class="k-card p-4 space-y-2" style="background:var(--surface-2)">
           <p class="text-xs font-semibold" style="color:var(--text-2)"><i class="fa-solid fa-circle-info mr-1.5"></i>Como funciona o armazenamento</p>
           <p class="text-xs leading-relaxed" style="color:var(--text-muted)">Todos os seus dados (leads, chaves, configurações) ficam no <strong style="color:var(--text-2)">localStorage do seu navegador</strong>. Sem servidor, sem banco de dados, sem conta. Se você limpar o cache do navegador, tudo some — não há recuperação. Cada dispositivo/navegador tem seus próprios dados.</p>
@@ -2813,8 +2797,8 @@ document.addEventListener('DOMContentLoaded',()=>{
       </div>
     </div>
 
-    <!-- ══════════════ SZAP ══════════════ -->
-    <!-- ════════════════ AUTOMAÇÃO ════════════════ -->
+    
+    
     <div x-show="aba==='automacao'&&_SZAP_ATIVO" class="p-6 space-y-4">
       <div class="flex items-start justify-between gap-3 flex-wrap">
         <div>
@@ -2824,7 +2808,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         <button @click="autoNova()" class="k-btn k-btn-primary flex-shrink-0"><i class="fa-solid fa-plus"></i>Nova automação</button>
       </div>
 
-      <!-- Como funciona / aviso -->
+      
       <div class="k-card p-4 flex items-start gap-3" style="border-color:rgba(77,163,255,.35);background:rgba(77,163,255,.08)">
         <i class="fa-solid fa-triangle-exclamation mt-0.5 flex-shrink-0" style="color:#62b6ff"></i>
         <div class="text-xs leading-relaxed" style="color:var(--text-2)">
@@ -2832,7 +2816,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- Rodando agora -->
+      
       <template x-if="automacao.exec.rodando">
         <div class="k-card p-4 flex items-center gap-3" style="border-color:var(--wpp-border);background:var(--wpp-bg)">
           <i class="fa-solid fa-spinner fa-spin" style="color:var(--wpp)"></i>
@@ -2844,7 +2828,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </template>
 
-      <!-- S-zap desconectado -->
+      
       <template x-if="!szap.connected">
         <div class="k-card p-4 flex items-center gap-3 flex-wrap">
           <i class="fa-brands fa-whatsapp text-lg" style="color:var(--wpp)"></i>
@@ -2853,7 +2837,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </template>
 
-      <!-- Lista vazia -->
+      
       <template x-if="automacao.lista.length===0">
         <div class="k-card p-8 text-center">
           <i class="fa-solid fa-robot text-3xl mb-3" style="color:var(--text-muted)"></i>
@@ -2863,7 +2847,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </template>
 
-      <!-- Cards -->
+      
       <template x-for="a in automacao.lista" :key="a.id">
         <div class="k-card p-4 space-y-3">
           <div class="flex items-start justify-between gap-3">
@@ -2877,11 +2861,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             <input type="checkbox" :checked="a.ativa" @change="autoToggleAtiva(a)" class="flex-shrink-0" style="width:20px;height:20px;accent-color:var(--wpp);cursor:pointer" title="Ligar/desligar"/>
           </div>
 
-          <!--
-            A CAPA: as duas perguntas que se faz olhando o cartao — o que vem a
-            seguir e se ha lead guardado para isso. Antes o cartao so mostrava a
-            agenda inteira, e a fila aparecia depois da primeira execucao.
-          -->
+          
           <div class="grid gap-2" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
             <div class="rounded-xl px-3 py-2" style="background:var(--surface-2);border:1px solid var(--border)">
               <p class="k-label mb-0.5">Próximo</p>
@@ -2916,8 +2896,7 @@ document.addEventListener('DOMContentLoaded',()=>{
           </template>
 
           <div class="flex items-center gap-2 pt-1">
-            <!-- Um botao por PONTA, alem do ciclo inteiro: captar e disparar
-                 viraram horarios separados, e a tela acompanha. -->
+            
             <button @click="autoRodarParte(a,'captacao')" :disabled="automacao.exec.rodando" class="k-btn k-btn-secondary text-xs" title="Procura leads novos e guarda na fila — não envia nada"><i class="fa-solid fa-magnifying-glass"></i>Buscar leads</button>
             <button @click="autoRodarParte(a,'disparo')" :disabled="automacao.exec.rodando||autoNaFila(a)===0" class="k-btn k-btn-primary text-xs" :title="autoNaFila(a)===0?'A fila está vazia — busque leads antes':'Envia da fila agora'"><i class="fa-solid fa-paper-plane"></i>Enviar agora</button>
             <button @click="autoRodarAgora(a)" :disabled="automacao.exec.rodando" class="k-btn k-btn-secondary text-xs" title="O ciclo inteiro: busca e depois envia"><i class="fa-solid fa-play"></i>Buscar e enviar</button>
@@ -2928,18 +2907,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       </template>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════════════
-         O CONVITE — Automação e S-zap agora moram no CLEAN Leads.
-         Ocupa as duas abas enquanto `_SZAP_ATIVO` estiver desligado. Ele
-         substituiu o aviso de manutenção: o disparador não voltou para o
-         navegador, ele virou parte do aplicativo.
-
-         A versão, o tamanho e o link saem do `latest.yml` do servidor de
-         atualização (`cardDoApp`) — o mesmo arquivo que o app instalado
-         consulta. Publicar uma versão nova não pede editar HTML nenhum, e a
-         página nunca oferece um arquivo que saiu do ar: se aquele endereço não
-         responder, o botão dá lugar ao endereço do site.
-         ═══════════════════════════════════════════════════════════════════ -->
+    
     <div x-show="(aba==='szap'||aba==='automacao')&&!_SZAP_ATIVO" class="k-aviso-wrap">
       <div class="k-aviso-card k-promo-card" x-data="cardDoApp()" x-init="carregar()">
         <span class="k-promo-luz" aria-hidden="true"></span>
@@ -2983,7 +2951,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
         <div class="k-aviso-sep"></div>
 
-        <!-- O BOTÃO. Grande de propósito: é a única coisa a fazer nesta tela. -->
+        
         <a x-show="disponivel" :href="url" download class="k-baixar-grande">
           <i class="fa-solid fa-download"></i>
           <span>Baixar o CLEAN Leads</span>
@@ -2992,11 +2960,9 @@ document.addEventListener('DOMContentLoaded',()=>{
           <span x-text="'versão '+versao"></span> · <span x-text="tamanho"></span> · Windows 10/11 · de graça
         </span>
 
-        <!-- O servidor de atualização não respondeu: em vez de um botão que não
-             baixa nada, o endereço de onde o app sai. -->
+        
         <p x-show="!disponivel" class="k-aviso-text" style="margin-bottom:0">
-          Baixe em <strong style="color:var(--text)">kaptar.mazzeoia.com.br</strong> — ou fale
-          com o suporte aqui embaixo que a gente manda o link.
+          O download está temporariamente indisponível. Fale com o suporte para receber o link.
         </p>
 
         <div class="k-aviso-acoes" style="margin-top:22px">
@@ -3015,7 +2981,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     <div x-show="aba==='szap'&&_SZAP_ATIVO" class="flex flex-col" style="min-height:100vh">
 
-      <!-- Header -->
+      
       <div class="px-6 pt-6 pb-0" style="border-bottom:1px solid var(--border)">
         <div class="flex items-center justify-between mb-4">
           <div class="flex items-center gap-3">
@@ -3038,7 +3004,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             <span x-show="!szap.connected" class="sz-badge-off">Desconectado</span>
           </div>
         </div>
-        <!-- Inner tabs -->
+        
         <div class="sz-tab-bar" style="padding:0;margin:0">
           <button @click="szap.aba='crm'" :class="szap.aba==='crm'?'active':''" class="sz-tab">
             <i class="fa-solid fa-chart-pie"></i>Painel
@@ -3060,7 +3026,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- ═══ BANNER DE ATUALIZAÇÃO ═══ -->
+      
       <div x-show="szap.temAtualizacao" x-transition class="sz-update-banner">
         <div class="sz-update-icon">
           <i class="fa-solid fa-arrow-up-from-bracket" style="color:#fff;font-size:16px"></i>
@@ -3083,7 +3049,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- ═══ POPUP: HISTÓRICO DE ATUALIZAÇÕES (cards/acordeão) ═══ -->
+      
       <div x-show="szap.notasAberto" x-transition.opacity @click="szap.notasAberto=false" class="fixed inset-0 z-[650] flex items-center justify-center p-4" style="background:rgba(0,0,0,.85);backdrop-filter:blur(10px)">
         <div @click.stop class="k-card w-full max-w-lg overflow-hidden" style="box-shadow:0 24px 80px rgba(0,0,0,.7);max-height:88vh;display:flex;flex-direction:column">
           <div class="flex items-center justify-between px-5 py-4 flex-shrink-0" style="background:linear-gradient(135deg,rgba(37,211,102,.14),rgba(37,211,102,.03));border-bottom:1px solid var(--border)">
@@ -3135,7 +3101,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- ═══ POPUP: PASSOS APÓS BAIXAR A ATUALIZAÇÃO ═══ -->
+      
       <div x-show="szap.baixouAberto" x-transition.opacity @click="szap.baixouAberto=false" class="fixed inset-0 z-[660] flex items-center justify-center p-4" style="background:rgba(0,0,0,.85);backdrop-filter:blur(10px)">
         <div @click.stop class="k-card w-full max-w-md overflow-hidden" style="box-shadow:0 24px 80px rgba(0,0,0,.7)">
           <div class="flex items-center gap-2.5 px-5 py-4" style="background:linear-gradient(135deg,rgba(37,211,102,.14),rgba(37,211,102,.03));border-bottom:1px solid var(--border)">
@@ -3175,7 +3141,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- ═══ POPUP: AVISO ANTI-BANIMENTO (antes de disparar campanha) ═══ -->
+      
       <div x-show="szap.avisoBanAberto" x-transition.opacity @click="szap.avisoBanAberto=false" class="fixed inset-0 z-[660] flex items-center justify-center p-4" style="background:rgba(0,0,0,.85);backdrop-filter:blur(10px)">
         <div @click.stop class="k-card w-full max-w-lg overflow-hidden" style="box-shadow:0 24px 80px rgba(0,0,0,.7);max-height:90vh;display:flex;flex-direction:column">
           <div class="flex items-center gap-2.5 px-5 py-4 flex-shrink-0" style="background:linear-gradient(135deg,rgba(77,163,255,.12),rgba(77,163,255,.04));border-bottom:1px solid var(--border)">
@@ -3205,10 +3171,10 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- ─── ABA: PAINEL ─── -->
+      
       <div x-show="szap.aba==='crm'" class="p-6 space-y-6">
 
-        <!-- Status banner quando conectado -->
+        
         <div x-show="szap.connected" class="rounded-2xl p-4 flex items-center gap-4" style="background:linear-gradient(135deg,rgba(37,209,102,.14),rgba(37,209,102,.05));border:1px solid var(--wpp-border)">
           <div class="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--wpp-bg)">
             <i class="fa-brands fa-whatsapp text-xl" style="color:var(--wpp)"></i>
@@ -3220,7 +3186,7 @@ document.addEventListener('DOMContentLoaded',()=>{
           <span class="sz-badge-on">Online</span>
         </div>
 
-        <!-- Banner quando desconectado -->
+        
         <div x-show="!szap.connected" class="rounded-2xl p-4 flex items-center gap-4 cursor-pointer" style="background:var(--surface-2);border:1px dashed var(--border)" @click="szap.aba='whatsapp'">
           <div class="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0" style="background:rgba(136,136,136,.1)">
             <i class="fa-brands fa-whatsapp text-xl" style="color:var(--text-muted)"></i>
@@ -3232,7 +3198,7 @@ document.addEventListener('DOMContentLoaded',()=>{
           <i class="fa-solid fa-chevron-right text-xs" style="color:var(--text-muted)"></i>
         </div>
 
-        <!-- Stats grid -->
+        
         <div class="grid gap-3" style="grid-template-columns:repeat(auto-fill,minmax(170px,1fr))">
           <div class="sz-stat-card">
             <div class="sz-stat-icon" style="background:rgba(100,160,255,.12)">
@@ -3272,7 +3238,7 @@ document.addEventListener('DOMContentLoaded',()=>{
           </div>
         </div>
 
-        <!-- Histórico de campanhas -->
+        
         <div x-show="szap.campHistorico.length>0">
           <p class="k-label mb-3">Histórico de campanhas</p>
           <div class="k-card overflow-hidden">
@@ -3306,7 +3272,7 @@ document.addEventListener('DOMContentLoaded',()=>{
           <p class="text-xs mt-1" style="color:var(--text-muted)">Conecte o WhatsApp e dispare sua primeira campanha</p>
         </div>
 
-        <!-- Download do servidor S-zap -->
+        
         <div class="k-card p-4 flex items-center gap-4" style="border-color:rgba(37,209,102,.15)">
           <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(37,209,102,.1)">
             <i class="fa-solid fa-server" style="color:var(--wpp);font-size:16px"></i>
@@ -3321,12 +3287,12 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- ─── ABA: WHATSAPP ─── -->
+      
       <div x-show="szap.aba==='whatsapp'" class="p-6 space-y-5">
 
-        <!-- Connection card -->
+        
         <div class="sz-connect-card" :class="szap.connected?'connected':''">
-          <!-- Connected state -->
+          
           <template x-if="szap.connected">
             <div class="space-y-4">
               <div class="w-16 h-16 rounded-full mx-auto flex items-center justify-center" style="background:var(--wpp-bg)">
@@ -3353,7 +3319,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             </div>
           </template>
 
-          <!-- Logged out remotely (phone removed the device) -->
+          
           <template x-if="!szap.connected && szap.loggedOut">
             <div class="space-y-4">
               <div class="w-16 h-16 rounded-full mx-auto flex items-center justify-center" style="background:rgba(239,68,68,.15)">
@@ -3371,7 +3337,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             </div>
           </template>
 
-          <!-- Connecting / QR state -->
+          
           <template x-if="!szap.connected && !szap.loggedOut">
             <div class="space-y-5">
 
@@ -3389,9 +3355,9 @@ document.addEventListener('DOMContentLoaded',()=>{
                     </p>
                   </div>
 
-                  <!-- QR Code display -->
+                  
                   <div x-show="szap.qrString" class="flex flex-col items-center gap-3">
-                    <!-- Banner de resync -->
+                    
                     <div x-show="szap.resyncMode" class="w-full flex items-start gap-2 px-3 py-2 rounded-lg text-xs" style="background:rgba(37,209,102,.08);border:1px solid rgba(37,209,102,.2);color:var(--wpp)">
                       <i class="fa-solid fa-rotate mt-0.5 flex-shrink-0"></i>
                       <span>Escaneie para sincronizar todo o histórico. Seus dados existentes serão preservados e mesclados.</span>
@@ -3405,13 +3371,13 @@ document.addEventListener('DOMContentLoaded',()=>{
                     </p>
                   </div>
 
-                  <!-- Connecting spinner -->
+                  
                   <div x-show="szap.connecting&&!szap.qrString" class="flex items-center justify-center gap-2 py-4">
                     <i class="fa-solid fa-circle-notch animate-spin" style="color:var(--wpp)"></i>
                     <span class="text-sm" style="color:var(--text-muted)" x-text="szap.connected===false&&!szap.loggedOut?'Reconectando automaticamente...':'Inicializando S-zap...'"></span>
                   </div>
 
-                  <!-- Ativar / Cancelar -->
+                  
                   <div x-show="!szap.connecting">
                     <button @click="szapConectar()" class="k-btn sz-btn-grad mx-auto px-6 py-2.5 rounded-xl">
                       <i class="fa-brands fa-whatsapp"></i>
@@ -3430,16 +3396,16 @@ document.addEventListener('DOMContentLoaded',()=>{
           </template>
         </div>
 
-        <!-- Privacy notice -->
+        
         <div class="k-card p-4 flex gap-3 items-start">
           <i class="fa-solid fa-shield-halved mt-0.5" style="color:#c8a0ff;font-size:16px;flex-shrink:0"></i>
           <div>
             <p class="text-sm font-semibold mb-1" style="color:var(--text)">Seus dados ficam só no seu PC</p>
-            <p class="text-xs leading-relaxed" style="color:var(--text-muted)">O S-zap roda direto no seu computador — nada é enviado para nenhum servidor externo. O site <strong style="color:var(--text-2)">kaptar.mazzeoia.com.br</strong> não tem banco de dados: seus leads, conversas e histórico de campanhas ficam salvos apenas no cache do seu navegador.</p>
+            <p class="text-xs leading-relaxed" style="color:var(--text-muted)">O S-zap roda direto no seu computador — nada é enviado para nenhum servidor externo. O site <strong style="color:var(--text-2)">CLEAN Leads</strong> não tem banco de dados: seus leads, conversas e histórico de campanhas ficam salvos apenas no cache do seu navegador.</p>
           </div>
         </div>
 
-        <!-- Limpar histórico -->
+        
         <div class="k-card p-4 flex items-center gap-4" style="border-color:rgba(239,68,68,.2)">
           <i class="fa-solid fa-trash-can" style="color:#ef4444;font-size:16px;flex-shrink:0"></i>
           <div class="flex-1">
@@ -3452,10 +3418,10 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- ─── ABA: CAMPANHAS ─── -->
+      
       <div x-show="szap.aba==='campanhas'" class="p-6 space-y-5">
 
-        <!-- Not connected warning -->
+        
         <div x-show="!szap.connected" class="k-card p-5 flex items-center gap-4" style="border-color:rgba(255,180,60,.25);background:rgba(255,180,60,.05)">
           <i class="fa-solid fa-triangle-exclamation text-xl" style="color:#ffb43c"></i>
           <div>
@@ -3467,9 +3433,9 @@ document.addEventListener('DOMContentLoaded',()=>{
 
         <div class="grid gap-5" style="grid-template-columns:1fr 380px">
 
-          <!-- Left: Lead selector -->
+          
           <div class="space-y-3">
-            <!-- Tipo de lead -->
+            
             <div class="k-card p-4 space-y-3">
               <p class="text-xs font-bold tracking-wider uppercase" style="color:var(--text-2)">Tipo de lead</p>
               <div class="flex flex-wrap gap-2">
@@ -3488,7 +3454,7 @@ document.addEventListener('DOMContentLoaded',()=>{
               </div>
             </div>
 
-            <!-- Filtros por texto -->
+            
             <div class="k-card p-4 space-y-3">
               <p class="text-xs font-bold tracking-wider uppercase" style="color:var(--text-2)">Filtros</p>
               <div class="grid gap-2" style="grid-template-columns:1fr 1fr">
@@ -3513,7 +3479,7 @@ document.addEventListener('DOMContentLoaded',()=>{
               </div>
             </div>
 
-            <!-- Aba: A enviar x Já enviados (separa os leads que já receberam mensagem) -->
+            
             <div class="flex gap-1 p-1 rounded-xl" style="background:var(--surface-2)">
               <button @click="szap.campAbaLeads='pendentes';szap.campSelecionados=[]" class="flex-1 text-xs font-semibold py-2 rounded-lg flex items-center justify-center gap-1.5" :style="`border:none;cursor:pointer;${szap.campAbaLeads!=='enviados'?'background:var(--surface);color:var(--text);box-shadow:var(--shadow-sm)':'background:transparent;color:var(--text-muted)'}`">
                 <i class="fa-solid fa-paper-plane" style="font-size:11px"></i>A enviar (<span x-text="szapCountAba('pendentes')"></span>)
@@ -3523,7 +3489,7 @@ document.addEventListener('DOMContentLoaded',()=>{
               </button>
             </div>
 
-            <!-- Lead list header -->
+            
             <div class="flex items-center justify-between px-1">
               <div class="flex items-center gap-2">
                 <input type="checkbox" @change="szapToggleTodos($event)" :checked="szapLeadsFiltrados().length>0&&szapLeadsFiltrados().every(l=>szap.campSelecionados.includes(l.id))" class="w-4 h-4 cursor-pointer" style="accent-color:var(--wpp)"/>
@@ -3540,7 +3506,7 @@ document.addEventListener('DOMContentLoaded',()=>{
               </div>
             </div>
 
-            <!-- Lead list -->
+            
             <div class="k-card overflow-hidden" style="max-height:400px;overflow-y:auto">
               <template x-if="szapLeadsFiltrados().length===0">
                 <div class="p-8 text-center">
@@ -3572,9 +3538,9 @@ document.addEventListener('DOMContentLoaded',()=>{
             </div>
           </div>
 
-          <!-- Right: Message + Send -->
+          
           <div class="space-y-4">
-            <!-- Message template -->
+            
             <div class="k-card p-4 space-y-3">
               <div class="flex items-center justify-between">
                 <p class="text-sm font-semibold" style="color:var(--text)"><i class="fa-solid fa-pen mr-2" style="color:var(--text-muted)"></i>Mensagem</p>
@@ -3588,7 +3554,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 <input x-model="szap.campNome" type="text" placeholder="ex: Prospecção dentistas SP" class="w-full px-3 py-2"/>
               </div>
 
-              <!-- Modo texto: variações rotativas -->
+              
               <div x-show="szap.campTipoMsg==='texto'">
                 <div class="mb-2">
                   <label class="k-label mb-1">Variáveis disponíveis <span style="color:var(--text-muted);font-weight:400">(entram na variação selecionada)</span></label>
@@ -3601,7 +3567,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                   </div>
                 </div>
 
-                <!-- Explicação das variações -->
+                
                 <div class="mb-3 p-2.5 rounded-lg text-xs" style="background:var(--wpp-bg);border:1px solid var(--wpp-border)">
                   <p class="font-semibold flex items-center gap-1.5" style="color:var(--wpp)"><i class="fa-solid fa-shuffle"></i>Variações da mensagem (evita bloqueio)</p>
                   <p class="mt-1" style="color:var(--text-2)">Escreva a mensagem principal e crie outras versões dizendo a mesma coisa de formas diferentes. O CLEAN Leads <strong>reveza</strong> as variações a cada contato — <strong>nunca manda a mesma duas vezes seguidas</strong>. Texto igual pra todo mundo é o que mais derruba conta.</p>
@@ -3639,7 +3605,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                   <i class="fa-solid fa-plus"></i>Adicionar variação
                 </button>
 
-                <!-- Aviso: variações iguais -->
+                
                 <div x-show="szapVariacoesDuplicadas().size>0" class="mt-2.5 p-2.5 rounded-lg text-xs flex items-start gap-2" style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3)">
                   <i class="fa-solid fa-circle-exclamation mt-0.5" style="color:#ef4444"></i>
                   <p style="color:var(--text-2)"><strong style="color:#ef4444">Há variações iguais</strong> (marcadas em vermelho). Deixe cada uma diferente — a campanha não roda com variações repetidas.</p>
@@ -3655,7 +3621,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 </div>
               </div>
 
-              <!-- Modo script -->
+              
               <div x-show="szap.campTipoMsg==='script'">
                 <template x-if="szap.scriptsCampanha.length===0">
                   <div class="k-card p-5 text-center" style="background:var(--surface-2)">
@@ -3688,7 +3654,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                         </div>
                       </template>
                     </div>
-                    <!-- Preview do script selecionado -->
+                    
                     <template x-if="szap.campScriptId&&szapScriptCampSelecionado()">
                       <div class="p-2.5 rounded-xl" style="background:var(--surface-2);border:1px solid var(--border)">
                         <p class="text-xs font-semibold mb-1.5" style="color:var(--text-2)">Preview:</p>
@@ -3720,9 +3686,9 @@ document.addEventListener('DOMContentLoaded',()=>{
               </div>
             </div>
 
-            <!-- Configuração e envio -->
+            
             <div class="k-card p-4 space-y-4">
-              <!-- Intervalo -->
+              
               <div>
                 <label class="text-xs font-semibold mb-2 flex items-center gap-1.5" style="color:var(--text)">
                   <i class="fa-solid fa-clock" style="color:var(--wpp)"></i>Intervalo entre mensagens
@@ -3734,7 +3700,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                     <span class="text-xs" style="color:var(--text-muted)">s</span>
                   </div>
                 </div>
-                <!-- Linha: descrição + checkbox + (?) -->
+                
                 <div class="flex items-center justify-between mt-1.5 gap-2">
                   <p class="text-xs" style="color:var(--text-muted)">
                     Min: 15s · Máx: 180s · Recomendado: 35–60s
@@ -3745,7 +3711,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                       <input type="checkbox" x-model="szap.campJitter" class="accent-green-400" style="width:13px;height:13px;cursor:pointer"/>
                       Variar intervalo
                     </label>
-                    <!-- Botão (?) com tooltip -->
+                    
                     <div x-data="{aberto:false}" class="relative">
                       <button @click="aberto=!aberto" @click.outside="aberto=false"
                         class="flex items-center justify-center rounded-full text-xs font-bold flex-shrink-0"
@@ -3762,7 +3728,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                   </div>
                 </div>
 
-                <!-- Indicador de risco -->
+                
                 <div x-show="szap.campSelecionados.length>0" class="flex items-start gap-2 rounded-lg p-2.5 mt-1"
                   :style="szapRiscoNivel()==='baixo'?'background:rgba(100,220,154,.1);border:1px solid rgba(100,220,154,.25)':szapRiscoNivel()==='medio'?'background:rgba(255,185,50,.1);border:1px solid rgba(255,185,50,.3)':'background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35)'">
                   <i class="fa-solid fa-shield-halved flex-shrink-0 mt-0.5" x-show="szapRiscoNivel()==='baixo'" style="color:#64dc9a"></i>
@@ -3782,7 +3748,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
               <div class="border-t" style="border-color:var(--border)"></div>
 
-              <!-- Resumo -->
+              
               <div class="space-y-2">
                 <div class="flex items-center justify-between text-sm">
                   <span style="color:var(--text-2)">Mensagens a enviar</span>
@@ -3798,7 +3764,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 </div>
               </div>
 
-              <!-- Progress -->
+              
               <div x-show="szap.campEnviando">
                 <div class="flex justify-between text-xs mb-1.5" style="color:var(--text-muted)">
                   <span x-text="szap.campParado?'Parando após mensagem atual…':'Enviando '+szap.campLog.length+' de '+szap.campTotal+'...'"></span>
@@ -3810,18 +3776,18 @@ document.addEventListener('DOMContentLoaded',()=>{
               </div>
 
               <div class="flex items-center gap-2">
-                <!-- Mute -->
+                
                 <button @click="szap.campSom=!szap.campSom"
                   :title="szap.campSom?'Mutar som':'Ativar som'"
                   class="k-btn rounded-xl flex-shrink-0 px-3 py-2.5"
                   :style="szap.campSom?'color:var(--wpp);background:var(--wpp-bg)':'color:var(--text-muted)'">
                   <i :class="szap.campSom?'fa-solid fa-volume-high':'fa-solid fa-volume-xmark'" style="font-size:14px"></i>
                 </button>
-                <!-- Disparar (oculto durante envio) -->
+                
                 <button x-show="!szap.campEnviando" @click="szapIniciarCampanhaClick()" :disabled="szap.campSelecionados.length===0||!szap.connected||!(szap.campTipoMsg==='script'?szap.campScriptId:szapVariacoesValidas().length)" class="k-btn sz-btn-grad flex-1 justify-center rounded-xl py-2.5">
                   <i class="fa-solid fa-paper-plane"></i>Disparar Campanha
                 </button>
-                <!-- Parar (visível durante envio) -->
+                
                 <button x-show="szap.campEnviando" @click="szapPararCampanha()" :disabled="szap.campParado" class="k-btn k-btn-danger flex-1 justify-center rounded-xl py-2.5">
                   <i :class="szap.campParado?'fa-solid fa-circle-notch animate-spin':'fa-solid fa-stop'"></i>
                   <span x-text="szap.campParado?'Parando...':'Parar Campanha'"></span>
@@ -3829,7 +3795,7 @@ document.addEventListener('DOMContentLoaded',()=>{
               </div>
             </div>
 
-            <!-- Log do envio em andamento -->
+            
             <div x-show="szap.campLog.length>0 && !szap.campEnviando" class="k-card p-4 space-y-2">
               <div class="flex items-center justify-between">
                 <p class="text-xs font-semibold" style="color:var(--text-2)">Resultado do envio</p>
@@ -3851,7 +3817,7 @@ document.addEventListener('DOMContentLoaded',()=>{
           </div>
         </div>
 
-        <!-- ── Histórico de campanhas ── -->
+        
         <div class="space-y-3">
           <div class="flex items-center justify-between">
             <p class="k-label">Campanhas realizadas</p>
@@ -3882,10 +3848,10 @@ document.addEventListener('DOMContentLoaded',()=>{
 
       </div>
 
-      <!-- ─── ABA: CONVERSAS ─── -->
+      
       <div x-show="szap.aba==='conversas'">
 
-        <!-- Not connected -->
+        
         <div x-show="!szap.connected" class="p-6">
           <div class="k-card p-8 text-center space-y-4">
             <div class="w-16 h-16 rounded-full mx-auto flex items-center justify-center" style="background:rgba(136,136,136,.1)">
@@ -3901,17 +3867,17 @@ document.addEventListener('DOMContentLoaded',()=>{
           </div>
         </div>
 
-        <!-- Chat layout -->
+        
         <div x-show="szap.connected" class="sz-chat-wrap">
 
-          <!-- Left: Conversation list -->
+          
           <div class="sz-conv-list">
-            <!-- Banner sincronizando -->
+            
             <div x-show="szap.syncing" class="flex items-center gap-2 px-3 py-2 text-xs" style="background:rgba(37,209,102,.08);border-bottom:1px solid rgba(37,209,102,.2);color:var(--wpp)">
               <i class="fa-solid fa-circle-notch animate-spin" style="font-size:10px"></i>
               <span>Sincronizando histórico do WhatsApp...</span>
             </div>
-            <!-- Search + refresh -->
+            
             <div class="p-3 border-b flex gap-2" style="border-color:var(--border)">
               <input type="text" x-model="szap.buscaConversa" placeholder="Buscar conversa..." class="flex-1 px-3 py-2 text-xs"/>
               <button @click="szapBuscarConversas(true)" class="k-icon-btn" title="Atualizar" :class="(szap.loadingConversas||szap.atualizandoConversas)?'animate-pulse':''">
@@ -3922,21 +3888,21 @@ document.addEventListener('DOMContentLoaded',()=>{
               </button>
             </div>
 
-            <!-- Loading -->
+            
             <div x-show="szap.loadingConversas" class="p-6 text-center">
               <i class="fa-solid fa-circle-notch animate-spin mb-2" style="color:var(--wpp)"></i>
               <p class="text-xs" style="color:var(--text-muted)">Carregando...</p>
             </div>
 
-            <!-- Empty -->
+            
             <div x-show="!szap.loadingConversas && szap.conversas.length===0" class="p-6 text-center">
               <p class="text-xs" style="color:var(--text-muted)">Nenhuma conversa</p>
             </div>
 
-            <!-- List -->
+            
             <div x-show="!szap.loadingConversas" class="flex-1 overflow-y-auto">
 
-              <!-- Linha de entrada para sub-aba de arquivadas (estilo WhatsApp) -->
+              
               <div x-show="!szap.mostraArquivadas&&szap.conversas.some(c=>c.archived)" class="sz-archived-row" @click="szap.mostraArquivadas=true">
                 <div class="sz-conv-avatar" style="background:rgba(255,255,255,.07);color:var(--text-muted)">
                   <i class="fa-solid fa-box-archive" style="font-size:17px"></i>
@@ -3948,21 +3914,21 @@ document.addEventListener('DOMContentLoaded',()=>{
                 <i class="fa-solid fa-chevron-right flex-shrink-0" style="font-size:11px;color:var(--text-muted);margin-left:4px"></i>
               </div>
 
-              <!-- Cabeçalho quando está dentro das arquivadas -->
+              
               <div x-show="szap.mostraArquivadas" class="sz-archived-back" @click="szap.mostraArquivadas=false">
                 <i class="fa-solid fa-arrow-left"></i>
                 <span>Arquivadas</span>
                 <span class="text-xs font-normal ml-1" style="color:rgba(37,209,102,.7)" x-text="'('+szap.conversas.filter(c=>c.archived).length+')'"></span>
               </div>
 
-              <!-- Lista (labels + conversas injetados por szapConversasFiltradas) -->
+              
               <template x-for="item in szapConversasFiltradas()" :key="item._id||item.id">
                 <div>
-                  <!-- Label de seção (Fixadas / Conversas) -->
+                  
                   <template x-if="item._tipo==='label'">
                     <div class="sz-section-label" x-text="item.label"></div>
                   </template>
-                  <!-- Item de conversa -->
+                  
                   <template x-if="!item._tipo">
                     <div class="sz-conv-item" :class="{'active':szap.conversaAtiva?.id===item.id}" @click="szapAbrirConversa(item)">
                       <div class="sz-conv-avatar">
@@ -3994,10 +3960,10 @@ document.addEventListener('DOMContentLoaded',()=>{
             </div>
           </div>
 
-          <!-- Right: Chat -->
+          
           <div class="sz-msg-area">
 
-            <!-- Empty state -->
+            
             <template x-if="!szap.conversaAtiva">
               <div class="flex-1 flex flex-col items-center justify-center gap-4" style="color:var(--text-muted)">
                 <i class="fa-regular fa-comment-dots text-4xl"></i>
@@ -4005,10 +3971,10 @@ document.addEventListener('DOMContentLoaded',()=>{
               </div>
             </template>
 
-            <!-- Active conversation -->
+            
             <template x-if="szap.conversaAtiva">
               <div class="flex flex-col h-full">
-                <!-- Chat header -->
+                
                 <div class="flex items-center gap-3 px-4 py-3 border-b" style="border-color:var(--border);background:var(--surface)">
                   <div class="sz-conv-avatar" style="width:36px;height:36px;font-size:13px">
                     <template x-if="szap.conversaAtiva.profilePictureUrl">
@@ -4030,7 +3996,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                   </button>
                 </div>
 
-                <!-- Messages -->
+                
                 <div class="sz-msg-bg" x-ref="msgList">
                   <div x-show="szap.loadingMensagens" class="text-center py-6">
                     <i class="fa-solid fa-circle-notch animate-spin text-lg mb-2 block" style="color:var(--wpp)"></i>
@@ -4038,21 +4004,21 @@ document.addEventListener('DOMContentLoaded',()=>{
                   </div>
                   <template x-for="(msg,idx) in szap.mensagens" :key="idx">
                    <div style="display:contents">
-                    <!-- Divisória de data (estilo WhatsApp) — só quando muda o dia -->
+                    
                     <template x-if="szapDataDivisoria(idx)">
                       <div class="sz-date-divider"><span x-text="szapDataDivisoria(idx)"></span></div>
                     </template>
-                    <!-- Row: full width, aligns bubble left (received) or right (sent) -->
+                    
                     <div class="sz-msg-row" :class="msg.key?.fromMe?'out':'in'">
-                      <!-- Col: max 72% wide, stacks bubble + timestamp -->
+                      
                       <div class="sz-msg-col" :class="msg.key?.fromMe?'out':'in'">
 
-                        <!-- Texto simples -->
+                        
                         <template x-if="msg.message?.conversation||msg.message?.extendedTextMessage">
                           <div class="sz-msg" :class="msg.key?.fromMe?'sz-msg-out':'sz-msg-in'" x-text="msg.message?.conversation||msg.message?.extendedTextMessage?.text"></div>
                         </template>
 
-                        <!-- Imagem -->
+                        
                         <template x-if="msg.message?.imageMessage">
                           <div class="sz-msg" :class="msg.key?.fromMe?'sz-msg-out':'sz-msg-in'" style="padding:4px;display:inline-block;white-space:normal;font-size:0;line-height:0">
                             <template x-if="szap.mediaCache[msg.key?.id]&&!szap.mediaCache[msg.key?.id].loading&&szap.mediaCache[msg.key?.id].base64">
@@ -4076,7 +4042,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                           </div>
                         </template>
 
-                        <!-- Áudio / Mensagem de voz -->
+                        
                         <template x-if="msg.message?.audioMessage">
                           <div class="sz-msg" :class="msg.key?.fromMe?'sz-msg-out':'sz-msg-in'" style="padding:5px 6px;display:inline-block;white-space:normal;font-size:0;line-height:0;width:fit-content">
                             <template x-if="szap.mediaCache[msg.key?.id]&&!szap.mediaCache[msg.key?.id].loading&&(szap.mediaCache[msg.key?.id].blobUrl||szap.mediaCache[msg.key?.id].base64)">
@@ -4096,7 +4062,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                           </div>
                         </template>
 
-                        <!-- Vídeo -->
+                        
                         <template x-if="msg.message?.videoMessage">
                           <div class="sz-msg" :class="msg.key?.fromMe?'sz-msg-out':'sz-msg-in'" style="padding:4px;display:inline-block;white-space:normal;font-size:0;line-height:0">
                             <template x-if="szap.mediaCache[msg.key?.id]&&!szap.mediaCache[msg.key?.id].loading&&szap.mediaCache[msg.key?.id].base64">
@@ -4124,7 +4090,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                           </div>
                         </template>
 
-                        <!-- Chamada de voz/vídeo -->
+                        
                         <template x-if="msg.message?.callLogMessage">
                           <div class="sz-msg" :class="msg.key?.fromMe?'sz-msg-out':'sz-msg-in'" style="display:flex;align-items:center;gap:8px;padding:8px 12px;font-size:13px;opacity:.75">
                             <i :class="msg.message.callLogMessage.isVideo?'fa-solid fa-video':'fa-solid fa-phone'" style="font-size:13px"></i>
@@ -4132,7 +4098,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                           </div>
                         </template>
 
-                        <!-- Figurinha (sticker) — renderiza a imagem webp real -->
+                        
                         <template x-if="msg.message?.stickerMessage">
                           <div style="display:inline-block">
                             <template x-if="szap.mediaCache[msg.key?.id]&&!szap.mediaCache[msg.key?.id].loading&&szap.mediaCache[msg.key?.id].base64">
@@ -4154,7 +4120,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                           </div>
                         </template>
 
-                        <!-- Documento / outros -->
+                        
                         <template x-if="!msg.message?.conversation&&!msg.message?.extendedTextMessage&&!msg.message?.imageMessage&&!msg.message?.audioMessage&&!msg.message?.videoMessage&&!msg.message?.callLogMessage&&!msg.message?.stickerMessage">
                           <div class="sz-msg" :class="msg.key?.fromMe?'sz-msg-out':'sz-msg-in'">
                             <template x-if="msg.message?.documentMessage">
@@ -4178,7 +4144,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                           </div>
                         </template>
 
-                        <!-- Timestamp -->
+                        
                         <div class="sz-msg-time">
                           <span x-text="msg.messageTimestamp?new Date(msg.messageTimestamp*1000).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}):''"></span>
                           <template x-if="msg.key?.fromMe">
@@ -4191,7 +4157,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                   </template>
                 </div>
 
-                <!-- Preview de mídia antes de enviar -->
+                
                 <div x-show="szap.midiaPreview" class="sz-media-preview">
                   <template x-if="szap.midiaType==='image'">
                     <img :src="szap.midiaPreview" class="w-14 h-14 rounded-lg object-cover flex-shrink-0"/>
@@ -4218,23 +4184,23 @@ document.addEventListener('DOMContentLoaded',()=>{
                   <button @click="szap.midiaFile=null;szap.midiaPreview=null;szap.midiaType=null" class="k-icon-btn text-sm" style="color:var(--text-muted)"><i class="fa-solid fa-xmark"></i></button>
                 </div>
 
-                <!-- Input bar -->
+                
                 <div class="sz-msg-input-bar" @click.away="szap.emojiAberto=false">
-                  <!-- Emoji picker -->
+                  
                   <div x-show="szap.emojiAberto" class="sz-emoji-picker">
                     <template x-for="e in ['😀','😂','🤣','😍','😊','🥰','😘','😎','😅','😆','🙂','😉','🤔','😮','😢','😭','😤','😡','🤯','🥳','🎉','✅','❤️','🧡','💛','💚','💙','💜','🔥','⭐','💯','👍','👎','👏','🙌','🤝','🫶','💪','🤳','📱','📞','💼','🏆','🎯','💡','💰','📈','📊','🚀','⚡','✨','🙏','😁','😬','🤭','😴','🤤','😋','🤑','🤠','👀','💬','📝','📌','🗓️','⏰','💻','🖥️','📧']" :key="e">
                       <button @click="szap.novaMensagem+=e" x-text="e"></button>
                     </template>
                   </div>
-                  <!-- Botão emoji -->
+                  
                   <button @click.stop="szap.emojiAberto=!szap.emojiAberto" class="k-icon-btn text-base flex-shrink-0" :style="szap.emojiAberto?'color:var(--wpp)':''" title="Emojis">😊</button>
-                  <!-- Botão anexar -->
+                  
                   <label class="k-icon-btn text-sm flex-shrink-0 cursor-pointer" title="Enviar mídia">
                     <i class="fa-solid fa-paperclip"></i>
                     <input type="file" accept="image/*,video/*,audio/*" class="hidden" @change="szapSelecionarMidia($event)"/>
                   </label>
                   <textarea x-model="szap.novaMensagem" @keydown.enter="if(!$event.shiftKey){$event.preventDefault();szapEnviarResposta()}" @keydown="szap.emojiAberto=false" rows="2" placeholder="Digite uma mensagem... (Shift+Enter para nova linha)" class="flex-1 px-3 py-2 resize-none text-sm" style="border-radius:var(--r-md)"></textarea>
-                  <!-- Microfone -->
+                  
                   <button @click="szapToggleGravacao()" class="k-icon-btn flex-shrink-0 text-base" :style="szap.gravando?'color:#ef4444;animation:pulse 1s infinite':''" :title="szap.gravando?'Parar gravação':'Gravar áudio'">
                     <i :class="szap.gravando?'fa-solid fa-stop':'fa-solid fa-microphone'"></i>
                   </button>
@@ -4246,7 +4212,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             </template>
           </div>
 
-          <!-- Scripts sidebar -->
+          
           <div class="sz-scripts-panel" :class="szap.scriptsSidebar?'':'fechado'">
             <div class="flex items-center justify-between px-3 py-2 border-b" style="border-color:var(--border)">
               <span class="text-xs font-bold" style="color:var(--text)"><i class="fa-solid fa-bolt mr-1" style="color:var(--wpp)"></i>Scripts</span>
@@ -4273,9 +4239,9 @@ document.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
 
-      <!-- ─── ABA: SCRIPTS RÁPIDOS ─── -->
+      
       <div x-show="szap.aba==='scripts'" class="p-5">
-        <!-- Header + sub-abas -->
+        
         <div class="flex items-center justify-between mb-5">
           <div>
             <h2 class="text-sm font-bold" style="color:var(--text)"><i class="fa-solid fa-bolt mr-2" style="color:var(--wpp)"></i>Scripts</h2>
@@ -4291,9 +4257,9 @@ document.addEventListener('DOMContentLoaded',()=>{
           </div>
         </div>
 
-        <!-- Sub-aba: Conversas -->
+        
         <div x-show="szap.scriptSubAba==='conversas'" class="grid gap-5" style="grid-template-columns:1fr 1fr">
-          <!-- Formulário -->
+          
           <div class="k-card p-4 space-y-3">
             <p class="text-xs font-bold" style="color:var(--text)" x-text="szap.scriptEditMode?'Editar Script':'Novo Script'"></p>
             <div>
@@ -4309,22 +4275,22 @@ document.addEventListener('DOMContentLoaded',()=>{
                 <button @click="szap.scriptForm.tipo='arquivo'" :class="szap.scriptForm.tipo==='arquivo'?'k-btn':'k-btn k-btn-secondary'" class="text-xs flex-1"><i class="fa-solid fa-file"></i>Arquivo</button>
               </div>
             </div>
-            <!-- Texto -->
+            
             <div x-show="szap.scriptForm.tipo==='texto'">
               <label class="k-label">Mensagem</label>
               <textarea x-model="szap.scriptForm.conteudo" rows="5" placeholder="Digite o prompt / mensagem..." class="w-full px-3 py-2 text-xs resize-none" style="border-radius:var(--r-md)"></textarea>
             </div>
-            <!-- Mídia -->
+            
             <div x-show="szap.scriptForm.tipo!=='texto'" class="space-y-2">
               <label class="k-label">Arquivo</label>
-              <!-- Botão de upload — só aparece quando não há arquivo -->
+              
               <div x-show="!szap.scriptArqPreview">
                 <label class="k-btn k-btn-secondary text-xs cursor-pointer w-full justify-center">
                   <i class="fa-solid fa-upload"></i>Selecionar arquivo
                   <input type="file" class="hidden" :accept="szap.scriptForm.tipo==='imagem'?'image/*':szap.scriptForm.tipo==='video'?'video/*':'*/*'" @change="szapScriptCarregarArq($event)"/>
                 </label>
               </div>
-              <!-- Preview + remover — aparece quando há arquivo -->
+              
               <div x-show="szap.scriptArqPreview" class="space-y-1.5">
                 <div class="rounded-lg overflow-hidden" style="max-height:100px">
                   <template x-if="szap.scriptForm.tipo==='imagem'&&szap.scriptArqPreview">
@@ -4337,7 +4303,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                     </div>
                   </template>
                 </div>
-                <!-- Aviso para arquivos grandes -->
+                
                 <div x-show="szap.scriptForm.tamanho>5*1024*1024" class="flex items-start gap-2 px-3 py-2 rounded-lg text-xs" style="background:rgba(255,185,50,.07);border:1px solid rgba(255,185,50,.18)">
                   <i class="fa-solid fa-triangle-exclamation mt-0.5 flex-shrink-0" style="color:#62b6ff;font-size:11px"></i>
                   <span style="color:var(--text-muted)">Arquivo grande — se você acumular vários scripts pesados, o navegador pode ficar instável ao longo do tempo.</span>
@@ -4346,7 +4312,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                   <i class="fa-solid fa-trash-can"></i>Remover arquivo
                 </button>
               </div>
-              <!-- Legenda -->
+              
               <div>
                 <label class="k-label">Legenda <span style="color:var(--text-muted)">(opcional — enviada junto com a mídia)</span></label>
                 <textarea x-model="szap.scriptForm.caption" rows="2" placeholder="Texto que acompanha a mídia..." class="w-full px-3 py-2 text-xs resize-none" style="border-radius:var(--r-md)"></textarea>
@@ -4360,7 +4326,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             </div>
           </div>
 
-          <!-- Lista -->
+          
           <div class="space-y-2">
             <p class="text-xs font-bold" style="color:var(--text)">Scripts salvos <span class="text-xs font-normal" style="color:var(--text-muted)" x-text="'('+szap.scripts.length+')'"></span></p>
             <template x-if="szap.scripts.length===0">
@@ -4385,9 +4351,9 @@ document.addEventListener('DOMContentLoaded',()=>{
           </div>
         </div>
 
-        <!-- Sub-aba: Campanhas -->
+        
         <div x-show="szap.scriptSubAba==='campanhas'" class="grid gap-5" style="grid-template-columns:1fr 1fr">
-          <!-- Formulário campanha -->
+          
           <div class="k-card p-4 space-y-3">
             <div>
               <p class="text-xs font-bold" style="color:var(--text)" x-text="szap.scriptEditModeCamp?'Editar Script de Campanha':'Novo Script de Campanha'"></p>
@@ -4406,7 +4372,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 <button @click="szap.scriptFormCamp.tipo='arquivo'" :class="szap.scriptFormCamp.tipo==='arquivo'?'k-btn':'k-btn k-btn-secondary'" class="text-xs flex-1"><i class="fa-solid fa-file"></i>Arquivo</button>
               </div>
             </div>
-            <!-- Texto de campanha -->
+            
             <div x-show="szap.scriptFormCamp.tipo==='texto'" class="space-y-2">
               <div class="flex flex-wrap gap-1">
                 <button @click="szap.scriptFormCamp.conteudo+=`{{nome}}`" class="k-chip text-xs py-0.5 px-1.5">{{nome}}</button>
@@ -4418,17 +4384,17 @@ document.addEventListener('DOMContentLoaded',()=>{
               <label class="k-label">Mensagem</label>
               <textarea x-model="szap.scriptFormCamp.conteudo" rows="6" placeholder="Olá {{nome}}! ..." class="w-full px-3 py-2 text-xs resize-none" style="border-radius:var(--r-md)"></textarea>
             </div>
-            <!-- Mídia de campanha -->
+            
             <div x-show="szap.scriptFormCamp.tipo!=='texto'" class="space-y-2">
               <label class="k-label">Arquivo</label>
-              <!-- Botão de upload — só aparece quando não há arquivo -->
+              
               <div x-show="!szap.scriptArqPreviewCamp">
                 <label class="k-btn k-btn-secondary text-xs cursor-pointer w-full justify-center">
                   <i class="fa-solid fa-upload"></i>Selecionar arquivo
                   <input type="file" class="hidden" :accept="szap.scriptFormCamp.tipo==='imagem'?'image/*':szap.scriptFormCamp.tipo==='video'?'video/*':'*/*'" @change="szapScriptCampCarregarArq($event)"/>
                 </label>
               </div>
-              <!-- Preview + remover — aparece quando há arquivo -->
+              
               <div x-show="szap.scriptArqPreviewCamp" class="space-y-1.5">
                 <div class="rounded-lg overflow-hidden" style="max-height:100px">
                   <template x-if="szap.scriptFormCamp.tipo==='imagem'&&szap.scriptArqPreviewCamp">
@@ -4441,7 +4407,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                     </div>
                   </template>
                 </div>
-                <!-- Aviso para arquivos grandes -->
+                
                 <div x-show="szap.scriptFormCamp.tamanho>5*1024*1024" class="flex items-start gap-2 px-3 py-2 rounded-lg text-xs" style="background:rgba(255,185,50,.07);border:1px solid rgba(255,185,50,.18)">
                   <i class="fa-solid fa-triangle-exclamation mt-0.5 flex-shrink-0" style="color:#62b6ff;font-size:11px"></i>
                   <span style="color:var(--text-muted)">Arquivo grande — se você acumular vários scripts pesados, o navegador pode ficar instável ao longo do tempo.</span>
@@ -4450,7 +4416,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                   <i class="fa-solid fa-trash-can"></i>Remover arquivo
                 </button>
               </div>
-              <!-- Legenda com variáveis -->
+              
               <div>
                 <label class="k-label">Legenda <span style="color:var(--text-muted)">(pode usar variáveis)</span></label>
                 <div class="flex flex-wrap gap-1 mb-1.5">
@@ -4471,7 +4437,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             </div>
           </div>
 
-          <!-- Lista de scripts de campanha -->
+          
           <div class="space-y-2">
             <p class="text-xs font-bold" style="color:var(--text)">Scripts de campanha <span class="text-xs font-normal" style="color:var(--text-muted)" x-text="'('+szap.scriptsCampanha.length+')'"></span></p>
             <template x-if="szap.scriptsCampanha.length===0">
@@ -4498,12 +4464,12 @@ document.addEventListener('DOMContentLoaded',()=>{
       </div>
 
     </div>
-    <!-- ══════════════ /SZAP ══════════════ -->
+    
 
   </main>
 </div>
 
-<!-- MODAL: Lead Detail -->
+
 <div x-show="leadAberto" class="fixed inset-0 z-50 k-modal-overlay flex items-start justify-end p-4" @click.self="leadAberto=null">
   <div x-show="leadAberto" class="k-panel w-full max-w-lg" @click.stop>
     <template x-if="leadAberto">
@@ -4603,8 +4569,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   </div>
 </div>
 
-<!-- MODAL: Novo Lead -->
-<!-- ════════ POPUP: boas-vindas da aba Automação (ao entrar em Campanhas, 1ª vez) ════════ -->
+
+
 <div x-show="automacao.aviso" x-cloak class="fixed inset-0 z-50 k-modal-overlay flex items-center justify-center p-4" @click.self="autoFecharAviso(false)">
   <div class="k-card w-full max-w-md p-5 space-y-4">
     <div class="flex items-start gap-3">
@@ -4630,7 +4596,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   </div>
 </div>
 
-<!-- ════════ POPUP: a campanha automática perdeu o horário ════════ -->
+
 <div x-show="automacao.popupMissed" x-cloak class="fixed inset-0 z-50 k-modal-overlay flex items-center justify-center p-4" @click.self="autoFecharPerdidas()">
   <div class="k-card w-full max-w-md p-5 space-y-4">
     <div class="flex items-start gap-3">
@@ -4656,7 +4622,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   </div>
 </div>
 
-<!-- ════════════ MODAL: Automação (criar / editar) ════════════ -->
+
 <div x-show="automacao.modalAberto" x-cloak class="fixed inset-0 z-50 k-modal-overlay flex items-start justify-center p-4 overflow-y-auto" @click.self="autoFecharModal()">
   <div class="k-card w-full max-w-2xl p-5 space-y-4 my-6">
     <div class="flex items-center justify-between">
@@ -4664,19 +4630,19 @@ document.addEventListener('DOMContentLoaded',()=>{
       <button @click="autoFecharModal()" class="k-btn-ghost" style="padding:4px 8px"><i class="fa-solid fa-xmark"></i></button>
     </div>
 
-    <!-- Automação ativa (topo) -->
+    
     <label class="flex items-center justify-between cursor-pointer k-card p-3" style="background:var(--surface-2)">
       <span class="text-sm font-medium flex items-center gap-2" style="color:var(--text)"><i class="fa-solid fa-power-off" style="color:var(--wpp)"></i>Automação ativa</span>
       <input type="checkbox" x-model="automacao.form.ativa" style="accent-color:var(--wpp);width:20px;height:20px;cursor:pointer"/>
     </label>
 
-    <!-- Nome -->
+    
     <div>
       <label class="k-label">Nome da automação</label>
       <input x-model="automacao.form.nome" type="text" placeholder="Ex.: Dentistas em SP — manhã" class="w-full px-3 py-2.5"/>
     </div>
 
-    <!-- Fonte -->
+    
     <div>
       <label class="k-label">Fonte dos leads</label>
       <div class="flex flex-wrap gap-1.5">
@@ -4686,7 +4652,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       </div>
     </div>
 
-    <!-- Nichos -->
+    
     <div>
       <label class="k-label">Nichos a prospectar</label>
       <div x-show="automacao.form.categorias.length>0" class="flex flex-wrap gap-1.5 mb-2">
@@ -4716,7 +4682,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       </div>
     </div>
 
-    <!-- Área (mini-mapa) -->
+    
     <div>
       <label class="k-label">Área — clique no mapa para marcar onde buscar</label>
       <div id="auto-map" style="height:240px;border-radius:var(--r-md);border:1px solid var(--border);overflow:hidden;z-index:0"></div>
@@ -4735,7 +4701,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       </template>
     </div>
 
-    <!-- Máx resultados -->
+    
     <div>
       <label class="k-label">Máx. leads por nicho: <strong x-text="automacao.form.maxResultados" style="color:var(--text);text-transform:none;letter-spacing:0"></strong></label>
       <div class="flex items-center gap-3">
@@ -4744,21 +4710,21 @@ document.addEventListener('DOMContentLoaded',()=>{
       </div>
     </div>
 
-    <!-- Mensagem / Script -->
+    
     <div>
       <label class="k-label">Mensagem da campanha</label>
       <div class="flex gap-2 mb-2">
         <button @click="automacao.form.tipoMsg='texto'" :class="automacao.form.tipoMsg==='texto'?'k-btn text-xs':'k-btn k-btn-secondary text-xs'"><i class="fa-solid fa-align-left"></i>Texto</button>
         <button @click="automacao.form.tipoMsg='script'" :class="automacao.form.tipoMsg==='script'?'k-btn text-xs':'k-btn k-btn-secondary text-xs'"><i class="fa-solid fa-bolt"></i>Script de campanha</button>
       </div>
-      <!-- Texto livre -->
+      
       <div x-show="automacao.form.tipoMsg==='texto'">
         <div class="flex flex-wrap gap-1.5 mb-1.5">
           <template x-for="v in ['{{nome}}','{{cidade}}','{{categoria}}']" :key="v">
             <button @click="autoInserirVar(v)" class="k-chip" style="font-size:11px"><span x-text="v"></span></button>
           </template>
         </div>
-        <!-- Variações rotativas — o MESMO recurso da campanha do S-zap: o disparo reveza as ativas, nunca a mesma duas vezes seguidas. A automação manda sem ninguém olhando; ela precisava disso MAIS que a campanha. -->
+        
         <label class="k-label mb-1.5 flex items-center justify-between">
           <span>Variações da mensagem</span>
           <span class="text-xs" style="color:var(--wpp);font-weight:600" x-show="autoVariacoesValidas().length>0"><i class="fa-solid fa-shuffle mr-1"></i><span x-text="autoVariacoesValidas().length"></span> ativa<span x-show="autoVariacoesValidas().length!==1">s</span> rotacionando</span>
@@ -4786,7 +4752,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         <button x-show="automacao.form.variacoes.length<5" @click="autoAddVariacao()" class="sz-var-add mt-2.5"><i class="fa-solid fa-plus"></i>Adicionar variação</button>
         <p class="mt-1" style="font-size:11px;color:var(--text-muted)"><i class="fa-solid fa-shuffle mr-1" style="color:var(--wpp)"></i>Dica anti-bloqueio: dentro de cada variação também vale o spintax — opções entre chaves, ex.: <code style="background:var(--surface-2);padding:0 3px;border-radius:3px">{Olá|Oi|Bom dia}</code>.</p>
       </div>
-      <!-- Script de campanha (os mesmos da campanha do S-zap) -->
+      
       <div x-show="automacao.form.tipoMsg==='script'">
         <template x-if="szap.scriptsCampanha.length===0">
           <div class="k-card p-4 text-center" style="background:var(--surface-2)">
@@ -4811,7 +4777,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       </div>
     </div>
 
-    <!-- Intervalo -->
+    
     <div>
       <label class="k-label">Intervalo entre mensagens: <strong x-text="automacao.form.intervalo+'s'" style="color:var(--wpp);text-transform:none;letter-spacing:0"></strong></label>
       <input type="range" min="15" max="180" step="5" x-model.number="automacao.form.intervalo" class="sz-interval-slider w-full"/>
@@ -4821,7 +4787,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       </label>
     </div>
 
-    <!-- Dias -->
+    
     <div>
       <label class="k-label">Dias da semana</label>
       <div class="flex flex-wrap gap-1.5">
@@ -4831,7 +4797,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       </div>
     </div>
 
-    <!-- Horários que BUSCAM leads -->
+    
     <div>
       <label class="k-label">Horários que buscam leads novos <span class="k-help-icon">i<span class="k-tooltip-popup">Nestes horários a automação sai procurando gente nova (até o "máx. leads por nicho" lá em cima) e guarda na fila. É o que gasta cota das APIs — quanto menos vezes, mais barato.</span></span></label>
       <div class="space-y-2">
@@ -4847,7 +4813,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       <p class="mt-1.5" style="font-size:11px;color:var(--text-muted)">Buscar é o passo caro. Uma vez de manhã costuma abastecer o dia inteiro.</p>
     </div>
 
-    <!-- Horários que ENVIAM -->
+    
     <div>
       <label class="k-label">Horários que enviam as mensagens <span class="k-help-icon">i<span class="k-tooltip-popup">Cada linha envia a quantidade que você marcar, tirando da fila que a captação encheu — SEM procurar ninguém de novo. Comece baixo (20-30) e suba devagar conforme a conta aguenta.</span></span></label>
       <div class="space-y-2">
@@ -4916,7 +4882,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   </div>
 </div>
 
-<!-- MODAL: Importar CSV -->
+
 <div x-show="modalImportar" class="fixed inset-0 z-50 k-modal-overlay flex items-center justify-center p-4" @click.self="_fecharImport()">
   <div class="k-card w-full max-w-lg p-5 space-y-4">
     <div class="flex items-center justify-between">
@@ -4979,7 +4945,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   </div>
 </div>
 
-<!-- MODAL: WhatsApp -->
+
 <div x-show="modalWpp" class="fixed inset-0 z-50 k-modal-overlay flex items-center justify-center p-4" @click.self="modalWpp=false;wppLead=null">
   <div class="k-card w-full max-w-md p-5 space-y-4">
     <h2 class="text-base font-bold" style="color:var(--text)">Enviar WhatsApp</h2>
@@ -6279,7 +6245,7 @@ function app(){
     },
     // lista de horários que já passaram hoje e ainda não rodaram (= "devendo")
     /*
-      Captar e disparar são horários DIFERENTES — e o slot carrega o tipo.
+      Buscar leads e abordar são etapas diferentes — e o slot carrega o tipo.
 
       Antes era uma lista só (`horas`) e cada horário fazia as duas coisas:
       mandar em três levas no dia obrigava a prospectar três vezes, pagando de
@@ -7618,7 +7584,7 @@ function app(){
       return h>=12&&h<20;
     },
     _SZAP_VERSION_REQUIRED: '2.7.11',
-    _SZAP_DOWNLOAD_URL: 'https://kaptar.mazzeoia.com.br/szap-server-2.7.11.zip',
+    _SZAP_DOWNLOAD_URL: 'https://CLEAN Leads/szap-server-2.7.11.zip',
     // Notas de atualização do S-zap (visíveis pro cliente). Mais recente primeiro.
     // tipo: 'novo' (verde) | 'fix' (vermelho) | 'mudanca' (azul) | 'melhoria' (azul claro).
     // Campos opcionais por item: texto, antes (laranja), depois (verde), codigo (amarelo).
@@ -9064,7 +9030,7 @@ function app(){
 }
 </script>
 
-<!-- Balão flutuante de disparo de campanha -->
+
 <div x-show="szap.campNotif"
   x-transition:enter="sz-balloon-enter"
   x-transition:leave="sz-balloon-leave"
