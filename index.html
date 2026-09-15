@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>CLEAN Leads — Inteligência Comercial</title>
 <link rel="icon" type="image/png" href="favicon.png"/>
-<link rel="apple-touch-icon" href="favicon.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Fraunces:opsz,wght@9..144,400&display=swap" rel="stylesheet">
@@ -885,6 +885,7 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="CLEAN Leads">
+<link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png">
 <link rel="apple-touch-icon" sizes="192x192" href="./icon-192.png">
 <style id="clean-sidebar-lines-final">
 .k-sidebar__nav{gap:0!important;padding:0!important;margin:14px 0!important;border:0!important;border-radius:0!important;background:transparent!important}
@@ -2676,6 +2677,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     
     <div x-show="aba==='config'" class="p-6 space-y-6">
       <h1 class="k-page-title">Configurações</h1>
+      <div class="k-card p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4"><div class="flex items-start gap-3"><i class="fa-solid fa-bell mt-1" style="color:var(--brand)"></i><div><h2 class="text-sm font-semibold" style="color:var(--text)">Notificações</h2><p class="text-xs mt-1" style="color:var(--text-muted)">Receba avisos quando uma venda for registrada no Financeiro.</p></div></div><button @click="ativarNotificacoes()" class="k-btn k-btn-primary text-xs justify-center"><i class="fa-solid fa-bell"></i><span x-text="notificacoesAtivas()?'Notificações ativadas':'Ativar notificações'">Ativar notificações</span></button></div>
       <div class="k-card p-5 space-y-3">
         <div class="flex items-center gap-2"><i class="fa-solid fa-user-pen" style="color:var(--brand)"></i><h2 class="text-sm font-semibold" style="color:var(--text)">Seu nome</h2></div>
         <p class="text-xs" style="color:var(--text-muted)">Corrija ou troque o nome que aparece na saudação do CLEAN Leads.</p>
@@ -5577,8 +5579,8 @@ function app(){
     faturamentoTotal(){return this.financeiro.vendas.filter(v=>v.status!=='cancelada').reduce((n,v)=>n+Number(v.valor||0),0);},
     financeiroGrafico(){const hoje=new Date();hoje.setHours(23,59,59,999);const dias=Array.from({length:7},(_,i)=>{const d=new Date(hoje);d.setDate(hoje.getDate()-6+i);return d;});return dias.map(d=>{const ini=new Date(d);ini.setHours(0,0,0,0);const fim=new Date(d);fim.setHours(23,59,59,999);const total=this.financeiro.vendas.filter(v=>v.status!=='cancelada'&&Date.parse(v.data||'')>=ini.getTime()&&Date.parse(v.data||'')<=fim.getTime()).reduce((n,v)=>n+Number(v.valor||0),0);return {label:String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0'),total};});},
     financeiroGraficoMax(){return Math.max(1,...this.financeiroGrafico().map(d=>d.total));},
-    _notificarVenda(){try{if('Notification' in window&&Notification.permission==='granted')new Notification('CLEAN Leads',{body:'Venda registrada com sucesso.'});else if('Notification' in window&&Notification.permission==='default')Notification.requestPermission();}catch(_){ }},
-    registrarVenda(){const f=this.financeiro.form;const valor=Number(String(f.valor||'').replace(',','.'));if(!f.cliente.trim()||!Number.isFinite(valor)||valor<=0){this.showToast('Informe cliente e um valor válido','error');return;}const venda={id:'v_'+Date.now(),cliente:f.cliente.trim(),descricao:f.descricao.trim()||'Venda CLEAN Leads',valor,data:new Date().toISOString(),status:'registrada'};this.financeiro.vendas.unshift(venda);this._salvarFinanceiro();this.financeiro.form={cliente:'',descricao:'',valor:''};this.financeiro.modalVenda=false;this._notificarVenda();this.showToast('Venda registrada');},
+    _notificarVenda(valor){try{const texto=this.dinheiro(valor);const body='Parabéns, você tem mais uma venda no valor de '+texto+', vamos para a próxima.';if('Notification' in window&&Notification.permission==='granted')new Notification('CLEAN Leads',{body,icon:'icon-192.png',badge:'icon-192.png'});else if('Notification' in window&&Notification.permission==='default')Notification.requestPermission();}catch(_){ }},
+    registrarVenda(){const f=this.financeiro.form;const valor=Number(String(f.valor||'').replace(',','.'));if(!f.cliente.trim()||!Number.isFinite(valor)||valor<=0){this.showToast('Informe cliente e um valor válido','error');return;}const venda={id:'v_'+Date.now(),cliente:f.cliente.trim(),descricao:f.descricao.trim()||'Venda CLEAN Leads',valor,data:new Date().toISOString(),status:'registrada'};this.financeiro.vendas.unshift(venda);this._salvarFinanceiro();this.financeiro.form={cliente:'',descricao:'',valor:''};this.financeiro.modalVenda=false;this._notificarVenda(valor);this.showToast('Venda registrada');},
     criarCheckoutDireto(){const f=this.financeiro.checkoutForm;const valor=Number(String(f.valor||'').replace(',','.'));if(!f.chavePix.trim()||!Number.isFinite(valor)||valor<=0){this.showToast('Informe valor e chave Pix','error');return;}const checkout={id:'c_'+Date.now(),cliente:(f.cliente||'Cliente').trim(),descricao:(f.descricao||'Pagamento via Pix').trim(),valor,chavePix:f.chavePix.trim(),cor:f.cor||'#8b5cf6',criadoEm:new Date().toISOString()};this.financeiro.checkouts.unshift(checkout);this._salvarFinanceiro();this.financeiro.checkout=checkout;this.financeiro.modalCheckout=false;this.showToast('Checkout Pix criado');},
     abrirCriadorCheckout(v){const venda=v||this.financeiro.vendas[0];if(!venda){this.showToast('Registre uma venda antes de criar o checkout','error');return;}this.financeiro.checkoutForm={vendaId:venda.id,valor:String(venda.valor||''),chavePix:'',cor:'#8b5cf6'};this.financeiro.modalCheckout=true;},
     criarCheckout(){const f=this.financeiro.checkoutForm;const venda=this.financeiro.vendas.find(v=>v.id===f.vendaId);const valor=Number(String(f.valor||'').replace(',','.'));if(!venda||!Number.isFinite(valor)||valor<=0||!f.chavePix.trim()){this.showToast('Escolha uma venda, informe o valor e a chave Pix','error');return;}const checkout={id:'c_'+Date.now(),vendaId:venda.id,cliente:venda.cliente,descricao:venda.descricao,valor,chavePix:f.chavePix.trim(),cor:f.cor||'#8b5cf6',criadoEm:new Date().toISOString()};this.financeiro.checkouts.unshift(checkout);this._salvarFinanceiro();this.financeiro.checkout=checkout;this.financeiro.modalCheckout=false;this.showToast('Checkout Pix criado');},
@@ -6360,6 +6362,8 @@ function app(){
 
     // ─── CONFIG ───
     async testarGroq(){if(!this.cfg.ai_api_key){this.testGeminiOk=false;this.testGeminiMsg='Cole uma chave Groq primeiro.';return}this.testGeminiLoading=true;this.testGeminiMsg='';try{const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${this.cfg.ai_api_key}`},body:JSON.stringify({model:'groq/compound-mini',messages:[{role:'user',content:'Responda apenas: conexão OK'}],max_tokens:20})});const d=await r.json();if(!r.ok)throw new Error(d.error?.message||'Chave recusada');this.testGeminiOk=true;this.testGeminiMsg='✅ Groq conectado com sucesso.'}catch(e){this.testGeminiOk=false;this.testGeminiMsg='❌ '+(e.message||'Não foi possível conectar.')}finally{this.testGeminiLoading=false}},
+    notificacoesAtivas(){return 'Notification' in window&&Notification.permission==='granted';},
+    async ativarNotificacoes(){if(!('Notification' in window)){this.showToast('Este navegador não suporta notificações','error');return;}try{const p=await Notification.requestPermission();if(p==='granted'){new Notification('CLEAN Leads',{body:'Notificações ativadas com sucesso.'});this.showToast('Notificações ativadas');}else this.showToast('Permissão de notificações não concedida','error');}catch(_){this.showToast('Não foi possível ativar notificações','error');}},
     salvarConfig(){
       this._saveConfig(this.cfg);
       this.cfgMsg='✅ Salvo!';setTimeout(()=>this.cfgMsg='',3000);
