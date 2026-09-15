@@ -845,7 +845,7 @@ body:before{content:'';position:fixed;inset:-45%;z-index:0;pointer-events:none;o
   .k-main::-webkit-scrollbar{display:none!important}
   body,html{overflow-x:hidden!important;overflow-y:auto!important;position:static!important}
 }
-</style><style id="clean-mobile-native-scroll-fix">
+</style><style id="segment-picker-styles">.segment-step-btn{width:18px;height:18px;border:1px solid var(--border);border-radius:5px;background:transparent;color:var(--text-muted);font-size:13px;line-height:15px;cursor:pointer}.segment-step-btn:hover{color:var(--brand);border-color:var(--brand)}.segment-picker{margin-top:7px;padding:8px;border:1px solid var(--border);border-radius:8px;background:var(--surface);box-shadow:0 8px 20px rgba(0,0,0,.12)}.segment-picker-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;font-size:10px;color:var(--text)}.segment-picker-head button{border:0;background:none;color:var(--text-muted);font-size:16px;cursor:pointer}.segment-picker-list{display:flex;flex-wrap:wrap;gap:5px;max-height:92px;overflow:auto}.segment-picker-list button{border:1px solid var(--border);border-radius:6px;padding:5px 7px;background:transparent;color:var(--text-muted);font-size:10px;cursor:pointer}.segment-picker-list button:hover{color:var(--brand);border-color:var(--brand);background:var(--brand-soft)}</style><style id="clean-mobile-native-scroll-fix">
 @media(max-width:760px){
   /* Restore the visible label in the first bottom-navigation action. */
   .k-sidebar__nav .k-nav-btn:first-child>i{display:block!important}
@@ -1062,6 +1062,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 </script>
 <style id="clean-extra-palettes-final">html[data-clean-palette="cyan"]{--blue:#22d3ee;--blue-hi:#a5f3fc;--brand:#22d3ee;--brand-600:#0891b2;--brand-soft:rgba(34,211,238,.14);--brand-rgb:34,211,238;--border:rgba(103,232,249,.22);--border-strong:rgba(103,232,249,.42)}html[data-clean-palette="pink"]{--blue:#f472b6;--blue-hi:#fbcfe8;--brand:#f472b6;--brand-600:#db2777;--brand-soft:rgba(244,114,182,.14);--brand-rgb:244,114,182;--border:rgba(249,168,212,.22);--border-strong:rgba(249,168,212,.42)}html[data-clean-palette="orange"]{--blue:#fb923c;--blue-hi:#fed7aa;--brand:#fb923c;--brand-600:#ea580c;--brand-soft:rgba(251,146,60,.14);--brand-rgb:251,146,60;--border:rgba(253,186,116,.22);--border-strong:rgba(253,186,116,.42)}html[data-clean-palette="lime"]{--blue:#a3e635;--blue-hi:#d9f99d;--brand:#a3e635;--brand-600:#65a30d;--brand-soft:rgba(163,230,53,.14);--brand-rgb:163,230,53;--border:rgba(190,242,100,.22);--border-strong:rgba(190,242,100,.42)}html[data-clean-palette="cyan"] body:before,html[data-clean-palette="cyan"] .k-main:before{background:repeating-radial-gradient(ellipse at 18% 25%,transparent 0 58px,rgba(34,211,238,.25) 59px 62px,transparent 63px 125px),repeating-radial-gradient(ellipse at 78% 72%,transparent 0 82px,rgba(165,243,252,.16) 83px 86px,transparent 87px 170px)!important}html[data-clean-palette="pink"] body:before,html[data-clean-palette="pink"] .k-main:before{background:repeating-radial-gradient(ellipse at 18% 25%,transparent 0 58px,rgba(244,114,182,.25) 59px 62px,transparent 63px 125px)!important}html[data-clean-palette="orange"] body:before,html[data-clean-palette="orange"] .k-main:before{background:repeating-radial-gradient(ellipse at 18% 25%,transparent 0 58px,rgba(251,146,60,.25) 59px 62px,transparent 63px 125px)!important}html[data-clean-palette="lime"] body:before,html[data-clean-palette="lime"] .k-main:before{background:repeating-radial-gradient(ellipse at 18% 25%,transparent 0 58px,rgba(163,230,53,.25) 59px 62px,transparent 63px 125px)!important}</style>
 <style id="clean-pipeline-dnd-final">.pipeline-lead-card{cursor:grab;transition:transform .18s ease,opacity .18s ease,border-color .18s ease}.pipeline-lead-card:active{cursor:grabbing}.pipeline-lead-card:hover{border-color:var(--brand)!important}.pipeline-drop-target{border-color:var(--brand)!important;background:var(--brand-soft)!important;transition:background .18s ease,border-color .18s ease}@media(max-width:768px){.pipeline-dropzone{min-height:180px}.pipeline-lead-card{touch-action:none}}</style>
+<style>.segment-suggestions{position:absolute;z-index:80;left:0;right:0;top:calc(100% + 6px);padding:7px;border:1px solid var(--border);border-radius:9px;background:var(--surface);box-shadow:0 12px 28px rgba(0,0,0,.18)}.segment-suggestions-title{display:flex;align-items:center;gap:6px;padding:4px 6px 7px;color:var(--text-muted);font-size:10px}.segment-suggestions-title i{color:var(--brand)}.segment-suggestions-title b{color:var(--text);font-weight:700}.segment-suggestion{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 9px;border:0;border-radius:7px;background:transparent;color:var(--text-2);font:500 11px 'Plus Jakarta Sans',system-ui,sans-serif;text-align:left;cursor:pointer;transition:background var(--dur),color var(--dur)}.segment-suggestion:hover{background:var(--brand-soft);color:var(--text)}.segment-suggestion i{color:var(--brand);font-size:10px;opacity:.8}.segment-suggestions i{display:none!important}.clean-search-fields{align-items:start}.clean-search-fields>.clean-field>span{display:flex;align-items:center;min-height:15px}</style>
 </head>
 <body x-data="app()" x-init="init()" x-cloak>
 
@@ -2060,7 +2061,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         <section class="k-card p-4 clean-search-form">
           <div class="clean-search-fields">
             <label class="clean-field"><span>Cidade</span><div class="relative"><i class="fa-solid fa-location-dot"></i><input x-model="cidadeBusca" @change="selecionarCidade(cidadeBusca)" @keydown.enter.prevent="selecionarCidade(cidadeBusca)" list="cidades-sugestoes" class="k-input w-full" placeholder="Ex.: Xique-Xique, Bahia" autocomplete="off"/><datalist id="cidades-sugestoes"><template x-for="cidade in cidadesDisponiveis" :key="cidade"><option :value="cidade"></option></template></datalist></div></label>
-            <label class="clean-field"><span>Segmento</span><div class="relative"><i class="fa-solid fa-tag"></i><input x-model="buscaCategoria" @keydown.enter.prevent="buscaCategoria.trim()&&(scraper.categorias=[...new Set([...scraper.categorias,buscaCategoria.trim()])],buscaCategoria='')" class="k-input w-full" placeholder="Ex.: cabaré" autocomplete="off"/></div></label>
+            <label class="clean-field"><span>Segmento</span><div class="relative" @click.outside="buscaCategoria=''" style="z-index:30"><i class="fa-solid fa-tag"></i><input x-model="buscaCategoria" @keydown.enter.prevent="buscaCategoria.trim()&&(adicionarSegmento(buscaCategoria.trim()),buscaCategoria='')" class="k-input w-full" placeholder="Ex.: clínica" autocomplete="off"/><div x-show="buscaCategoria.trim().length>=2 && segmentoSugestoes().length" x-transition.opacity class="segment-suggestions"><div class="segment-suggestions-title"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Sugestões para “<b x-text="buscaCategoria"></b>”</span></div><template x-for="sugestao in segmentoSugestoes()" :key="sugestao"><button type="button" class="segment-suggestion" @click="selecionarSugestaoSegmento(sugestao)"><span x-text="sugestao"></span><i class="fa-solid fa-plus"></i></button></template></div></div></label>
           </div>
           <div class="flex flex-wrap gap-2 mt-3" x-show="scraper.categorias.length||pins.length">
             <span x-show="pins.length" class="clean-chip"><i class="fa-solid fa-location-dot"></i><span x-text="pins.length+' local(is) selecionado(s)'"></span></span>
@@ -2147,7 +2148,16 @@ document.addEventListener('DOMContentLoaded',()=>{
         
         <div class="k-card p-5 flex flex-col k-cats-card mobile-segment-input">
           <div class="flex items-center justify-between mb-3"><p class="k-label mb-0">Segmento</p><span x-show="scraper.categorias.length" class="text-xs font-bold" style="color:var(--brand)" x-text="scraper.categorias.length+' adicionado(s)'" ></span></div>
-          <div class="relative"><i class="fa-solid fa-tag absolute left-3 top-1/2 -translate-y-1/2 text-xs" style="color:var(--brand)"></i><input x-model="buscaCategoria" @keydown.enter.prevent="buscaCategoria.trim()&&(scraper.categorias=[...new Set([...scraper.categorias,buscaCategoria.trim()])],buscaCategoria='')" class="k-input w-full" style="height:44px;padding-left:34px" placeholder="Ex.: cabaré" autocomplete="off"/></div>
+          <div class="relative" @click.outside="buscaCategoria=''">
+            <i class="fa-solid fa-tag absolute left-3 top-1/2 -translate-y-1/2 text-xs" style="color:var(--brand)"></i>
+            <input x-model="buscaCategoria" @keydown.enter.prevent="buscaCategoria.trim()&&(adicionarSegmento(buscaCategoria.trim()),buscaCategoria='')" class="k-input w-full" style="height:44px;padding-left:34px" placeholder="Ex.: clínica" autocomplete="off"/>
+            <div x-show="buscaCategoria.trim().length>=2 && segmentoSugestoes().length" x-transition.opacity class="segment-suggestions">
+              <div class="segment-suggestions-title"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Sugestões para “<b x-text="buscaCategoria"></b>”</span></div>
+              <template x-for="sugestao in segmentoSugestoes()" :key="sugestao">
+                <button type="button" class="segment-suggestion" @click="selecionarSugestaoSegmento(sugestao)"><span x-text="sugestao"></span><i class="fa-solid fa-plus"></i></button>
+              </template>
+            </div>
+          </div>
           <p class="text-xs mt-2" style="color:var(--text-muted)">Digite o nicho e pressione Enter para adicionar.</p>
           <div x-show="scraper.categorias.length" class="flex flex-wrap gap-1.5 mt-3"><template x-for="cat in scraper.categorias" :key="cat"><span class="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs" style="background:var(--brand-soft);border:1px solid rgba(var(--brand-rgb),.3);color:var(--text)"><span x-text="cat"></span><button @click="scraper.categorias=scraper.categorias.filter(c=>c!==cat)" style="color:var(--text-muted)"><i class="fa-solid fa-xmark" style="font-size:9px"></i></button></span></template></div>
         </div>
@@ -5089,7 +5099,8 @@ function app(){
     pins:[],cidadeSelecionada:'',cidadeBusca:'',cidadeBuscando:false,leafletMap:null,mapLoaded:false,scanLayer:null,scanVisualAtivo:false,custoEstimado:null,fonteInfo:false,
     cidadesDisponiveis:['São Paulo — SP','Rio de Janeiro — RJ','Belo Horizonte — MG','Brasília — DF','Salvador — BA','Fortaleza — CE','Recife — PE','Porto Alegre — RS','Curitiba — PR','Manaus — AM','Belém — PA','Goiânia — GO','São Luís — MA','Maceió — AL','Natal — RN','João Pessoa — PB','Teresina — PI','Aracaju — SE','Florianópolis — SC','Campo Grande — MS','Cuiabá — MT','Vitória — ES','Macapá — AP','Boa Vista — RR','Rio Branco — AC','Palmas — TO','Campinas — SP','Santos — SP','São José dos Campos — SP','Uberlândia — MG'],
     buscaCategoria:'',
-    catsMobileOpen:false,   // dropdown de nichos no mobile
+    catsMobileOpen:false,
+    // dropdown de nichos no mobile
     scraperStatus:{rodando:false,mensagem:'',novos:0,fontes:{}},
 
     // ─── CONFIG ───
@@ -5265,6 +5276,27 @@ function app(){
       }
       if(!q)return grupos;
       return grupos.map(g=>({...g,categorias:g.categorias.filter(c=>c.toLowerCase().includes(q))})).filter(g=>g.categorias.length>0);
+    },
+    adicionarSegmento(cat){if(!cat)return;this.scraper.categorias=[...new Set([...this.scraper.categorias,cat])]},
+    selecionarSugestaoSegmento(cat){this.adicionarSegmento(cat);this.buscaCategoria='';},
+    segmentoSugestoes(){
+      const q=(this.buscaCategoria||'').toLowerCase().trim();
+      if(q.length<2)return[];
+      const todos=[...new Set((this.categoriaGrupos||[]).flatMap(g=>g.categorias||[]))];
+      const familias={
+        'clínica':['Clínica odontológica','Clínica médica','Clínica de estética','Clínica veterinária','Clínica de depilação','Clínica de micropigmentação'],
+        'clinica':['Clínica odontológica','Clínica médica','Clínica de estética','Clínica veterinária','Clínica de depilação','Clínica de micropigmentação'],
+        'salão':['Salão de beleza','Salão de festas infantis'],
+        'salao':['Salão de beleza','Salão de festas infantis'],
+        'loja':['Loja de roupas','Loja de calçados','Loja de eletrônicos','Loja de móveis','Loja de brinquedos'],
+        'empresa':['Empresa de automação elétrica','Empresa de logística frigorífica','Empresa de irrigação','Empresa de segurança'],
+        'escola':['Escola particular','Escola de idiomas','Escola de música','Escola de dança','Escola de programação'],
+        'restaurante':['Restaurante','Restaurante japonês','Restaurante italiano','Restaurante self-service'],
+        'advocacia':['Advogado','Escritório de advocacia','Advocacia empresarial'],
+        'marketing':['Agência de marketing','Agência de publicidade','Gestão de tráfego','Redes sociais']
+      };
+      const extras=Object.entries(familias).filter(([chave])=>chave.includes(q)||q.includes(chave)).flatMap(([,itens])=>itens);
+      return [...new Set([...extras,...todos.filter(cat=>cat.toLowerCase().includes(q))])].filter(cat=>!this.scraper.categorias.includes(cat)).slice(0,10);
     },
 
     // ─── INIT ───
